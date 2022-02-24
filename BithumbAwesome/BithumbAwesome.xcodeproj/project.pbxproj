@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630B27C7D03D00E6DD98 /* Color+.swift */; };
+		C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630D27C7D47400E6DD98 /* Font+.swift */; };
 		D17C652527C52800007705A7 /* BithumbAwesomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C652427C52800007705A7 /* BithumbAwesomeApp.swift */; };
 		D17C652727C52800007705A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C652627C52800007705A7 /* ContentView.swift */; };
 		D17C652927C52803007705A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D17C652827C52803007705A7 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		C6DA630B27C7D03D00E6DD98 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		C6DA630D27C7D47400E6DD98 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		D17C652127C52800007705A7 /* BithumbAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BithumbAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D17C652427C52800007705A7 /* BithumbAwesomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbAwesomeApp.swift; sourceTree = "<group>"; };
 		D17C652627C52800007705A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +48,7 @@
 			isa = PBXGroup;
 			children = (
 				C6DA630B27C7D03D00E6DD98 /* Color+.swift */,
+				C6DA630D27C7D47400E6DD98 /* Font+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */,
 				D17C652727C52800007705A7 /* ContentView.swift in Sources */,
 				D17C652527C52800007705A7 /* BithumbAwesomeApp.swift in Sources */,
 				C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */,
