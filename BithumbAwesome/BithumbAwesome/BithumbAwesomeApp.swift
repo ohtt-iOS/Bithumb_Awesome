@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct BithumbAwesomeApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
     }
+  }
 }

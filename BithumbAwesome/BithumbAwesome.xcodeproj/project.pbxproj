@@ -56,9 +56,9 @@
 				D17C652327C52800007705A7 /* BithumbAwesome */,
 				D17C652227C52800007705A7 /* Products */,
 			);
-			indentWidth = 4;
+			indentWidth = 2;
 			sourceTree = "<group>";
-			tabWidth = 4;
+			tabWidth = 2;
 		};
 		D17C652227C52800007705A7 /* Products */ = {
 			isa = PBXGroup;
