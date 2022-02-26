@@ -17,6 +17,7 @@
 		D17C653727C5294D007705A7 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = D17C653627C5294D007705A7 /* Starscream */; };
 		D17C653A27C529B6007705A7 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = D17C653927C529B6007705A7 /* Charts */; };
 		D17C653D27C52B01007705A7 /* TabBar in Frameworks */ = {isa = PBXBuildFile; productRef = D17C653C27C52B01007705A7 /* TabBar */; };
+		D1847FF527CA736100213DD0 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = D1847FF427CA736100213DD0 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1847FF527CA736100213DD0 /* ComposableArchitecture in Frameworks */,
 				D17C653427C52871007705A7 /* Alamofire in Frameworks */,
 				D17C653A27C529B6007705A7 /* Charts in Frameworks */,
 				D17C653D27C52B01007705A7 /* TabBar in Frameworks */,
@@ -112,6 +114,7 @@
 				D17C653627C5294D007705A7 /* Starscream */,
 				D17C653927C529B6007705A7 /* Charts */,
 				D17C653C27C52B01007705A7 /* TabBar */,
+				D1847FF427CA736100213DD0 /* ComposableArchitecture */,
 			);
 			productName = BithumbAwesome;
 			productReference = D17C652127C52800007705A7 /* BithumbAwesome.app */;
@@ -146,6 +149,7 @@
 				D17C653527C5294D007705A7 /* XCRemoteSwiftPackageReference "Starscream" */,
 				D17C653827C529B6007705A7 /* XCRemoteSwiftPackageReference "Charts" */,
 				D17C653B27C52B01007705A7 /* XCRemoteSwiftPackageReference "TabBar" */,
+				D1847FF327CA736100213DD0 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = D17C652227C52800007705A7 /* Products */;
 			projectDirPath = "";
@@ -415,6 +419,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		D1847FF327CA736100213DD0 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -437,6 +449,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D17C653B27C52B01007705A7 /* XCRemoteSwiftPackageReference "TabBar" */;
 			productName = TabBar;
+		};
+		D1847FF427CA736100213DD0 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1847FF327CA736100213DD0 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
