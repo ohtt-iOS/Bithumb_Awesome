@@ -13,7 +13,25 @@ struct HomeView: View {
   
   var body: some View {
     WithViewStore(self.store) { viewStore in
-      Text("Home")
+      VStack(alignment: .leading) {
+        HStack {
+          Image.logo
+            .resizable()
+            .frame(width: 216, height: 61, alignment: .leading)
+          Spacer()
+        }
+        
+        ScrollView(.horizontal, showsIndicators: false) {
+          RadioButtonView(
+            store: store.scope(
+              state: \.radioButtonState,
+              action: HomeAction.radioButtonAction
+            )
+          )
+            .padding(.horizontal, 14)
+        }
+        Spacer()
+      }
     }
   }
 }
