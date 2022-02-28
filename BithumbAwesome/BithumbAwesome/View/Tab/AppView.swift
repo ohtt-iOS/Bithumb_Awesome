@@ -11,30 +11,7 @@ import TabBar
 
 struct AppView: View {
   let store: Store<AppState, AppAction>
-  
-  private enum Item: Int, Tabbable {
-    case first = 0
-    case second
-    case third
-    
-    var icon: String {
-      switch self {
-      case .first: return "house"
-      case .second: return "menucard"
-      case .third: return "gearshape"
-      }
-    }
-    
-    var title: String {
-      switch self {
-      case .first: return "First"
-      case .second: return "Second"
-      case .third: return "Third"
-      }
-    }
-  }
-  
-  @State private var selection: Item = .first
+  @State private var selection: AwesomeTabType = .home
   
   var body: some View {
     WithViewStore(store) { viewStore in
@@ -45,7 +22,7 @@ struct AppView: View {
             action: AppAction.homeAction
           )
         )
-          .tabItem(for: Item.first)
+          .tabItem(for: AwesomeTabType.home)
         
         AssetView(
           store: store.scope(
@@ -53,7 +30,7 @@ struct AppView: View {
             action: AppAction.assetAction
           )
         )
-          .tabItem(for: Item.second)
+          .tabItem(for: AwesomeTabType.asset)
         
         SettingView(
           store: store.scope(
@@ -61,7 +38,7 @@ struct AppView: View {
             action: AppAction.settingAction
           )
         )
-          .tabItem(for: Item.third)
+          .tabItem(for: AwesomeTabType.setting)
       }
       .tabBar(style: AwesomeTabBarStyle())
       .tabItem(style: AwesomeTabItemStyle())

@@ -27,6 +27,11 @@
 		D184800C27CA75EA00213DD0 /* SettingCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184800B27CA75EA00213DD0 /* SettingCore.swift */; };
 		D184800E27CA781500213DD0 /* AwesomeTabItemStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184800D27CA781500213DD0 /* AwesomeTabItemStyle.swift */; };
 		D184801027CA782B00213DD0 /* AwesomeTabBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184800F27CA782B00213DD0 /* AwesomeTabBarStyle.swift */; };
+		D184809827CD105200213DD0 /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184809727CD105200213DD0 /* Image+.swift */; };
+		D184809C27CD120100213DD0 /* AwesomeTabType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184809B27CD120100213DD0 /* AwesomeTabType.swift */; };
+		D184809F27CD186000213DD0 /* AwesomeButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184809E27CD186000213DD0 /* AwesomeButtonType.swift */; };
+		D18480A127CD191D00213DD0 /* AwesomeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18480A027CD191D00213DD0 /* AwesomeButtonStyle.swift */; };
+		D18480A327CD19E900213DD0 /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18480A227CD19E900213DD0 /* RadioButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +51,11 @@
 		D184800B27CA75EA00213DD0 /* SettingCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCore.swift; sourceTree = "<group>"; };
 		D184800D27CA781500213DD0 /* AwesomeTabItemStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeTabItemStyle.swift; sourceTree = "<group>"; };
 		D184800F27CA782B00213DD0 /* AwesomeTabBarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeTabBarStyle.swift; sourceTree = "<group>"; };
+		D184809727CD105200213DD0 /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
+		D184809B27CD120100213DD0 /* AwesomeTabType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeTabType.swift; sourceTree = "<group>"; };
+		D184809E27CD186000213DD0 /* AwesomeButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeButtonType.swift; sourceTree = "<group>"; };
+		D18480A027CD191D00213DD0 /* AwesomeButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeButtonStyle.swift; sourceTree = "<group>"; };
+		D18480A227CD19E900213DD0 /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +79,7 @@
 			children = (
 				C6DA630B27C7D03D00E6DD98 /* Color+.swift */,
 				C6DA630D27C7D47400E6DD98 /* Font+.swift */,
+				D184809727CD105200213DD0 /* Image+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -96,6 +107,7 @@
 			children = (
 				D17C652427C52800007705A7 /* BithumbAwesomeApp.swift */,
 				D1847FFA27CA74EE00213DD0 /* View */,
+				D184809927CD115500213DD0 /* Custom */,
 				C6DA630A27C7D02C00E6DD98 /* Extension */,
 				D17C652827C52803007705A7 /* Assets.xcassets */,
 				D17C652A27C52803007705A7 /* Preview Content */,
@@ -136,8 +148,6 @@
 			children = (
 				D17C652627C52800007705A7 /* AppView.swift */,
 				D1847FFF27CA759B00213DD0 /* AppCore.swift */,
-				D184800D27CA781500213DD0 /* AwesomeTabItemStyle.swift */,
-				D184800F27CA782B00213DD0 /* AwesomeTabBarStyle.swift */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -158,6 +168,35 @@
 				D184800B27CA75EA00213DD0 /* SettingCore.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		D184809927CD115500213DD0 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				D184809A27CD11D600213DD0 /* AwesomeTab */,
+				D184809D27CD184A00213DD0 /* AwesomeButton */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		D184809A27CD11D600213DD0 /* AwesomeTab */ = {
+			isa = PBXGroup;
+			children = (
+				D184809B27CD120100213DD0 /* AwesomeTabType.swift */,
+				D184800F27CA782B00213DD0 /* AwesomeTabBarStyle.swift */,
+				D184800D27CA781500213DD0 /* AwesomeTabItemStyle.swift */,
+			);
+			path = AwesomeTab;
+			sourceTree = "<group>";
+		};
+		D184809D27CD184A00213DD0 /* AwesomeButton */ = {
+			isa = PBXGroup;
+			children = (
+				D184809E27CD186000213DD0 /* AwesomeButtonType.swift */,
+				D18480A027CD191D00213DD0 /* AwesomeButtonStyle.swift */,
+				D18480A227CD19E900213DD0 /* RadioButtonView.swift */,
+			);
+			path = AwesomeButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,16 +284,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				D184800E27CA781500213DD0 /* AwesomeTabItemStyle.swift in Sources */,
+				D184809F27CD186000213DD0 /* AwesomeButtonType.swift in Sources */,
 				D184800827CA75D000213DD0 /* AseetCore.swift in Sources */,
 				D184800A27CA75E000213DD0 /* SettingView.swift in Sources */,
 				D184800427CA75BE00213DD0 /* HomeCore.swift in Sources */,
 				C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */,
 				D17C652727C52800007705A7 /* AppView.swift in Sources */,
+				D184809C27CD120100213DD0 /* AwesomeTabType.swift in Sources */,
 				D17C652527C52800007705A7 /* BithumbAwesomeApp.swift in Sources */,
+				D18480A127CD191D00213DD0 /* AwesomeButtonStyle.swift in Sources */,
 				D184800C27CA75EA00213DD0 /* SettingCore.swift in Sources */,
 				D184800227CA75B400213DD0 /* HomeView.swift in Sources */,
+				D18480A327CD19E900213DD0 /* RadioButtonView.swift in Sources */,
 				D184801027CA782B00213DD0 /* AwesomeTabBarStyle.swift in Sources */,
 				D184800627CA75C700213DD0 /* AssetView.swift in Sources */,
+				D184809827CD105200213DD0 /* Image+.swift in Sources */,
 				C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */,
 				D184800027CA759B00213DD0 /* AppCore.swift in Sources */,
 			);
