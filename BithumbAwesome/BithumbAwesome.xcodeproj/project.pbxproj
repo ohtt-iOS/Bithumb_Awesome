@@ -39,6 +39,12 @@
 		D184809F27CD186000213DD0 /* AwesomeButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184809E27CD186000213DD0 /* AwesomeButtonType.swift */; };
 		D18480A127CD191D00213DD0 /* AwesomeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18480A027CD191D00213DD0 /* AwesomeButtonStyle.swift */; };
 		D18480A327CD19E900213DD0 /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18480A227CD19E900213DD0 /* RadioButtonView.swift */; };
+		D1C47B4F27CE76400006B7A3 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B4E27CE76400006B7A3 /* ChartView.swift */; };
+		D1C47B5127CE76480006B7A3 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5027CE76480006B7A3 /* QuoteView.swift */; };
+		D1C47B5327CE76530006B7A3 /* ConclusionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5227CE76530006B7A3 /* ConclusionView.swift */; };
+		D1C47B5527CE76650006B7A3 /* ChartStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5427CE76650006B7A3 /* ChartStore.swift */; };
+		D1C47B5727CE766E0006B7A3 /* QuoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5627CE766E0006B7A3 /* QuoteStore.swift */; };
+		D1C47B5927CE76760006B7A3 /* ConclusionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5827CE76760006B7A3 /* ConclusionStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +76,12 @@
 		D184809E27CD186000213DD0 /* AwesomeButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeButtonType.swift; sourceTree = "<group>"; };
 		D18480A027CD191D00213DD0 /* AwesomeButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeButtonStyle.swift; sourceTree = "<group>"; };
 		D18480A227CD19E900213DD0 /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
+		D1C47B4E27CE76400006B7A3 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		D1C47B5027CE76480006B7A3 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
+		D1C47B5227CE76530006B7A3 /* ConclusionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConclusionView.swift; sourceTree = "<group>"; };
+		D1C47B5427CE76650006B7A3 /* ChartStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartStore.swift; sourceTree = "<group>"; };
+		D1C47B5627CE766E0006B7A3 /* QuoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteStore.swift; sourceTree = "<group>"; };
+		D1C47B5827CE76760006B7A3 /* ConclusionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConclusionStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +114,9 @@
 				C6A7AD7627CE577000851AA9 /* DetailView.swift */,
 				C6A7AD7827CE578800851AA9 /* DetailCore.swift */,
 				C6B6A1EB27CE694E00C4303F /* PriceView.swift */,
+				D1C47B4B27CE76060006B7A3 /* Chart */,
+				D1C47B4C27CE76220006B7A3 /* Quote */,
+				D1C47B4D27CE76280006B7A3 /* Conclusion */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -244,6 +259,33 @@
 			path = AwesomeButton;
 			sourceTree = "<group>";
 		};
+		D1C47B4B27CE76060006B7A3 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				D1C47B4E27CE76400006B7A3 /* ChartView.swift */,
+				D1C47B5427CE76650006B7A3 /* ChartStore.swift */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		D1C47B4C27CE76220006B7A3 /* Quote */ = {
+			isa = PBXGroup;
+			children = (
+				D1C47B5027CE76480006B7A3 /* QuoteView.swift */,
+				D1C47B5627CE766E0006B7A3 /* QuoteStore.swift */,
+			);
+			path = Quote;
+			sourceTree = "<group>";
+		};
+		D1C47B4D27CE76280006B7A3 /* Conclusion */ = {
+			isa = PBXGroup;
+			children = (
+				D1C47B5227CE76530006B7A3 /* ConclusionView.swift */,
+				D1C47B5827CE76760006B7A3 /* ConclusionStore.swift */,
+			);
+			path = Conclusion;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -329,11 +371,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6A7AD8027CE5CA400851AA9 /* FavoriteButtonCore.swift in Sources */,
+				D1C47B4F27CE76400006B7A3 /* ChartView.swift in Sources */,
 				D184800E27CA781500213DD0 /* AwesomeTabItemStyle.swift in Sources */,
 				D184809F27CD186000213DD0 /* AwesomeButtonType.swift in Sources */,
 				D184800827CA75D000213DD0 /* AseetCore.swift in Sources */,
+				D1C47B5527CE76650006B7A3 /* ChartStore.swift in Sources */,
 				C6B6A1EC27CE694E00C4303F /* PriceView.swift in Sources */,
 				D184800A27CA75E000213DD0 /* SettingView.swift in Sources */,
+				D1C47B5127CE76480006B7A3 /* QuoteView.swift in Sources */,
 				D184800427CA75BE00213DD0 /* HomeCore.swift in Sources */,
 				C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */,
 				D17C652727C52800007705A7 /* AppView.swift in Sources */,
@@ -342,17 +387,20 @@
 				D18480A127CD191D00213DD0 /* AwesomeButtonStyle.swift in Sources */,
 				D184800C27CA75EA00213DD0 /* SettingCore.swift in Sources */,
 				C6A7AD7B27CE58F200851AA9 /* UINavigationController+.swift in Sources */,
+				D1C47B5927CE76760006B7A3 /* ConclusionStore.swift in Sources */,
 				D184800227CA75B400213DD0 /* HomeView.swift in Sources */,
 				D18480A327CD19E900213DD0 /* RadioButtonView.swift in Sources */,
 				C6A7AD7727CE577000851AA9 /* DetailView.swift in Sources */,
 				D184801027CA782B00213DD0 /* AwesomeTabBarStyle.swift in Sources */,
 				D184800627CA75C700213DD0 /* AssetView.swift in Sources */,
+				D1C47B5727CE766E0006B7A3 /* QuoteStore.swift in Sources */,
 				C6A7AD7427CE541700851AA9 /* ANavigationBarView.swift in Sources */,
 				D184809827CD105200213DD0 /* Image+.swift in Sources */,
 				C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */,
 				D184800027CA759B00213DD0 /* AppCore.swift in Sources */,
 				C6A7AD7927CE578800851AA9 /* DetailCore.swift in Sources */,
 				C6A7AD7E27CE5C6D00851AA9 /* FavoriteButton.swift in Sources */,
+				D1C47B5327CE76530006B7A3 /* ConclusionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
