@@ -30,6 +30,16 @@ struct HomeView: View {
           )
             .padding(.horizontal, 14)
         }
+        
+        NavigationLink(
+          destination: DetailView(store: Store(
+            initialState: DetailState(),
+            reducer: detailReducer,
+            environment: DetailEnvironment()
+          )),
+          label: { Text("DetailView 이동") }
+        )
+        
         Spacer()
       }
     }

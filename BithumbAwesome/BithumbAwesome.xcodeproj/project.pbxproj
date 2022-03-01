@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C6A7AD7427CE541700851AA9 /* ANavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7327CE541700851AA9 /* ANavigationBarView.swift */; };
+		C6A7AD7727CE577000851AA9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7627CE577000851AA9 /* DetailView.swift */; };
+		C6A7AD7927CE578800851AA9 /* DetailCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7827CE578800851AA9 /* DetailCore.swift */; };
+		C6A7AD7B27CE58F200851AA9 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7A27CE58F200851AA9 /* UINavigationController+.swift */; };
+		C6A7AD7E27CE5C6D00851AA9 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7D27CE5C6D00851AA9 /* FavoriteButton.swift */; };
+		C6A7AD8027CE5CA400851AA9 /* FavoriteButtonCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7F27CE5CA400851AA9 /* FavoriteButtonCore.swift */; };
 		C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630B27C7D03D00E6DD98 /* Color+.swift */; };
 		C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630D27C7D47400E6DD98 /* Font+.swift */; };
 		D17C652527C52800007705A7 /* BithumbAwesomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C652427C52800007705A7 /* BithumbAwesomeApp.swift */; };
@@ -35,6 +41,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C6A7AD7327CE541700851AA9 /* ANavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ANavigationBarView.swift; sourceTree = "<group>"; };
+		C6A7AD7627CE577000851AA9 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		C6A7AD7827CE578800851AA9 /* DetailCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCore.swift; sourceTree = "<group>"; };
+		C6A7AD7A27CE58F200851AA9 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		C6A7AD7D27CE5C6D00851AA9 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
+		C6A7AD7F27CE5CA400851AA9 /* FavoriteButtonCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonCore.swift; sourceTree = "<group>"; };
 		C6DA630B27C7D03D00E6DD98 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		C6DA630D27C7D47400E6DD98 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		D17C652127C52800007705A7 /* BithumbAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BithumbAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,12 +86,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C6A7AD7227CE53F800851AA9 /* ANavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				C6A7AD7327CE541700851AA9 /* ANavigationBarView.swift */,
+			);
+			path = ANavigationBar;
+			sourceTree = "<group>";
+		};
+		C6A7AD7527CE575C00851AA9 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C6A7AD7627CE577000851AA9 /* DetailView.swift */,
+				C6A7AD7827CE578800851AA9 /* DetailCore.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		C6A7AD7C27CE5C6700851AA9 /* FavoriteButton */ = {
+			isa = PBXGroup;
+			children = (
+				C6A7AD7D27CE5C6D00851AA9 /* FavoriteButton.swift */,
+				C6A7AD7F27CE5CA400851AA9 /* FavoriteButtonCore.swift */,
+			);
+			path = FavoriteButton;
+			sourceTree = "<group>";
+		};
 		C6DA630A27C7D02C00E6DD98 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				C6DA630B27C7D03D00E6DD98 /* Color+.swift */,
 				C6DA630D27C7D47400E6DD98 /* Font+.swift */,
 				D184809727CD105200213DD0 /* Image+.swift */,
+				C6A7AD7A27CE58F200851AA9 /* UINavigationController+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -128,6 +167,7 @@
 			children = (
 				D1847FFC27CA74FB00213DD0 /* Tab */,
 				D1847FFB27CA74F600213DD0 /* Home */,
+				C6A7AD7527CE575C00851AA9 /* Detail */,
 				D1847FFD27CA751100213DD0 /* Asset */,
 				D1847FFE27CA751F00213DD0 /* Setting */,
 			);
@@ -173,6 +213,8 @@
 		D184809927CD115500213DD0 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				C6A7AD7C27CE5C6700851AA9 /* FavoriteButton */,
+				C6A7AD7227CE53F800851AA9 /* ANavigationBar */,
 				D184809A27CD11D600213DD0 /* AwesomeTab */,
 				D184809D27CD184A00213DD0 /* AwesomeButton */,
 			);
@@ -283,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6A7AD8027CE5CA400851AA9 /* FavoriteButtonCore.swift in Sources */,
 				D184800E27CA781500213DD0 /* AwesomeTabItemStyle.swift in Sources */,
 				D184809F27CD186000213DD0 /* AwesomeButtonType.swift in Sources */,
 				D184800827CA75D000213DD0 /* AseetCore.swift in Sources */,
@@ -294,13 +337,18 @@
 				D17C652527C52800007705A7 /* BithumbAwesomeApp.swift in Sources */,
 				D18480A127CD191D00213DD0 /* AwesomeButtonStyle.swift in Sources */,
 				D184800C27CA75EA00213DD0 /* SettingCore.swift in Sources */,
+				C6A7AD7B27CE58F200851AA9 /* UINavigationController+.swift in Sources */,
 				D184800227CA75B400213DD0 /* HomeView.swift in Sources */,
 				D18480A327CD19E900213DD0 /* RadioButtonView.swift in Sources */,
+				C6A7AD7727CE577000851AA9 /* DetailView.swift in Sources */,
 				D184801027CA782B00213DD0 /* AwesomeTabBarStyle.swift in Sources */,
 				D184800627CA75C700213DD0 /* AssetView.swift in Sources */,
+				C6A7AD7427CE541700851AA9 /* ANavigationBarView.swift in Sources */,
 				D184809827CD105200213DD0 /* Image+.swift in Sources */,
 				C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */,
 				D184800027CA759B00213DD0 /* AppCore.swift in Sources */,
+				C6A7AD7927CE578800851AA9 /* DetailCore.swift in Sources */,
+				C6A7AD7E27CE5C6D00851AA9 /* FavoriteButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

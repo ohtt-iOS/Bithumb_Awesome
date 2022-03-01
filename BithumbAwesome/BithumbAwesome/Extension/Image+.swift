@@ -18,5 +18,10 @@ extension Image {
   static let chart: Image = Image("Chart_perspective_matte")
   static let quote: Image = Image("Sound_perspective_matte")
   static let conclusion: Image = Image("Success_perspective_matte")
+  
+  // MARK: button image
+  static let backButton: Image = Image("backButton")
+  static let favoriteFillButton: Image = Image("Star_fill")
+  static let favoriteEmptyButton: Image = Image("Star")
 }
 
