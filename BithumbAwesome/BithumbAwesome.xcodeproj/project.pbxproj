@@ -13,6 +13,7 @@
 		C6A7AD7B27CE58F200851AA9 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7A27CE58F200851AA9 /* UINavigationController+.swift */; };
 		C6A7AD7E27CE5C6D00851AA9 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7D27CE5C6D00851AA9 /* FavoriteButton.swift */; };
 		C6A7AD8027CE5CA400851AA9 /* FavoriteButtonCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7F27CE5CA400851AA9 /* FavoriteButtonCore.swift */; };
+		C6B6A1EC27CE694E00C4303F /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6A1EB27CE694E00C4303F /* PriceView.swift */; };
 		C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630B27C7D03D00E6DD98 /* Color+.swift */; };
 		C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630D27C7D47400E6DD98 /* Font+.swift */; };
 		D17C652527C52800007705A7 /* BithumbAwesomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C652427C52800007705A7 /* BithumbAwesomeApp.swift */; };
@@ -47,6 +48,7 @@
 		C6A7AD7A27CE58F200851AA9 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		C6A7AD7D27CE5C6D00851AA9 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		C6A7AD7F27CE5CA400851AA9 /* FavoriteButtonCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonCore.swift; sourceTree = "<group>"; };
+		C6B6A1EB27CE694E00C4303F /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
 		C6DA630B27C7D03D00E6DD98 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		C6DA630D27C7D47400E6DD98 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		D17C652127C52800007705A7 /* BithumbAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BithumbAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +101,7 @@
 			children = (
 				C6A7AD7627CE577000851AA9 /* DetailView.swift */,
 				C6A7AD7827CE578800851AA9 /* DetailCore.swift */,
+				C6B6A1EB27CE694E00C4303F /* PriceView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				D184800E27CA781500213DD0 /* AwesomeTabItemStyle.swift in Sources */,
 				D184809F27CD186000213DD0 /* AwesomeButtonType.swift in Sources */,
 				D184800827CA75D000213DD0 /* AseetCore.swift in Sources */,
+				C6B6A1EC27CE694E00C4303F /* PriceView.swift in Sources */,
 				D184800A27CA75E000213DD0 /* SettingView.swift in Sources */,
 				D184800427CA75BE00213DD0 /* HomeCore.swift in Sources */,
 				C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */,

@@ -13,10 +13,19 @@ struct DetailView: View {
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   var body: some View {
-    VStack {
+    VStack(alignment: .leading) {
       ANavigationBarView(titleTextString: "비트코인", presentationMode: self.presentationMode)
       
-      Text("Detail View")
+      PriceView()
+        .padding(.leading, 19)
+      
+      RadioButtonView(
+        store: store.scope(
+          state: \.radioButtonState,
+          action: DetailAction.radioButtonAction
+        )
+      )
+        .padding(.horizontal, 14)
       
       Spacer()
     }
