@@ -102,14 +102,3 @@ struct HomeHeaderView: View {
     }
   }
 }
-
-
-struct HomeView_Previews: PreviewProvider {
-  static var previews: some View {
-    HomeView(store: Store(
-      initialState: HomeState(),
-      reducer: homeReducer,
-      environment: HomeEnvironment()
-    ))
-  }
-}

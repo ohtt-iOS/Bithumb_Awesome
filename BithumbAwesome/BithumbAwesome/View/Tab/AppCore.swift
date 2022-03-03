@@ -8,7 +8,7 @@
 import ComposableArchitecture
 
 struct AppState: Equatable {
-  var homeState: HomeState = .init()
+  var homeState: HomeState = .init(tickerData: [])
   var assetState: AssetState = .init()
   var settingState: SettingState = .init()
 }
@@ -25,7 +25,8 @@ let appReducer = Reducer.combine([
     state: \.homeState,
     action: /AppAction.homeAction,
     environment: { _ in
-      HomeEnvironment()
+      HomeEnvironment(homeService: .home,
+                      mainQueue: .main)
     }
   ) as Reducer<AppState, AppAction, AppEnvironment>,
   assetReducer.pullback(
