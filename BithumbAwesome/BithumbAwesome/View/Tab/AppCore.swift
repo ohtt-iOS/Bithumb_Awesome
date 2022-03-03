@@ -9,7 +9,7 @@ import ComposableArchitecture
 
 struct AppState: Equatable {
   var homeState: HomeState = .init(tickerData: [])
-  var assetState: AssetState = .init()
+  var assetState: AssetState = .init(assetData: [])
   var settingState: SettingState = .init()
 }
 
@@ -40,7 +40,7 @@ let appReducer = Reducer.combine([
     state: \.assetState,
     action: /AppAction.assetAction,
     environment: { _ in
-      AssetEnvironment()
+      AssetEnvironment(assetClient: AssetService.asset, mainQueue: .main)
     }
   ) as Reducer<AppState, AppAction, AppEnvironment>,
   settingReducer.pullback(

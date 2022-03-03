@@ -13,17 +13,27 @@ struct AssetView: View {
   
   var body: some View {
     WithViewStore(self.store) { viewStore in
-      Text("Asset")
+      VStack(spacing: 0) {
+        HStack {
+          Image.logo
+            .resizable()
+            .frame(width: 216, height: 61, alignment: .leading)
+          Spacer()
+        }
+        
+        List {
+          Section(header: AssetListHeader()) {
+            ForEach(viewStore.assetData) { asset in
+              AssetListRow(asset: asset)
+            }
+          }
+        }
+        .listStyle(.plain)
+        .padding(.leading, -20)
+      }
+      .onAppear {
+        viewStore.send(.fetchData)
+      }
     }
-  }
-}
-
-struct AssetView_Previews: PreviewProvider {
-  static var previews: some View {
-    AssetView(store: Store(
-      initialState: AssetState(),
-      reducer: assetReducer,
-      environment: AssetEnvironment()
-    ))
   }
 }
