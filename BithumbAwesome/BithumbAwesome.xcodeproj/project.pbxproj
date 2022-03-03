@@ -11,7 +11,8 @@
 		C65E8D9327D0B3750088A5F4 /* AssetListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8D9227D0B3750088A5F4 /* AssetListRow.swift */; };
 		C65E8D9627D0B4840088A5F4 /* CurrentAssetStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8D9427D0B4840088A5F4 /* CurrentAssetStatus.swift */; };
 		C65E8D9727D0B4840088A5F4 /* AdditionalAssetName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8D9527D0B4840088A5F4 /* AdditionalAssetName.swift */; };
-		C65E8D9927D0B7690088A5F4 /* AssetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8D9827D0B7690088A5F4 /* AssetService.swift */; };
+		C65E8DA027D0BDFC0088A5F4 /* AssetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8D9E27D0BDFC0088A5F4 /* AssetData.swift */; };
+		C65E8DA127D0BDFC0088A5F4 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8D9F27D0BDFC0088A5F4 /* Asset.swift */; };
 		C6A7AD7427CE541700851AA9 /* ANavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7327CE541700851AA9 /* ANavigationBarView.swift */; };
 		C6A7AD7727CE577000851AA9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7627CE577000851AA9 /* DetailView.swift */; };
 		C6A7AD7927CE578800851AA9 /* DetailCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7827CE578800851AA9 /* DetailCore.swift */; };
@@ -57,7 +58,8 @@
 		C65E8D9227D0B3750088A5F4 /* AssetListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListRow.swift; sourceTree = "<group>"; };
 		C65E8D9427D0B4840088A5F4 /* CurrentAssetStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentAssetStatus.swift; sourceTree = "<group>"; };
 		C65E8D9527D0B4840088A5F4 /* AdditionalAssetName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionalAssetName.swift; sourceTree = "<group>"; };
-		C65E8D9827D0B7690088A5F4 /* AssetService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetService.swift; sourceTree = "<group>"; };
+		C65E8D9E27D0BDFC0088A5F4 /* AssetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetData.swift; sourceTree = "<group>"; };
+		C65E8D9F27D0BDFC0088A5F4 /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		C6A7AD7327CE541700851AA9 /* ANavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ANavigationBarView.swift; sourceTree = "<group>"; };
 		C6A7AD7627CE577000851AA9 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		C6A7AD7827CE578800851AA9 /* DetailCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCore.swift; sourceTree = "<group>"; };
@@ -237,7 +239,8 @@
 				D184800527CA75C700213DD0 /* AssetView.swift */,
 				C65E8D8327D0B1650088A5F4 /* List */,
 				D184800727CA75D000213DD0 /* AseetCore.swift */,
-				C65E8D9827D0B7690088A5F4 /* AssetService.swift */,
+				C65E8D9F27D0BDFC0088A5F4 /* Asset.swift */,
+				C65E8D9E27D0BDFC0088A5F4 /* AssetData.swift */,
 			);
 			path = Asset;
 			sourceTree = "<group>";
@@ -393,13 +396,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C65E8DA127D0BDFC0088A5F4 /* Asset.swift in Sources */,
 				C6A7AD8027CE5CA400851AA9 /* FavoriteButtonCore.swift in Sources */,
 				D1C47B4F27CE76400006B7A3 /* ChartView.swift in Sources */,
 				D184800E27CA781500213DD0 /* AwesomeTabItemStyle.swift in Sources */,
 				D184809F27CD186000213DD0 /* AwesomeButtonType.swift in Sources */,
 				D184800827CA75D000213DD0 /* AseetCore.swift in Sources */,
 				D1C47B5527CE76650006B7A3 /* ChartStore.swift in Sources */,
-				C65E8D9927D0B7690088A5F4 /* AssetService.swift in Sources */,
 				C6B6A1EC27CE694E00C4303F /* PriceView.swift in Sources */,
 				D184800A27CA75E000213DD0 /* SettingView.swift in Sources */,
 				D1C47B5127CE76480006B7A3 /* QuoteView.swift in Sources */,
@@ -422,6 +425,7 @@
 				D1C47B5727CE766E0006B7A3 /* QuoteStore.swift in Sources */,
 				C6A7AD7427CE541700851AA9 /* ANavigationBarView.swift in Sources */,
 				C65E8D9727D0B4840088A5F4 /* AdditionalAssetName.swift in Sources */,
+				C65E8DA027D0BDFC0088A5F4 /* AssetData.swift in Sources */,
 				C65E8D8927D0B1650088A5F4 /* AssetListHeader.swift in Sources */,
 				D184809827CD105200213DD0 /* Image+.swift in Sources */,
 				C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */,
