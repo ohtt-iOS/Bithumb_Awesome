@@ -48,6 +48,7 @@
 		D1C47B5527CE76650006B7A3 /* ChartStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5427CE76650006B7A3 /* ChartStore.swift */; };
 		D1C47B5727CE766E0006B7A3 /* QuoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5627CE766E0006B7A3 /* QuoteStore.swift */; };
 		D1C47B5927CE76760006B7A3 /* ConclusionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5827CE76760006B7A3 /* ConclusionStore.swift */; };
+		D1D952B027D08EFC00149BEC /* TickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D952AF27D08EFC00149BEC /* TickerResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		D1C47B5427CE76650006B7A3 /* ChartStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartStore.swift; sourceTree = "<group>"; };
 		D1C47B5627CE766E0006B7A3 /* QuoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteStore.swift; sourceTree = "<group>"; };
 		D1C47B5827CE76760006B7A3 /* ConclusionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConclusionStore.swift; sourceTree = "<group>"; };
+		D1D952AF27D08EFC00149BEC /* TickerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 				D184800127CA75B400213DD0 /* HomeView.swift */,
 				D184800327CA75BE00213DD0 /* HomeCore.swift */,
 				D10E600927D0843000B68BCF /* TickerRow */,
+				D1D952AF27D08EFC00149BEC /* TickerResponse.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				D18480A327CD19E900213DD0 /* RadioButtonView.swift in Sources */,
 				C6A7AD7727CE577000851AA9 /* DetailView.swift in Sources */,
 				D184801027CA782B00213DD0 /* AwesomeTabBarStyle.swift in Sources */,
+				D1D952B027D08EFC00149BEC /* TickerResponse.swift in Sources */,
 				D184800627CA75C700213DD0 /* AssetView.swift in Sources */,
 				D1C47B5727CE766E0006B7A3 /* QuoteStore.swift in Sources */,
 				C6A7AD7427CE541700851AA9 /* ANavigationBarView.swift in Sources */,
