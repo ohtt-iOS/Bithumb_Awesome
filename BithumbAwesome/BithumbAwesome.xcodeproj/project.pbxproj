@@ -13,6 +13,8 @@
 		C6A7AD7B27CE58F200851AA9 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7A27CE58F200851AA9 /* UINavigationController+.swift */; };
 		C6A7AD7E27CE5C6D00851AA9 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7D27CE5C6D00851AA9 /* FavoriteButton.swift */; };
 		C6A7AD8027CE5CA400851AA9 /* FavoriteButtonCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7F27CE5CA400851AA9 /* FavoriteButtonCore.swift */; };
+		C6AA39D327CFB2010042821C /* AdditionalAssetName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA39D227CFB2010042821C /* AdditionalAssetName.swift */; };
+		C6AA39D527CFB2860042821C /* CurrentAssetStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA39D427CFB2860042821C /* CurrentAssetStatus.swift */; };
 		C6B6A1EC27CE694E00C4303F /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6A1EB27CE694E00C4303F /* PriceView.swift */; };
 		C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630B27C7D03D00E6DD98 /* Color+.swift */; };
 		C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630D27C7D47400E6DD98 /* Font+.swift */; };
@@ -54,6 +56,8 @@
 		C6A7AD7A27CE58F200851AA9 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		C6A7AD7D27CE5C6D00851AA9 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		C6A7AD7F27CE5CA400851AA9 /* FavoriteButtonCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonCore.swift; sourceTree = "<group>"; };
+		C6AA39D227CFB2010042821C /* AdditionalAssetName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalAssetName.swift; sourceTree = "<group>"; };
+		C6AA39D427CFB2860042821C /* CurrentAssetStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAssetStatus.swift; sourceTree = "<group>"; };
 		C6B6A1EB27CE694E00C4303F /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
 		C6DA630B27C7D03D00E6DD98 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		C6DA630D27C7D47400E6DD98 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
@@ -128,6 +132,15 @@
 				C6A7AD7F27CE5CA400851AA9 /* FavoriteButtonCore.swift */,
 			);
 			path = FavoriteButton;
+			sourceTree = "<group>";
+		};
+		C6AA39D627CFB2B30042821C /* List */ = {
+			isa = PBXGroup;
+			children = (
+				C6AA39D227CFB2010042821C /* AdditionalAssetName.swift */,
+				C6AA39D427CFB2860042821C /* CurrentAssetStatus.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		C6DA630A27C7D02C00E6DD98 /* Extension */ = {
@@ -214,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				D184800527CA75C700213DD0 /* AssetView.swift */,
+				C6AA39D627CFB2B30042821C /* List */,
 				D184800727CA75D000213DD0 /* AseetCore.swift */,
 			);
 			path = Asset;
@@ -382,11 +396,13 @@
 				D184800427CA75BE00213DD0 /* HomeCore.swift in Sources */,
 				C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */,
 				D17C652727C52800007705A7 /* AppView.swift in Sources */,
+				C6AA39D327CFB2010042821C /* AdditionalAssetName.swift in Sources */,
 				D184809C27CD120100213DD0 /* AwesomeTabType.swift in Sources */,
 				D17C652527C52800007705A7 /* BithumbAwesomeApp.swift in Sources */,
 				D18480A127CD191D00213DD0 /* AwesomeButtonStyle.swift in Sources */,
 				D184800C27CA75EA00213DD0 /* SettingCore.swift in Sources */,
 				C6A7AD7B27CE58F200851AA9 /* UINavigationController+.swift in Sources */,
+				C6AA39D527CFB2860042821C /* CurrentAssetStatus.swift in Sources */,
 				D1C47B5927CE76760006B7A3 /* ConclusionStore.swift in Sources */,
 				D184800227CA75B400213DD0 /* HomeView.swift in Sources */,
 				D18480A327CD19E900213DD0 /* RadioButtonView.swift in Sources */,
