@@ -31,16 +31,36 @@ struct HomeView: View {
             .padding(.horizontal, 14)
         }
         
-        NavigationLink(
-          destination: DetailView(store: Store(
-            initialState: DetailState(),
-            reducer: detailReducer,
-            environment: DetailEnvironment()
-          )),
-          label: { Text("DetailView 이동") }
-        )
-        
-        Spacer()
+        ScrollView(showsIndicators: false) {
+          VStack(spacing: 10) {
+            ForEach(0..<10) { _ in
+              NavigationLink(
+                destination: DetailView(store: Store(
+                  initialState: DetailState(),
+                  reducer: detailReducer,
+                  environment: DetailEnvironment()
+                ))){
+                  VStack {
+                    TickerRowView(
+                      store: Store(
+                        initialState: TickerState(),
+                        reducer: tickerReducer,
+                        environment: ()
+                      )
+                    )
+                      .frame(height: 40)
+                      .padding(.horizontal, 14)
+                    Rectangle()
+                      .frame(height: 1, alignment: .center)
+                      .foregroundColor(Color.aGray1)
+                  }
+                }
+            }
+          }
+          .padding(.top, 14)
+          .padding(.bottom, 80)
+        }
+        .frame(maxWidth: .infinity)
       }
     }
   }
