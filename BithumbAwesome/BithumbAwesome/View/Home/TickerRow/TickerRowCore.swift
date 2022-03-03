@@ -8,7 +8,7 @@
 import ComposableArchitecture
 
 struct TickerState: Equatable {
-
+  var ticker: Ticker
 }
 
 enum TickerAction {

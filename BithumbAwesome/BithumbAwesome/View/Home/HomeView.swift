@@ -14,12 +14,10 @@ struct HomeView: View {
   var body: some View {
     WithViewStore(self.store) { viewStore in
       VStack(alignment: .leading) {
-        HStack {
-          Image.logo
-            .resizable()
-            .frame(width: 216, height: 61, alignment: .leading)
-          Spacer()
-        }
+        Image.logo
+          .resizable()
+          .frame(width: 216, height: 61, alignment: .leading)
+        Spacer()
         
         ScrollView(.horizontal, showsIndicators: false) {
           RadioButtonView(
@@ -38,7 +36,7 @@ struct HomeView: View {
         
         ScrollView(showsIndicators: false) {
           VStack(spacing: 10) {
-            ForEach(0..<10) { _ in
+            ForEach(viewStore.tickerData, id: \.id) { ticker in
               NavigationLink(
                 destination: DetailView(store: Store(
                   initialState: DetailState(),
@@ -48,7 +46,9 @@ struct HomeView: View {
                   VStack {
                     TickerRowView(
                       store: Store(
-                        initialState: TickerState(),
+                        initialState: TickerState(
+                          ticker: ticker
+                        ),
                         reducer: tickerReducer,
                         environment: ()
                       )
@@ -71,6 +71,7 @@ struct HomeView: View {
     }
   }
 }
+
 
 struct HomeHeaderView: View {
   var body: some View {

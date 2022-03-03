@@ -10,52 +10,114 @@ import ComposableArchitecture
 
 struct TickerRowView: View {
   var store: Store<TickerState, TickerAction>
-
+  
+  private let numberFormatter: NumberFormatter = {
+    let nf = NumberFormatter()
+    nf.numberStyle = .decimal
+    return nf
+  }()
+  
   var body: some View {
     WithViewStore(self.store) { viewStore in
       GeometryReader { g in
         HStack(alignment: .top, spacing: 5) {
           VStack(alignment: .leading) {
-            Text("비트코인")
+            Text(viewStore.ticker.ticker)
               .lineLimit(2)
               .frame(width: g.size.width/5, alignment: .leading)
               .font(.heading6)
               .minimumScaleFactor(0.8)
               .foregroundColor(Color.aGray3)
-            Text("BTC/KRW")
+            Text(viewStore.ticker.ticker + (viewStore.ticker.isKRW ? "/KRW" : "/BTC"))
               .font(.heading7)
               .foregroundColor(Color.aGray2)
           }
           
           Spacer()
-          Text("46,222,555")
-            .font(.heading6)
-            .frame(width: g.size.width/4.5, alignment: .trailing)
-            .foregroundColor(Color.aBlue1)
-          
-          
-          Spacer()
           VStack(alignment: .trailing) {
-            Text("-0.5%" )
-              .frame(width: g.size.width/4.5, alignment: .trailing)
+            Text(toPrice(price:viewStore.ticker.data.closingPrice))
               .font(.heading6)
-              .foregroundColor(Color.aBlue1)
-            Text("-532,000")
-              .font(.heading7)
-              .foregroundColor(Color.aBlue1)
+              .frame(width: g.size.width/4.5, alignment: .trailing)
+              .foregroundColor(viewStore.ticker.textColor)
+            if !viewStore.ticker.isKRW {
+              Text(toKRWPrice(btcPrice: viewStore.ticker.data.closingPrice))
+                .lineLimit(1)
+                .font(.heading7)
+                .minimumScaleFactor(0.5)
+                .foregroundColor(Color.aGray2)
+            }
           }
           
           Spacer()
+          VStack(alignment: .trailing) {
+            Text((viewStore.ticker.data.fluctateRate24H ?? "") + "%" )
+              .frame(width: g.size.width/4.5, alignment: .trailing)
+              .font(.heading6)
+              .foregroundColor(viewStore.ticker.textColor)
+            if viewStore.ticker.isKRW {
+              Text(viewStore.ticker.data.fluctate24H ?? "")
+                .font(.heading7)
+                .foregroundColor(viewStore.ticker.textColor)
+            }
+          }
           
-          Text("50,057백만")
-            .lineLimit(1)
-            .frame(width: g.size.width/6, alignment: .trailing)
-            .font(.heading6)
-            .minimumScaleFactor(0.5)
-            .foregroundColor(Color.aGray3)
-          
+          Spacer()
+          VStack(alignment: .trailing) {
+            Text(setformat(of: viewStore.ticker.data.accTradeValue24H))
+              .lineLimit(1)
+              .frame(width: g.size.width/6, alignment: .trailing)
+              .font(.heading6)
+              .minimumScaleFactor(0.5)
+              .foregroundColor(Color.aGray3)
+            if !viewStore.ticker.isKRW {
+              Text(toKRWTradeValue(of: viewStore.ticker.data.accTradeValue24H))
+                .frame(alignment: .trailing)
+                .font(.heading7)
+                .foregroundColor(Color.aGray2)
+            }
+          }
         }
       }
     }
+  }
+  
+  func toPrice(price: String?) -> String {
+    guard let price = price,
+          let doubleValue = Double(price) else { return "" }
+    if doubleValue > 1 {
+    guard let number = numberFormatter.string(from: NSNumber(value: doubleValue)) else { return "" }
+    return number
+    } else {
+      return price
+    }
+  }
+    
+  func toKRWPrice(btcPrice: String?) -> String {
+    guard let btcPrice = btcPrice,
+          let doubleValue = Double(btcPrice) else { return "" }
+    let btc: Double = 50000000
+    guard let number = numberFormatter.string(from: NSNumber(value: round(btc * doubleValue * 1000) / 1000)) else { return "" }
+    return number + "백만"
+  }
+  
+  func setformat(of tradeValue: String?) -> String {
+    guard let tradeValue = tradeValue,
+          let doubleValue = Double(tradeValue) else { return "" }
+    let unit: Double = 1000000
+    if doubleValue > unit {
+      guard let number = numberFormatter.string(from: NSNumber(value: Int(doubleValue / unit))) else { return "" }
+      return number + "백만"
+    } else {
+      return String(round(doubleValue * 1000) / 1000)
+    }
+  }
+  
+  func toKRWTradeValue(of tradeValue: String?) -> String {
+    guard let btcValue = tradeValue,
+          let doubleValue = Double(btcValue) else { return "" }
+    let btc: Double = 50000000
+    let unit: Double = 1000000
+    guard let number = numberFormatter.string(from: NSNumber(value: Int(btc * doubleValue / unit))) else { return "" }
+    return number + "백만"
   }
 }
