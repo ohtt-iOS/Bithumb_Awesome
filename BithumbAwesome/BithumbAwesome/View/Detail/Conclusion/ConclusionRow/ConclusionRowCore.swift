@@ -8,6 +8,7 @@
 import ComposableArchitecture
 
 struct ConclusionRowState: Equatable {
+  var data: Transaction
 }
 
 enum ConclusionRowAction {

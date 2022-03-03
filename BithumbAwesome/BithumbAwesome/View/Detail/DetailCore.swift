@@ -15,7 +15,7 @@ struct DetailState: Equatable {
                                           selectedButton: .chart)
   var chartState: ChartState = .init()
   var quoteState: QuoteState = .init()
-  var conclustionState: ConclusionState = .init()
+  var conclustionState: ConclusionState = .init(transactionData: [])
 }
 
 enum DetailAction: Equatable {
@@ -48,7 +48,8 @@ let detailReducer = Reducer.combine([
     state: \.conclustionState,
     action: /DetailAction.conclusionAction,
     environment: { _ in
-      ConclusionEnvironment()
+      ConclusionEnvironment(transactionService: .transaction,
+                            mainQueue: .main)
     }
   ) as Reducer<DetailState, DetailAction, DetailEnvironment>,
   radioButtonReducer.pullback(
@@ -73,6 +74,8 @@ let detailReducer = Reducer.combine([
         return .none
       }
     case .radioButtonAction:
+      return .none
+    case .conclusionAction:
       return .none
     }
   }

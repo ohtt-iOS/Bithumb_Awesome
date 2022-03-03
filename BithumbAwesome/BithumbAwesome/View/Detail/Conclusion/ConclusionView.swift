@@ -24,10 +24,11 @@ struct ConclusionView: View {
           .foregroundColor(Color.aGray1)
         
         ScrollView(showsIndicators: false) {
-          ForEach(0..<10) { _ in
+          ForEach(viewStore.transactionData, id: \.id) { transaction in
             ConclusionRowView(
               store: Store(
                 initialState: ConclusionRowState(
+                  data: transaction
                 ),
                 reducer: conclusionRowReducer,
                 environment: ()
@@ -37,6 +38,9 @@ struct ConclusionView: View {
               .padding(.horizontal, 14)
           }
         }
+      }
+      .onAppear {
+        viewStore.send(.onAppear)
       }
     }
   }

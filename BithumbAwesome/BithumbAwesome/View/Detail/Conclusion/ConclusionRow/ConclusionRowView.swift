@@ -15,7 +15,7 @@ struct ConclusionRowView: View {
     WithViewStore(self.store) { viewStore in
       GeometryReader { g in
         HStack(alignment: .center, spacing: 5) {
-          Text("02:32:25")
+          Text(viewStore.data.date)
             .lineLimit(2)
             .frame(width: g.size.width/6, height: g.size.height, alignment: .leading)
             .font(.heading6)
@@ -23,19 +23,17 @@ struct ConclusionRowView: View {
             .foregroundColor(Color.aGray3)
           
           Spacer()
-          Text("3,382,000")
+          Text(String(viewStore.data.price ?? 0))
             .font(.heading6)
             .frame(width: g.size.width/3.5, height: g.size.height, alignment: .trailing)
             .foregroundColor(Color.aRed1)
           
-          
           Spacer()
-          Text("2.5821")
+          Text(String(viewStore.data.total ?? 0))
             .frame(width: g.size.width/3.5, height: g.size.height, alignment: .trailing)
             .font(.heading6)
             .foregroundColor(Color.aRed1)
         }
-        
       }
     }
   }

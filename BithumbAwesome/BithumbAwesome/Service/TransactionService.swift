@@ -15,7 +15,7 @@ struct TransactionService {
 }
 
 extension TransactionService {
-  static let candle = TransactionService(
+  static let transaction = TransactionService(
     getTransactionData: { order, payment in
       Effect.run { subscriber in
         let URL = "https://api.bithumb.com/public/transaction_history/\(order)_\(payment)"
