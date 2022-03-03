@@ -31,6 +31,11 @@ struct HomeView: View {
             .padding(.horizontal, 14)
         }
         
+        HomeHeaderView()
+          .frame(height: 20)
+          .padding(.horizontal, 14)
+          .padding(.top, 14)
+        
         ScrollView(showsIndicators: false) {
           VStack(spacing: 10) {
             ForEach(0..<10) { _ in
@@ -65,6 +70,38 @@ struct HomeView: View {
     }
   }
 }
+
+struct HomeHeaderView: View {
+  var body: some View {
+    GeometryReader { g in
+      HStack(spacing: 5) {
+        Text("가산자산명")
+          .frame(width: g.size.width/5, alignment: .leading)
+          .font(.heading6)
+          .foregroundColor(Color.aGray2)
+        
+        Spacer()
+        Text("현재가")
+          .font(.heading6)
+          .frame(width: g.size.width/4.5, alignment: .trailing)
+          .foregroundColor(Color.aGray2)
+        
+        Spacer()
+        Text("변동률")
+          .frame(width: g.size.width/4.5, alignment: .trailing)
+          .font(.heading6)
+          .foregroundColor(Color.aGray2)
+        
+        Spacer()
+        Text("거래금액")
+          .frame(width: g.size.width/6, alignment: .trailing)
+          .font(.heading6)
+          .foregroundColor(Color.aGray2)
+      }
+    }
+  }
+}
+
 
 struct HomeView_Previews: PreviewProvider {
   static var previews: some View {
