@@ -22,7 +22,9 @@ struct AssetView: View {
         }
         
         List {
-          Text("AssetListRow")
+          Section(header: AssetListHeader()) {
+            Text("AssetListRow")
+          }
         }
         .listStyle(.plain)
         .padding(.leading, -20)
