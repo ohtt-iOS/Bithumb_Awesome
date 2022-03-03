@@ -10,15 +10,15 @@ import SwiftUI
 struct AssetListRow: View {
   var body: some View {
     HStack {
-      Text("AdditionalAssetName")
+      AdditionalAssetName(textString: "AdditionalAssetName")
       
       Spacer()
       
-      Text("정상")
+      CurrentAssetStatus(textString: "정상", circleColor: Color.aBlue1)
       
       Spacer()
       
-      Text("중단")
+      CurrentAssetStatus(textString: "중단", circleColor: Color.aRed1)
     }
     .padding(.horizontal, 20)
   }

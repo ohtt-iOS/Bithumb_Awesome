@@ -10,15 +10,15 @@ import SwiftUI
 struct AssetListHeader: View {
   var body: some View {
     HStack {
-      Text("가산자산명")
+      AdditionalAssetName(textString: "가산자산명")
 
       Spacer()
       
-      Text("입금")
+      CurrentAssetStatus(textString: "입금", circleColor: .clear)
       
       Spacer()
       
-      Text("출금")
+      CurrentAssetStatus(textString: "출금", circleColor: .clear)
     }
     .font(Font.heading6)
     .foregroundColor(Color.aGray2)

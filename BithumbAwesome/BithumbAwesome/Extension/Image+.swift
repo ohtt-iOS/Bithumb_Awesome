@@ -23,5 +23,8 @@ extension Image {
   static let backButton: Image = Image("backButton")
   static let favoriteFillButton: Image = Image("Star_fill")
   static let favoriteEmptyButton: Image = Image("Star")
+  
+  // MARK: asset
+  static let circle: Image = Image("Ellipse")
 }
 
