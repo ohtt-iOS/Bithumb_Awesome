@@ -8,17 +8,25 @@
 import SwiftUI
 
 struct AssetListRow: View {
+  let asset: Asset
+  
   var body: some View {
     HStack {
-      AdditionalAssetName(textString: "AdditionalAssetName")
+      AdditionalAssetName(textString: asset.name)
       
       Spacer()
       
-      CurrentAssetStatus(textString: "정상", circleColor: Color.aBlue1)
+      CurrentAssetStatus(
+        textString: asset.data.depositStatus == 1 ? "정상" : "중단",
+        circleColor: asset.data.depositStatus == 1 ? Color.aBlue1 : Color.aRed1
+      )
       
       Spacer()
       
-      CurrentAssetStatus(textString: "중단", circleColor: Color.aRed1)
+      CurrentAssetStatus(
+        textString: asset.data.withdrawalStatus == 1 ? "정상" : "중단",
+        circleColor: asset.data.withdrawalStatus == 1 ? Color.aBlue1 : Color.aRed1
+      )
     }
     .padding(.horizontal, 20)
   }

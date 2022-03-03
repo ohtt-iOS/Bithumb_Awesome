@@ -23,13 +23,16 @@ struct AssetView: View {
         
         List {
           Section(header: AssetListHeader()) {
-            ForEach(1..<10) { _ in
-              AssetListRow()
+            ForEach(viewStore.assetData) { asset in
+              AssetListRow(asset: asset)
             }
           }
         }
         .listStyle(.plain)
         .padding(.leading, -20)
+      }
+      .onAppear {
+        viewStore.send(.fetchData)
       }
     }
   }
