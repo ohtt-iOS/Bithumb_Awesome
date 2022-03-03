@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C65E8D8927D0B1650088A5F4 /* AssetListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8D8527D0B1650088A5F4 /* AssetListHeader.swift */; };
+		C65E8D9327D0B3750088A5F4 /* AssetListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8D9227D0B3750088A5F4 /* AssetListRow.swift */; };
 		C6A7AD7427CE541700851AA9 /* ANavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7327CE541700851AA9 /* ANavigationBarView.swift */; };
 		C6A7AD7727CE577000851AA9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7627CE577000851AA9 /* DetailView.swift */; };
 		C6A7AD7927CE578800851AA9 /* DetailCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7827CE578800851AA9 /* DetailCore.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		C65E8D8527D0B1650088A5F4 /* AssetListHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListHeader.swift; sourceTree = "<group>"; };
+		C65E8D9227D0B3750088A5F4 /* AssetListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListRow.swift; sourceTree = "<group>"; };
 		C6A7AD7327CE541700851AA9 /* ANavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ANavigationBarView.swift; sourceTree = "<group>"; };
 		C6A7AD7627CE577000851AA9 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		C6A7AD7827CE578800851AA9 /* DetailCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCore.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				C65E8D8527D0B1650088A5F4 /* AssetListHeader.swift */,
+				C65E8D9227D0B3750088A5F4 /* AssetListRow.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				D184800A27CA75E000213DD0 /* SettingView.swift in Sources */,
 				D1C47B5127CE76480006B7A3 /* QuoteView.swift in Sources */,
 				D184800427CA75BE00213DD0 /* HomeCore.swift in Sources */,
+				C65E8D9327D0B3750088A5F4 /* AssetListRow.swift in Sources */,
 				C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */,
 				D17C652727C52800007705A7 /* AppView.swift in Sources */,
 				D184809C27CD120100213DD0 /* AwesomeTabType.swift in Sources */,

@@ -23,7 +23,9 @@ struct AssetView: View {
         
         List {
           Section(header: AssetListHeader()) {
-            Text("AssetListRow")
+            ForEach(1..<10) { _ in
+              AssetListRow()
+            }
           }
         }
         .listStyle(.plain)
