@@ -29,7 +29,7 @@ struct DetailView: View {
           .padding(.horizontal, 14)
         
         view(type: viewStore.selectedButton)
-        Spacer()
+          .frame(maxHeight: .infinity)
       }
     }
   }
