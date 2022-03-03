@@ -14,12 +14,19 @@ struct AppState: Equatable {
 }
 
 enum AppAction {
+  case onAppear
+  case tickerResponse(Result<[Ticker], HomeService.Failure>)
+  
   case homeAction(HomeAction)
   case assetAction(AssetAction)
   case settingAction(SettingAction)
 }
 
-struct AppEnvironment { }
+struct AppEnvironment {
+  var mainQueue: AnySchedulerOf<DispatchQueue>
+  var homeService: HomeService
+}
+
 let appReducer = Reducer.combine([
   homeReducer.pullback(
     state: \.homeState,
@@ -43,8 +50,22 @@ let appReducer = Reducer.combine([
       SettingEnvironment()
     }
   ) as Reducer<AppState, AppAction, AppEnvironment>,
-  Reducer<AppState, AppAction, AppEnvironment> { state, action, env in
+  Reducer<AppState, AppAction, AppEnvironment> { state, action, environment in
     switch action {
+    case .onAppear:
+      print("appView appear")
+      struct TickerId: Hashable {}
+      return environment.homeService
+        .getTickerData("ALL", "KRW")
+        .receive(on: environment.mainQueue)
+        .catchToEffect(AppAction.tickerResponse)
+        .cancellable(id: TickerId(), cancelInFlight: true)
+    case .tickerResponse(.failure):
+      state.homeState.tickerData = []
+      return .none
+    case let .tickerResponse(.success(response)):
+      state.homeState.tickerData = response.sorted(by: { $0.ticker < $1.ticker})
+      return .none
     case .homeAction:
       return .none
     case .assetAction:

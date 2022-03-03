@@ -13,9 +13,18 @@ struct AppView: View {
   let store: Store<AppState, AppAction>
   @State private var selection: AwesomeTabType = .home
   
+  init() {
+    self.store = Store(initialState: AppState(),
+                       reducer: appReducer,
+                       environment: AppEnvironment(
+                        mainQueue: .main,
+                        homeService: HomeService.home)
+    )
+  }
+  
   var body: some View {
-    NavigationView {
-      WithViewStore(store) { viewStore in
+    WithViewStore(store) { viewStore in
+      NavigationView {
         TabBar(selection: $selection) {
           HomeView(
             store: store.scope(
@@ -43,6 +52,9 @@ struct AppView: View {
         }
         .tabBar(style: AwesomeTabBarStyle())
         .tabItem(style: AwesomeTabItemStyle())
+      }
+      .onAppear {
+        viewStore.send(.onAppear)
       }
     }
   }
