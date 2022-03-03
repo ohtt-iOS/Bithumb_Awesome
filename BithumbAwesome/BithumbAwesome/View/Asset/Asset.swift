@@ -14,7 +14,11 @@ struct Asset: Codable {
 
 extension Asset {
   var name: String {
-    return self.ticker
+    guard let type = CryptoCurrencyType.init(rawValue: self.ticker)
+    else {
+      return ticker
+    }
+    return type.nameString
   }
 }
 
