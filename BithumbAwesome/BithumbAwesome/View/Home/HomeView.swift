@@ -60,6 +60,7 @@ struct HomeView: View {
                       .foregroundColor(Color.aGray1)
                   }
                 }
+                .buttonStyle(FlatLinkStyle())
             }
           }
           .padding(.top, 14)

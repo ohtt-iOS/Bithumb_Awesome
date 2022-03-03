@@ -18,6 +18,7 @@
 		C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630D27C7D47400E6DD98 /* Font+.swift */; };
 		D10E600B27D0844600B68BCF /* TickerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10E600A27D0844600B68BCF /* TickerRowView.swift */; };
 		D10E600D27D0850B00B68BCF /* TickerRowCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10E600C27D0850B00B68BCF /* TickerRowCore.swift */; };
+		D10E601327D0875100B68BCF /* FlatLinkStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10E601227D0875100B68BCF /* FlatLinkStyle.swift */; };
 		D17C652527C52800007705A7 /* BithumbAwesomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C652427C52800007705A7 /* BithumbAwesomeApp.swift */; };
 		D17C652727C52800007705A7 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C652627C52800007705A7 /* AppView.swift */; };
 		D17C652927C52803007705A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D17C652827C52803007705A7 /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		C6DA630D27C7D47400E6DD98 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		D10E600A27D0844600B68BCF /* TickerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerRowView.swift; sourceTree = "<group>"; };
 		D10E600C27D0850B00B68BCF /* TickerRowCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerRowCore.swift; sourceTree = "<group>"; };
+		D10E601227D0875100B68BCF /* FlatLinkStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatLinkStyle.swift; sourceTree = "<group>"; };
 		D17C652127C52800007705A7 /* BithumbAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BithumbAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D17C652427C52800007705A7 /* BithumbAwesomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbAwesomeApp.swift; sourceTree = "<group>"; };
 		D17C652627C52800007705A7 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,14 @@
 			path = TickerRow;
 			sourceTree = "<group>";
 		};
+		D10E601127D0874600B68BCF /* FlatLink */ = {
+			isa = PBXGroup;
+			children = (
+				D10E601227D0875100B68BCF /* FlatLinkStyle.swift */,
+			);
+			path = FlatLink;
+			sourceTree = "<group>";
+		};
 		D17C651827C52800007705A7 = {
 			isa = PBXGroup;
 			children = (
@@ -208,9 +218,9 @@
 		D1847FFB27CA74F600213DD0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				D10E600927D0843000B68BCF /* TickerRow */,
 				D184800127CA75B400213DD0 /* HomeView.swift */,
 				D184800327CA75BE00213DD0 /* HomeCore.swift */,
+				D10E600927D0843000B68BCF /* TickerRow */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -245,6 +255,7 @@
 		D184809927CD115500213DD0 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				D10E601127D0874600B68BCF /* FlatLink */,
 				C6A7AD7C27CE5C6700851AA9 /* FavoriteButton */,
 				C6A7AD7227CE53F800851AA9 /* ANavigationBar */,
 				D184809A27CD11D600213DD0 /* AwesomeTab */,
@@ -398,6 +409,7 @@
 				C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */,
 				D17C652727C52800007705A7 /* AppView.swift in Sources */,
 				D184809C27CD120100213DD0 /* AwesomeTabType.swift in Sources */,
+				D10E601327D0875100B68BCF /* FlatLinkStyle.swift in Sources */,
 				D17C652527C52800007705A7 /* BithumbAwesomeApp.swift in Sources */,
 				D18480A127CD191D00213DD0 /* AwesomeButtonStyle.swift in Sources */,
 				D184800C27CA75EA00213DD0 /* SettingCore.swift in Sources */,
