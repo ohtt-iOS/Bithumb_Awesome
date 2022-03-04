@@ -22,8 +22,6 @@ struct DetailState: Equatable {
 
 enum DetailAction: Equatable {
   case onAppear
-  case transactionResponse(Result<[Transaction], TransactionService.Failure>)
-  case candleResponse(Result<[Candle], CandleStickService.Failure>)
   
   case radioButtonAction(RadioButtonAction)
   
@@ -94,18 +92,6 @@ let detailReducer = Reducer.combine([
     case .radioButtonAction:
       return .none
     case .conclusionAction:
-      return .none
-    case .transactionResponse(.failure):
-      state.conclusionState.transactionData = []
-      return .none
-    case let .transactionResponse(.success(response)):
-      state.conclusionState.transactionData = response
-      return .none
-    case .candleResponse(.failure):
-      state.chartState.candleData = []
-      return .none
-    case let .candleResponse(.success(response)):
-      state.chartState.candleData = response
       return .none
     case .chartAction:
       return .none
