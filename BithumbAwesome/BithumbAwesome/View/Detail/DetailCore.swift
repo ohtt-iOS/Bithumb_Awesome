@@ -8,12 +8,13 @@
 import ComposableArchitecture
 
 struct DetailState: Equatable {
+  var naviTitle: String
   var selectedButton: AwesomeButtonType = .chart
   var radioButtonState = RadioButtonState(buttons: [.chart,
                                                     .quote,
                                                     .conclusion],
                                           selectedButton: .chart)
-  var priceState: PriceState = .init()
+  var priceState: PriceState
   var chartState: ChartState = .init()
   var quoteState: QuoteState = .init()
   var conclusionState: ConclusionState = .init(transactionData: [])

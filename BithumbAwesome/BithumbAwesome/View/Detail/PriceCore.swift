@@ -8,6 +8,7 @@
 import ComposableArchitecture
 
 struct PriceState: Equatable {
+  var tickerData: Ticker
 }
 
 enum PriceAction: Equatable {
@@ -17,6 +18,6 @@ struct PriceEnvironment {
 }
 
 let priceReducer = Reducer<PriceState, PriceAction, PriceEnvironment> { state, action, environment in
-    switch action {
+  switch action {
   }
 }

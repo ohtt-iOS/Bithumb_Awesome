@@ -39,7 +39,10 @@ struct HomeView: View {
             ForEach(viewStore.tickerData, id: \.id) { ticker in
               NavigationLink(
                 destination: DetailView(store: Store(
-                  initialState: DetailState(),
+                  initialState: DetailState(
+                    naviTitle: ticker.name,
+                    priceState: PriceState(
+                      tickerData: ticker)),
                   reducer: detailReducer,
                   environment: DetailEnvironment(mainQueue: .main,
                                                  transactionService: .transaction)
@@ -72,7 +75,6 @@ struct HomeView: View {
     }
   }
 }
-
 
 struct HomeHeaderView: View {
   var body: some View {
