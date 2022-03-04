@@ -13,6 +13,7 @@ struct DetailState: Equatable {
                                                     .quote,
                                                     .conclusion],
                                           selectedButton: .chart)
+  var priceState: PriceState = .init()
   var chartState: ChartState = .init()
   var quoteState: QuoteState = .init()
   var conclusionState: ConclusionState = .init(transactionData: [])
@@ -24,6 +25,7 @@ enum DetailAction: Equatable {
   
   case radioButtonAction(RadioButtonAction)
   
+  case priceAction(PriceAction)
   case chartAction(ChartAction)
   case quoteAction(QuoteAction)
   case conclusionAction(ConclusionAction)
@@ -35,6 +37,13 @@ struct DetailEnvironment {
 }
 
 let detailReducer = Reducer.combine([
+  priceReducer.pullback(
+    state: \.priceState,
+    action: /DetailAction.priceAction,
+    environment: { _ in
+      PriceEnvironment()
+    }
+  ) as Reducer<DetailState, DetailAction, DetailEnvironment>,
   chartReducer.pullback(
     state: \.chartState,
     action: /DetailAction.chartAction,
