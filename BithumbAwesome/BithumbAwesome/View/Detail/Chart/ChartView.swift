@@ -23,6 +23,9 @@ struct ChartView: View {
               .frame(maxWidth: .infinity)
           }
         }
+        
+        CandleChartView(chartData: viewStore.candleData)
+          .frame(maxHeight: .infinity)
       }
     }
   }
