@@ -15,7 +15,7 @@ struct DetailState: Equatable {
                                                     .conclusion],
                                           selectedButton: .chart)
   var priceState: PriceState
-  var chartState: ChartState = .init()
+  var chartState: ChartState = .init(candleData: [])
   var quoteState: QuoteState = .init()
   var conclusionState: ConclusionState = .init(transactionData: [])
 }
@@ -23,6 +23,7 @@ struct DetailState: Equatable {
 enum DetailAction: Equatable {
   case onAppear
   case transactionResponse(Result<[Transaction], TransactionService.Failure>)
+  case candleResponse(Result<[Candle], CandleStickService.Failure>)
   
   case radioButtonAction(RadioButtonAction)
   
@@ -34,6 +35,7 @@ enum DetailAction: Equatable {
 
 struct DetailEnvironment {
   var mainQueue: AnySchedulerOf<DispatchQueue>
+  var candleStickService: CandleStickService
   var transactionService: TransactionService
 }
 
@@ -48,8 +50,9 @@ let detailReducer = Reducer.combine([
   chartReducer.pullback(
     state: \.chartState,
     action: /DetailAction.chartAction,
-    environment: { _ in
-      ChartEnvironment()
+    environment: {
+      ChartEnvironment(candleClient: $0.candleStickService,
+                       mainQueue: $0.mainQueue)
     }
   ) as Reducer<DetailState, DetailAction, DetailEnvironment>,
   quoteReducer.pullback(
@@ -92,19 +95,35 @@ let detailReducer = Reducer.combine([
       return .none
     case .conclusionAction:
       return .none
-    case .onAppear:
-      struct TransactionID: Hashable {}
-      return environment.transactionService
-        .getTransactionData("BTC", "KRW")
-        .receive(on: environment.mainQueue)
-        .catchToEffect(DetailAction.transactionResponse)
-        .cancellable(id: TransactionID(), cancelInFlight: true)
     case .transactionResponse(.failure):
       state.conclusionState.transactionData = []
       return .none
     case let .transactionResponse(.success(response)):
       state.conclusionState.transactionData = response
       return .none
+    case .candleResponse(.failure):
+      state.chartState.candleData = []
+      return .none
+    case let .candleResponse(.success(response)):
+      state.chartState.candleData = response
+      return .none
+    case .chartAction:
+      return .none
+    case .onAppear:
+      struct TransactionID: Hashable {}
+      struct CandleID: Hashable {}
+      return .merge(
+        environment.transactionService
+          .getTransactionData("BTC", "KRW")
+          .receive(on: environment.mainQueue)
+          .catchToEffect(DetailAction.transactionResponse)
+          .cancellable(id: TransactionID(), cancelInFlight: true),
+        environment.candleStickService
+          .getCandleData()
+          .receive(on: environment.mainQueue)
+          .catchToEffect(DetailAction.candleResponse)
+          .cancellable(id: CandleID(), cancelInFlight: true)
+      )
     }
   }
 ])

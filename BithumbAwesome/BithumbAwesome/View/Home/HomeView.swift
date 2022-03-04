@@ -45,6 +45,7 @@ struct HomeView: View {
                       tickerData: ticker)),
                   reducer: detailReducer,
                   environment: DetailEnvironment(mainQueue: .main,
+                                                 candleStickService: .candle,
                                                  transactionService: .transaction)
                 ))){
                   VStack {

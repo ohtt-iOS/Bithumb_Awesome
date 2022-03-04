@@ -58,6 +58,9 @@
 		D1C47B5727CE766E0006B7A3 /* QuoteCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5627CE766E0006B7A3 /* QuoteCore.swift */; };
 		D1C47B5927CE76760006B7A3 /* ConclusionCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5827CE76760006B7A3 /* ConclusionCore.swift */; };
 		D1CB404827D1E0E400AC3AFA /* PriceCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CB404727D1E0E400AC3AFA /* PriceCore.swift */; };
+		D1CB407E27D27AB200AC3AFA /* CandleSticktService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CB407D27D27AB200AC3AFA /* CandleSticktService.swift */; };
+		D1CB408027D27ADB00AC3AFA /* CandleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CB407F27D27ADB00AC3AFA /* CandleResponse.swift */; };
+		D1CB408227D27AE900AC3AFA /* Candle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CB408127D27AE900AC3AFA /* Candle.swift */; };
 		D1D7268227D118CF00A9E420 /* ConclusionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D7268127D118CF00A9E420 /* ConclusionRowView.swift */; };
 		D1D7268527D118FD00A9E420 /* ConclusionRowCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D7268427D118FD00A9E420 /* ConclusionRowCore.swift */; };
 		D1D7268727D121ED00A9E420 /* TransactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D7268627D121ED00A9E420 /* TransactionService.swift */; };
@@ -116,6 +119,9 @@
 		D1C47B5627CE766E0006B7A3 /* QuoteCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCore.swift; sourceTree = "<group>"; };
 		D1C47B5827CE76760006B7A3 /* ConclusionCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConclusionCore.swift; sourceTree = "<group>"; };
 		D1CB404727D1E0E400AC3AFA /* PriceCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCore.swift; sourceTree = "<group>"; };
+		D1CB407D27D27AB200AC3AFA /* CandleSticktService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleSticktService.swift; sourceTree = "<group>"; };
+		D1CB407F27D27ADB00AC3AFA /* CandleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleResponse.swift; sourceTree = "<group>"; };
+		D1CB408127D27AE900AC3AFA /* Candle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candle.swift; sourceTree = "<group>"; };
 		D1D7268127D118CF00A9E420 /* ConclusionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConclusionRowView.swift; sourceTree = "<group>"; };
 		D1D7268427D118FD00A9E420 /* ConclusionRowCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConclusionRowCore.swift; sourceTree = "<group>"; };
 		D1D7268627D121ED00A9E420 /* TransactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionService.swift; sourceTree = "<group>"; };
@@ -148,6 +154,7 @@
 				D1D952B127D08F6D00149BEC /* HomeService.swift */,
 				C65E8DA227D0C1240088A5F4 /* AssetService.swift */,
 				D1D7268627D121ED00A9E420 /* TransactionService.swift */,
+				D1CB407D27D27AB200AC3AFA /* CandleSticktService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -162,6 +169,8 @@
 				C65E8D9E27D0BDFC0088A5F4 /* AssetData.swift */,
 				D1D7268827D121F900A9E420 /* Transaction.swift */,
 				D1D7268A27D1221000A9E420 /* TransactionResponse.swift */,
+				D1CB407F27D27ADB00AC3AFA /* CandleResponse.swift */,
+				D1CB408127D27AE900AC3AFA /* Candle.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -498,6 +507,7 @@
 				D184809F27CD186000213DD0 /* AwesomeButtonType.swift in Sources */,
 				D184800827CA75D000213DD0 /* AssetCore.swift in Sources */,
 				D1D952B227D08F6D00149BEC /* HomeService.swift in Sources */,
+				D1CB408027D27ADB00AC3AFA /* CandleResponse.swift in Sources */,
 				D1C47B5527CE76650006B7A3 /* ChartCore.swift in Sources */,
 				C6B6A1EC27CE694E00C4303F /* PriceView.swift in Sources */,
 				D184800A27CA75E000213DD0 /* SettingView.swift in Sources */,
@@ -514,8 +524,10 @@
 				D17C652527C52800007705A7 /* BithumbAwesomeApp.swift in Sources */,
 				D18480A127CD191D00213DD0 /* AwesomeButtonStyle.swift in Sources */,
 				D184800C27CA75EA00213DD0 /* SettingCore.swift in Sources */,
+				D1CB407E27D27AB200AC3AFA /* CandleSticktService.swift in Sources */,
 				D15D4FAF27D0905700E5E687 /* Ticker.swift in Sources */,
 				C6A7AD7B27CE58F200851AA9 /* UINavigationController+.swift in Sources */,
+				D1CB408227D27AE900AC3AFA /* Candle.swift in Sources */,
 				C65E8D9627D0B4840088A5F4 /* CurrentAssetStatus.swift in Sources */,
 				D1C47B5927CE76760006B7A3 /* ConclusionCore.swift in Sources */,
 				D184800227CA75B400213DD0 /* HomeView.swift in Sources */,
