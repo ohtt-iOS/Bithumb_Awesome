@@ -15,10 +15,13 @@ struct DetailState: Equatable {
                                           selectedButton: .chart)
   var chartState: ChartState = .init()
   var quoteState: QuoteState = .init()
-  var conclustionState: ConclusionState = .init(transactionData: [])
+  var conclusionState: ConclusionState = .init(transactionData: [])
 }
 
 enum DetailAction: Equatable {
+  case onAppear
+  case transactionResponse(Result<[Transaction], TransactionService.Failure>)
+  
   case radioButtonAction(RadioButtonAction)
   
   case chartAction(ChartAction)
@@ -27,6 +30,8 @@ enum DetailAction: Equatable {
 }
 
 struct DetailEnvironment {
+  var mainQueue: AnySchedulerOf<DispatchQueue>
+  var transactionService: TransactionService
 }
 
 let detailReducer = Reducer.combine([
@@ -45,11 +50,11 @@ let detailReducer = Reducer.combine([
     }
   ) as Reducer<DetailState, DetailAction, DetailEnvironment>,
   conclusionReducer.pullback(
-    state: \.conclustionState,
+    state: \.conclusionState,
     action: /DetailAction.conclusionAction,
-    environment: { _ in
-      ConclusionEnvironment(transactionService: .transaction,
-                            mainQueue: .main)
+    environment: {
+      ConclusionEnvironment(transactionService: $0.transactionService,
+                            mainQueue: $0.mainQueue)
     }
   ) as Reducer<DetailState, DetailAction, DetailEnvironment>,
   radioButtonReducer.pullback(
@@ -76,6 +81,19 @@ let detailReducer = Reducer.combine([
     case .radioButtonAction:
       return .none
     case .conclusionAction:
+      return .none
+    case .onAppear:
+      struct TransactionID: Hashable {}
+      return environment.transactionService
+        .getTransactionData("BTC", "KRW")
+        .receive(on: environment.mainQueue)
+        .catchToEffect(DetailAction.transactionResponse)
+        .cancellable(id: TransactionID(), cancelInFlight: true)
+    case .transactionResponse(.failure):
+      state.conclusionState.transactionData = []
+      return .none
+    case let .transactionResponse(.success(response)):
+      state.conclusionState.transactionData = response
       return .none
     }
   }

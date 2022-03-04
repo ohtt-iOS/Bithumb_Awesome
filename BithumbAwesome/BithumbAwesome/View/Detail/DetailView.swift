@@ -31,6 +31,9 @@ struct DetailView: View {
         view(type: viewStore.selectedButton)
           .frame(maxHeight: .infinity)
       }
+      .onAppear {
+        viewStore.send(.onAppear)
+      }
     }
   }
   
@@ -54,7 +57,7 @@ struct DetailView: View {
       case .conclusion:
         ConclusionView(
           store: store.scope(
-            state: \.conclustionState,
+            state: \.conclusionState,
             action: DetailAction.conclusionAction
           )
         )

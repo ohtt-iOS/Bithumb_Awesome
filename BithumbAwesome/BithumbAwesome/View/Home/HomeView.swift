@@ -41,7 +41,8 @@ struct HomeView: View {
                 destination: DetailView(store: Store(
                   initialState: DetailState(),
                   reducer: detailReducer,
-                  environment: DetailEnvironment()
+                  environment: DetailEnvironment(mainQueue: .main,
+                                                 transactionService: .transaction)
                 ))){
                   VStack {
                     TickerRowView(

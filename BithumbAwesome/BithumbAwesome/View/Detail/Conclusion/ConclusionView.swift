@@ -39,9 +39,6 @@ struct ConclusionView: View {
           }
         }
       }
-      .onAppear {
-        viewStore.send(.onAppear)
-      }
     }
   }
 }
