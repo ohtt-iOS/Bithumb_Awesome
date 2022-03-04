@@ -113,16 +113,8 @@ let detailReducer = Reducer.combine([
       struct TransactionID: Hashable {}
       struct CandleID: Hashable {}
       return .merge(
-        environment.transactionService
-          .getTransactionData("BTC", "KRW")
-          .receive(on: environment.mainQueue)
-          .catchToEffect(DetailAction.transactionResponse)
-          .cancellable(id: TransactionID(), cancelInFlight: true),
-        environment.candleStickService
-          .getCandleData()
-          .receive(on: environment.mainQueue)
-          .catchToEffect(DetailAction.candleResponse)
-          .cancellable(id: CandleID(), cancelInFlight: true)
+        Effect(value: .chartAction(.buttonTap)),
+        Effect(value: .conclusionAction(.onAppear))
       )
     }
   }

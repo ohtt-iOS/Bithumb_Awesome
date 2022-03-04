@@ -12,6 +12,7 @@ struct ConclusionState: Equatable {
 }
 
 enum ConclusionAction: Equatable {
+  case onAppear
   case transactionResponse(Result<[Transaction], TransactionService.Failure>)
 }
 
@@ -30,6 +31,14 @@ let conclusionReducer = Reducer<ConclusionState, ConclusionAction, ConclusionEnv
     state.transactionData = response
     return .none
     
+  case .onAppear:
+    struct ConclusionID: Hashable {}
+    return environment.transactionService
+      .getTransactionData("BTC", "KRW")
+      .receive(on: environment.mainQueue)
+      .catchToEffect(ConclusionAction.transactionResponse)
+      .cancellable(id: ConclusionID(), cancelInFlight: true)
+  
   }
 }
 
