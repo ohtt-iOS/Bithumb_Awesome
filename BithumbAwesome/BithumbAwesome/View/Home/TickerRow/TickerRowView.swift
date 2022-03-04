@@ -22,7 +22,7 @@ struct TickerRowView: View {
       GeometryReader { g in
         HStack(alignment: .top, spacing: 5) {
           VStack(alignment: .leading) {
-            Text(viewStore.ticker.ticker)
+            Text(viewStore.ticker.name)
               .lineLimit(2)
               .frame(width: g.size.width/5, alignment: .leading)
               .font(.heading6)

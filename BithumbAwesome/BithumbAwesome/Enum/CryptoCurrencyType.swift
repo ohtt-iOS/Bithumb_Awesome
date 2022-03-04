@@ -217,417 +217,421 @@ enum CryptoCurrencyType: String {
 
 extension CryptoCurrencyType {
   var nameString: String {
+    return koreanString + "(\(self.rawValue))"
+  }
+ 
+  var koreanString: String {
     switch self {
     case .cBTC:
-      return "비트코인(BTC)"
+      return "비트코인"
     case .cETH:
-      return "이더리움(ETH)"
+      return "이더리움"
     case .cLTC:
-      return "라이트코인(LTC)"
+      return "라이트코인"
     case .cETC:
-      return "이더리움 클래식(ETC)"
+      return "이더리움 클래식"
     case .cXRP:
-      return "리플(XRP)"
+      return "리플"
     case .cBCH:
-      return "비트코인 캐시(BCH)"
+      return "비트코인 캐시"
     case .cQTUM:
-      return "퀀텀(QTUM)"
+      return "퀀텀"
     case .cBTG:
-      return "비트코인 골드(BTG)"
+      return "비트코인 골드"
     case .cEOS:
-      return "이오스(EOS)"
+      return "이오스"
     case .cICX:
-      return "아이콘(ICX)"
+      return "아이콘"
     case .cTRX:
-      return "트론(TRX)"
+      return "트론"
     case .cELF:
-      return "엘프(ELF)"
+      return "엘프"
     case .cOMG:
-      return "오미세고(OMG)"
+      return "오미세고"
     case .cKNC:
-      return "카이버 네트워크(KNC)"
+      return "카이버 네트워크"
     case .cGLM:
-      return "골렘(GLM)"
+      return "골렘"
     case .cZIL:
-      return "질리카(ZIL)"
+      return "질리카"
     case .cWAXP:
-      return "왁스(WAXP)"
+      return "왁스"
     case .cPOWR:
-      return "파워렛저(POWR)"
+      return "파워렛저"
     case .cLRC:
-      return "루프링(LRC)"
+      return "루프링"
     case .cSTEEM:
-      return "스팀(STEEM)"
+      return "스팀"
     case .cSTRAX:
-      return "스트라티스(STRAX)"
+      return "스트라티스"
     case .cZRX:
-      return "제로엑스(ZRX)"
+      return "제로엑스"
     case .cREP:
-      return "어거(REP)"
+      return "어거"
     case .cXEM:
-      return "넴(XEM)"
+      return "넴"
     case .cSNT:
-      return "스테이터스네트워크토큰(SNT)"
+      return "스테이터스네트워크토큰"
     case .cADA:
-      return "에이다(ADA)"
+      return "에이다"
     case .cCTXC:
-      return "코르텍스(CTXC)"
+      return "코르텍스"
     case .cBAT:
-      return "베이직어텐션토큰(BAT)"
+      return "베이직어텐션토큰"
     case .cWTC:
-      return "월튼체인(WTC)"
+      return "월튼체인"
     case .cTHETA:
-      return "쎄타토큰(THETA)"
+      return "쎄타토큰"
     case .cLOOM:
-      return "룸네트워크(LOOM)"
+      return "룸네트워크"
     case .cWAVES:
-      return "웨이브(WAVES)"
+      return "웨이브"
     case .cLINK:
-      return "체인링크(LINK)"
+      return "체인링크"
     case .cENJ:
-      return "엔진코인(ENJ)"
+      return "엔진코인"
     case .cVET:
-      return "비체인(VET)"
+      return "비체인"
     case .cMTL:
-      return "메탈(MTL)"
+      return "메탈"
     case .cIOST:
-      return "이오스트(IOST)"
+      return "이오스트"
     case .cTMTG:
-      return "더마이다스터치골드(TMTG)"
+      return "더마이다스터치골드"
     case .cQKC:
-      return "쿼크체인(QKC)"
+      return "쿼크체인"
     case .cATOLO:
-      return "라이즌(ATOLO)"
+      return "라이즌"
     case .cAMO:
-      return "아모코인(AMO)"
+      return "아모코인"
     case .cBSV:
-      return "비트코인에스브이(BSV)"
+      return "비트코인에스브이"
     case .cORBS:
-      return "오브스(ORBS)"
+      return "오브스"
     case .cTFUEL:
-      return "쎄타퓨엘(TFUEL)"
+      return "쎄타퓨엘"
     case .cVALOR:
-      return "밸러토큰(VALOR)"
+      return "밸러토큰"
     case .cCON:
-      return "코넌(CON)"
+      return "코넌"
     case .cANKR:
-      return "앵커(ANKR)"
+      return "앵커"
     case .cMIX:
-      return "믹스마블(MIX)"
+      return "믹스마블"
     case .cCRO:
-      return "크립토닷컴체인(CRO)"
+      return "크립토닷컴체인"
     case .cFX:
-      return "펑션엑스(FX)"
+      return "펑션엑스"
     case .cCHR:
-      return "크로미아(CHR)"
+      return "크로미아"
     case .cMBL:
-      return "무비블록(MBL)"
+      return "무비블록"
     case .cMXC:
-      return "머신익스체인지코인(MXC)"
+      return "머신익스체인지코인"
     case .cFCT2:
-      return "피르마체인(FCT2)"
+      return "피르마체인"
     case .cTRV:
-      return "트러스트버스(TRV)"
+      return "트러스트버스"
     case .cDAD:
-      return "다드(DAD)"
+      return "다드"
     case .cWOM:
-      return "왐토큰(WOM)"
+      return "왐토큰"
     case .cSOC:
-      return "소다코인(SOC)"
+      return "소다코인"
     case .cBOA:
-      return "보아(BOA)"
+      return "보아"
     case .cMEV:
-      return "미버스(MEV)"
+      return "미버스"
     case .cSXP:
-      return "스와이프(SXP)"
+      return "스와이프"
     case .cCOS:
-      return "콘텐토스(COS)"
+      return "콘텐토스"
     case .cAPIX:
-      return "아픽스(APIX)"
+      return "아픽스"
     case .cEL:
-      return "엘리시아(EL)"
+      return "엘리시아"
     case .cBASIC:
-      return "베이직(BASIC)"
+      return "베이직"
     case .cHIVE:
-      return "하이브(HIVE)"
+      return "하이브"
     case .cXPR:
-      return "프로톤(XPR)"
+      return "프로톤"
     case .cVRA:
-      return "베라시티(VRA)"
+      return "베라시티"
     case .cFIT:
-      return "300피트 네트워크(FIT)"
+      return "300피트 네트워크"
     case .cEGG:
-      return "네스트리(EGG)"
+      return "네스트리"
     case .cBORA:
-      return "보라(BORA)"
+      return "보라"
     case .cARPA:
-      return "알파체인(ARPA)"
+      return "알파체인"
     case .cCTC:
-      return "크레딧코인(CTC)"
+      return "크레딧코인"
     case .cAPM:
-      return "에이피엠 코인(APM)"
+      return "에이피엠 코인"
     case .cCKB:
-      return "너보스(CKB)"
+      return "너보스"
     case .cAERGO:
-      return "아르고(AERGO)"
+      return "아르고"
     case .cANW:
-      return "앵커뉴럴월드(ANW)"
+      return "앵커뉴럴월드"
     case .cCENNZ:
-      return "센트럴리티(CENNZ)"
+      return "센트럴리티"
     case .cEVZ:
-      return "이브이지(EVZ)"
+      return "이브이지"
     case .cCYCLUB:
-      return "싸이클럽(CYCLUB)"
+      return "싸이클럽"
     case .cSRM:
-      return "세럼(SRM)"
+      return "세럼"
     case .cQTCON:
-      return "퀴즈톡(QTCON)"
+      return "퀴즈톡"
     case .cUNI:
-      return "유니스왑(UNI)"
+      return "유니스왑"
     case .cYFI:
-      return "연파이낸스(YFI)"
+      return "연파이낸스"
     case .cUMA:
-      return "우마(UMA)"
+      return "우마"
     case .cAAVE:
-      return "에이브(AAVE)"
+      return "에이브"
     case .cCOMP:
-      return "컴파운드(COMP)"
+      return "컴파운드"
     case .cREN:
-      return "렌(REN)"
+      return "렌"
     case .cBAL:
-      return "밸런서(BAL)"
+      return "밸런서"
     case .cRSR:
-      return "리저브라이트(RSR)"
+      return "리저브라이트"
     case .cNMR:
-      return "뉴메레르(NMR)"
+      return "뉴메레르"
     case .cRLC:
-      return "아이젝(RLC)"
+      return "아이젝"
     case .cUOS:
-      return "울트라(UOS)"
+      return "울트라"
     case .cSAND:
-      return "샌드박스(SAND)"
+      return "샌드박스"
     case .cSTPT:
-      return "에스티피(STPT)"
+      return "에스티피"
     case .cGOM2:
-      return "고머니2(GOM2)"
+      return "고머니2)"
     case .cRINGX:
-      return "링엑스(RINGX)"
+      return "링엑스"
     case .cBEL:
-      return "벨라프로토콜(BEL)"
+      return "벨라프로토콜"
     case .cOBSR:
-      return "옵저버(OBSR)"
+      return "옵저버"
     case .cORC:
-      return "오르빗 체인(ORC)"
+      return "오르빗 체인"
     case .cPOLA:
-      return "폴라리스 쉐어(POLA)"
+      return "폴라리스 쉐어"
     case .cAWO:
-      return "에이아이워크(AWO)"
+      return "에이아이워크"
     case .cADP:
-      return "어댑터 토큰(ADP)"
+      return "어댑터 토큰"
     case .cDVI:
-      return "디비전(DVI)"
+      return "디비전"
     case .cIBP:
-      return "아이비피토큰(IBP)"
+      return "아이비피토큰"
     case .cGHX:
-      return "게이머코인(GHX)"
+      return "게이머코인"
     case .cMIR:
-      return "미러 프로토콜(MIR)"
+      return "미러 프로토콜"
     case .cMVC:
-      return "마일벌스(MVC)"
+      return "마일벌스"
     case .cBLY:
-      return "블로서리(BLY)"
+      return "블로서리"
     case .cWOZX:
-      return "이포스(WOZX)"
+      return "이포스"
     case .cANV:
-      return "애니버스(ANV)"
+      return "애니버스"
     case .cGRT:
-      return "더그래프(GRT)"
+      return "더그래프"
     case .cMM:
-      return "밀리미터토큰(MM)"
+      return "밀리미터토큰"
     case .cBIOT:
-      return "바이오패스포트(BIOT)"
+      return "바이오패스포트"
     case .cXNO:
-      return "제노토큰(XNO)"
+      return "제노토큰"
     case .cSNX:
-      return "신세틱스(SNX)"
+      return "신세틱스"
     case .cSOFI:
-      return "라이파이낸스(SOFI)"
+      return "라이파이낸스"
     case .cCOLA:
-      return "콜라토큰(COLA)"
+      return "콜라토큰"
     case .cNU:
-      return "누사이퍼(NU)"
+      return "누사이퍼"
     case .cOXT:
-      return "오키드(OXT)"
+      return "오키드"
     case .cLINA:
-      return "리니어파이낸스(LINA)"
+      return "리니어파이낸스"
     case .cASTA:
-      return "아스타(ASTA)"
+      return "아스타"
     case .cMAP:
-      return "맵프로토콜(MAP)"
+      return "맵프로토콜"
     case .cAQT:
-      return "알파쿼크(AQT)"
+      return "알파쿼크"
     case .cWIKEN:
-      return "위드(WIKEN)"
+      return "위드"
     case .cCTSI:
-      return "카르테시(CTSI)"
+      return "카르테시"
     case .cMANA:
-      return "디센트럴랜드(MANA)"
+      return "디센트럴랜드"
     case .cLPT:
-      return "라이브피어(LPT)"
+      return "라이브피어"
     case .cMKR:
-      return "메이커(MKR)"
+      return "메이커"
     case .cSUSHI:
-      return "스시스왑(SUSHI)"
+      return "스시스왑"
     case .cASM:
-      return "어셈블프로토콜(ASM)"
+      return "어셈블프로토콜"
     case .cPUNDIX:
-      return "펀디엑스(PUNDIX)"
+      return "펀디엑스"
     case .cCELR:
-      return "셀러네트워크(CELR)"
+      return "셀러네트워크"
     case .cCWD:
-      return "크라우드(CWD)"
+      return "크라우드"
     case .cARW:
-      return "아로와나토큰(ARW)"
+      return "아로와나토큰"
     case .cFRONT:
-      return "프론티어(FRONT)"
+      return "프론티어"
     case .cMSB:
-      return "미스블록(MSB)"
+      return "미스블록"
     case .cRLY:
-      return "랠리(RLY)"
+      return "랠리"
     case .cOCEAN:
-      return "오션프로토콜(OCEAN)"
+      return "오션프로토콜"
     case .cBFC:
-      return "바이프로스트(BFC)"
+      return "바이프로스트"
     case .cALICE:
-      return "마이네이버앨리스(ALICE)"
+      return "마이네이버앨리스"
     case .cCOTI:
-      return "코티(COTI)"
+      return "코티"
     case .cCAKE:
-      return "팬케이크스왑(CAKE)"
+      return "팬케이크스왑"
     case .cBNT:
-      return "뱅코르(BNT)"
+      return "뱅코르"
     case .cXVS:
-      return "비너스(XVS)"
+      return "비너스"
     case .cCHZ:
-      return "칠리즈(CHZ)"
+      return "칠리즈"
     case .cAXS:
-      return "엑시인피니티(AXS)"
+      return "엑시인피니티"
     case .cDAO:
-      return "다오메이커(DAO)"
+      return "다오메이커"
     case .cDAI:
-      return "다이(DAI)"
+      return "다이"
     case .cMATIC:
-      return "폴리곤(MATIC)"
+      return "폴리곤"
     case .cWOO:
-      return "우네트워크(WOO)"
+      return "우네트워크"
     case .cBAKE:
-      return "베이커리토큰(BAKE)"
+      return "베이커리토큰"
     case .cVELO:
-      return "벨로프로토콜(VELO)"
+      return "벨로프로토콜"
     case .cBCD:
-      return "비트코인 다이아몬드(BCD)"
+      return "비트코인 다이아몬드"
     case .cXLM:
-      return "스텔라루멘(XLM)"
+      return "스텔라루멘"
     case .cGXC:
-      return "지엑스체인(GXC)"
+      return "지엑스체인"
     case .cVSYS:
-      return "브이시스템즈(VSYS)"
+      return "브이시스템즈"
     case .cIPX:
-      return "타키온프로토콜(IPX)"
+      return "타키온프로토콜"
     case .cWICC:
-      return "웨이키체인(WICC)"
+      return "웨이키체인"
     case .cONT:
-      return "온톨로지(ONT)"
+      return "온톨로지"
     case .cLUNA:
-      return "루나(LUNA)"
+      return "루나"
     case .cAION:
-      return "아이온(AION)"
+      return "아이온"
     case .cMETA:
-      return "메타디움(META)"
+      return "메타디움"
     case .cKLAY:
-      return "클레이튼(KLAY)"
+      return "클레이튼"
     case .cONG:
-      return "온톨로지가스(ONG)"
+      return "온톨로지가스"
     case .cALGO:
-      return "알고랜드(ALGO)"
+      return "알고랜드"
     case .cJST:
-      return "저스트(JST)"
+      return "저스트"
     case .cXTZ:
-      return "테조스(XTZ)"
+      return "테조스"
     case .cMLK:
-      return "밀크(MLK)"
+      return "밀크"
     case .cWEMIX:
-      return "위믹스(WEMIX)"
+      return "위믹스"
     case .cDOT:
-      return "폴카닷(DOT)"
+      return "폴카닷"
     case .cATOM:
-      return "코스모스(ATOM)"
+      return "코스모스"
     case .cSSX:
-      return "썸씽(SSX)"
+      return "썸씽"
     case .cTEMCO:
-      return "템코(TEMCO)"
+      return "템코"
     case .cHIBS:
-      return "힙스(HIBS)"
+      return "힙스"
     case .cBURGER:
-      return "버거스왑(BURGER)"
+      return "버거스왑"
     case .cDOGE:
-      return "도지코인(DOGE)"
+      return "도지코인"
     case .cKSM:
-      return "쿠사마(KSM)"
+      return "쿠사마"
     case .cCTK:
-      return "써틱(CTK)"
+      return "써틱"
     case .cXYM:
-      return "심볼(XYM)"
+      return "심볼"
     case .cBNB:
-      return "바이낸스코인(BNB)"
+      return "바이낸스코인"
     case .cNFT:
-      return "에이피이앤에프티(NFT)"
+      return "에이피이앤에프티"
     case .cSUN:
-      return "썬(SUN)"
+      return "썬"
     case .cXEC:
-      return "이캐시(XEC)"
+      return "이캐시"
     case .cPCI:
-      return "페이코인(PCI)"
+      return "페이코인"
     case .cSOL:
-      return "솔라나(SOL)"
+      return "솔라나"
     case .cLN:
-      return "링크(LN)"
+      return "링크"
     case .cEGLD:
-      return "엘론드(EGLD)"
+      return "엘론드"
     case .cGO:
-      return "고체인(GO)"
+      return "고체인"
     case .cC98:
-      return "코인98(C98)"
+      return "코인98"
     case .cMED:
-      return "메디블록(MED)"
+      return "메디블록"
     case .c1INCH:
-      return "1인치(1INCH)"
+      return "1인치"
     case .cBOBA:
-      return "보바토큰(BOBA)"
+      return "보바토큰"
     case .cGALA:
-      return "갈라(GALA)"
+      return "갈라"
     case .cBTT:
-      return "비트토렌트(BTT)"
+      return "비트토렌트"
     case .cTDROP:
-      return "티드랍(TDROP)"
+      return "티드랍"
     case .cSPRT:
-      return "스포티움(SPRT)"
+      return "스포티움"
     case .cSGB:
-      return "송버드(SGB)"
+      return "송버드"
     case .cPCM:
-      return "프레시움(PCM)"
+      return "프레시움"
     case .cABT:
-      return "아크블록(ABT)"
+      return "아크블록"
     case .cSRT:
-      return "에스알티코인(SRT)"
+      return "에스알티코인"
     case .cDRM:
-      return "두드림 체인(DRM)"
+      return "두드림 체인"
     case .cEM:
-      return "이마이너(EM)"
+      return "이마이너"
     case .cBNP:
-      return "베네핏(BNP)"
+      return "베네핏"
     case .cWIN:
-      return "윙크링(WIN)"
+      return "윙크링"
     }
   }
 }
