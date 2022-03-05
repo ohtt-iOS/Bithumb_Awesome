@@ -15,7 +15,7 @@ struct AppState: Equatable {
 
 enum AppAction {
   case onAppear
-  case tickerResponse(Result<[Ticker], HomeService.Failure>)
+//  case tickerResponse(Result<[Ticker], HomeService.Failure>)
   
   case homeAction(HomeAction)
   case assetAction(AssetAction)
@@ -53,19 +53,7 @@ let appReducer = Reducer.combine([
   Reducer<AppState, AppAction, AppEnvironment> { state, action, environment in
     switch action {
     case .onAppear:
-      print("appView appear")
-      struct TickerId: Hashable {}
-      return environment.homeService
-        .getTickerData("ALL", "KRW")
-        .receive(on: environment.mainQueue)
-        .catchToEffect(AppAction.tickerResponse)
-        .cancellable(id: TickerId(), cancelInFlight: true)
-    case .tickerResponse(.failure):
-      state.homeState.tickerData = []
-      return .none
-    case let .tickerResponse(.success(response)):
-      state.homeState.tickerData = response.sorted(by: { $0.ticker < $1.ticker})
-      return .none
+      return Effect(value: .homeAction(.radioButtonAction(.buttonTap(.koreanWon))))
     case .homeAction:
       return .none
     case .assetAction:

@@ -6,20 +6,25 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct PriceView: View {
+  let store: Store<PriceState, PriceAction>
+  
   var body: some View {
-    VStack(alignment: .leading, spacing: 10) {
-      Text("46,193,300")
-        .font(Font.heading1)
-        .foregroundColor(Color.aRed1)
-      
-      HStack(spacing: 4) {
-        Text("-982,000 ")
-        Text("(-0.28%)")
+    WithViewStore(self.store) { viewStore in
+      VStack(alignment: .leading, spacing: 10) {
+        Text(viewStore.tickerData.data.closingPrice ?? "")
+          .font(Font.heading1)
+          .foregroundColor(viewStore.tickerData.textColor)
+        
+        HStack(spacing: 10) {
+          Text(viewStore.tickerData.data.fluctate24H ?? "")
+          Text((viewStore.tickerData.data.fluctateRate24H ?? "") + "%" )
+        }
+        .font(Font.heading2)
+        .foregroundColor(viewStore.tickerData.textColor)
       }
-      .font(Font.heading2)
-      .foregroundColor(Color.aRed1)
     }
   }
 }

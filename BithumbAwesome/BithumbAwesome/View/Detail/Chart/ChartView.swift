@@ -13,9 +13,20 @@ struct ChartView: View {
   
   var body: some View {
     WithViewStore(self.store) { viewStore in
-      Text("chart")
+      VStack {
+        HStack(spacing: 5) {
+          ForEach(0..<5) { index in
+            Button(
+              action: {  },
+              label: { Text("\(index)") }
+            )
+              .frame(maxWidth: .infinity)
+          }
+        }
+        
+        CandleChartView(chartData: viewStore.candleData)
+          .frame(maxHeight: .infinity)
+      }
     }
   }
 }
-
-

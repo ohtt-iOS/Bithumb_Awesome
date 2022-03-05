@@ -13,7 +13,59 @@ struct ConclusionView: View {
   
   var body: some View {
     WithViewStore(self.store) { viewStore in
-      Text("Conclusion")
+      VStack(spacing: 0) {
+        ConclusionHeaderView()
+          .frame(height: 20)
+          .padding(.horizontal, 14)
+          .padding(.top, 14)
+        
+        Rectangle()
+          .frame(height: 1, alignment: .center)
+          .foregroundColor(Color.aGray1)
+        
+        ScrollView(showsIndicators: false) {
+          ForEach(viewStore.transactionData, id: \.id) { transaction in
+            ConclusionRowView(
+              store: Store(
+                initialState: ConclusionRowState(
+                  data: transaction
+                ),
+                reducer: conclusionRowReducer,
+                environment: ()
+              )
+            )
+              .frame(height: 40)
+              .padding(.horizontal, 14)
+          }
+        }
+      }
     }
   }
 }
+
+struct ConclusionHeaderView: View {
+  var body: some View {
+    GeometryReader { g in
+      HStack() {
+        Text("시간")
+          .frame(width: g.size.width/6, alignment: .center)
+          .font(.heading6)
+          .foregroundColor(Color.aGray2)
+        
+        Spacer()
+        Text("가격")
+          .font(.heading6)
+          .frame(width: g.size.width/3.5, alignment: .center)
+          .foregroundColor(Color.aGray2)
+        
+        Spacer()
+        Text("체결량")
+          .frame(width: g.size.width/3.5, alignment: .center)
+          .font(.heading6)
+          .foregroundColor(Color.aGray2)
+      }
+    }
+  }
+}
+
+

@@ -15,9 +15,15 @@ struct DetailView: View {
   var body: some View {
     WithViewStore(self.store) { viewStore in
       VStack(alignment: .leading) {
-        ANavigationBarView(titleTextString: "비트코인", presentationMode: self.presentationMode)
+        ANavigationBarView(titleTextString: viewStore.naviTitle,
+                           presentationMode: self.presentationMode)
         
-        PriceView()
+        PriceView(
+          store: store.scope(
+            state: \.priceState,
+            action: DetailAction.priceAction
+          )
+        )
           .padding(.leading, 19)
         
         RadioButtonView(
@@ -29,7 +35,10 @@ struct DetailView: View {
           .padding(.horizontal, 14)
         
         view(type: viewStore.selectedButton)
-        Spacer()
+          .frame(maxHeight: .infinity)
+      }
+      .onAppear {
+        viewStore.send(.onAppear)
       }
     }
   }
@@ -54,7 +63,7 @@ struct DetailView: View {
       case .conclusion:
         ConclusionView(
           store: store.scope(
-            state: \.conclustionState,
+            state: \.conclusionState,
             action: DetailAction.conclusionAction
           )
         )

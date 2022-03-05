@@ -62,6 +62,17 @@
 		D1C47B5527CE76650006B7A3 /* ChartCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5427CE76650006B7A3 /* ChartCore.swift */; };
 		D1C47B5727CE766E0006B7A3 /* QuoteCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5627CE766E0006B7A3 /* QuoteCore.swift */; };
 		D1C47B5927CE76760006B7A3 /* ConclusionCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5827CE76760006B7A3 /* ConclusionCore.swift */; };
+		D1CB404827D1E0E400AC3AFA /* PriceCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CB404727D1E0E400AC3AFA /* PriceCore.swift */; };
+		D1CB407E27D27AB200AC3AFA /* CandleSticktService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CB407D27D27AB200AC3AFA /* CandleSticktService.swift */; };
+		D1CB408027D27ADB00AC3AFA /* CandleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CB407F27D27ADB00AC3AFA /* CandleResponse.swift */; };
+		D1CB408227D27AE900AC3AFA /* Candle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CB408127D27AE900AC3AFA /* Candle.swift */; };
+		D1CFCB6B27D2834A00B8B560 /* CandleChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFCB6A27D2834A00B8B560 /* CandleChartView.swift */; };
+		D1D7268227D118CF00A9E420 /* ConclusionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D7268127D118CF00A9E420 /* ConclusionRowView.swift */; };
+		D1D7268527D118FD00A9E420 /* ConclusionRowCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D7268427D118FD00A9E420 /* ConclusionRowCore.swift */; };
+		D1D7268727D121ED00A9E420 /* TransactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D7268627D121ED00A9E420 /* TransactionService.swift */; };
+		D1D7268927D121F900A9E420 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D7268827D121F900A9E420 /* Transaction.swift */; };
+		D1D7268B27D1221000A9E420 /* TransactionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D7268A27D1221000A9E420 /* TransactionResponse.swift */; };
+		D1D7268D27D1227100A9E420 /* ResponseResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D7268C27D1227100A9E420 /* ResponseResult.swift */; };
 		D1D952B027D08EFC00149BEC /* TickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D952AF27D08EFC00149BEC /* TickerResponse.swift */; };
 		D1D952B227D08F6D00149BEC /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D952B127D08F6D00149BEC /* HomeService.swift */; };
 /* End PBXBuildFile section */
@@ -118,6 +129,17 @@
 		D1C47B5427CE76650006B7A3 /* ChartCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCore.swift; sourceTree = "<group>"; };
 		D1C47B5627CE766E0006B7A3 /* QuoteCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCore.swift; sourceTree = "<group>"; };
 		D1C47B5827CE76760006B7A3 /* ConclusionCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConclusionCore.swift; sourceTree = "<group>"; };
+		D1CB404727D1E0E400AC3AFA /* PriceCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCore.swift; sourceTree = "<group>"; };
+		D1CB407D27D27AB200AC3AFA /* CandleSticktService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleSticktService.swift; sourceTree = "<group>"; };
+		D1CB407F27D27ADB00AC3AFA /* CandleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleResponse.swift; sourceTree = "<group>"; };
+		D1CB408127D27AE900AC3AFA /* Candle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candle.swift; sourceTree = "<group>"; };
+		D1CFCB6A27D2834A00B8B560 /* CandleChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleChartView.swift; sourceTree = "<group>"; };
+		D1D7268127D118CF00A9E420 /* ConclusionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConclusionRowView.swift; sourceTree = "<group>"; };
+		D1D7268427D118FD00A9E420 /* ConclusionRowCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConclusionRowCore.swift; sourceTree = "<group>"; };
+		D1D7268627D121ED00A9E420 /* TransactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionService.swift; sourceTree = "<group>"; };
+		D1D7268827D121F900A9E420 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		D1D7268A27D1221000A9E420 /* TransactionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionResponse.swift; sourceTree = "<group>"; };
+		D1D7268C27D1227100A9E420 /* ResponseResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseResult.swift; sourceTree = "<group>"; };
 		D1D952AF27D08EFC00149BEC /* TickerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerResponse.swift; sourceTree = "<group>"; };
 		D1D952B127D08F6D00149BEC /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +165,8 @@
 			children = (
 				D1D952B127D08F6D00149BEC /* HomeService.swift */,
 				C65E8DA227D0C1240088A5F4 /* AssetService.swift */,
+				D1D7268627D121ED00A9E420 /* TransactionService.swift */,
+				D1CB407D27D27AB200AC3AFA /* CandleSticktService.swift */,
 				C653523F27D11CEC0088AC3B /* QuoteSocketService.swift */,
 			);
 			path = Service;
@@ -151,10 +175,15 @@
 		C653523927D1039A0088AC3B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D1D7268C27D1227100A9E420 /* ResponseResult.swift */,
 				D1D952AF27D08EFC00149BEC /* TickerResponse.swift */,
 				D15D4FAE27D0905700E5E687 /* Ticker.swift */,
 				C65E8D9F27D0BDFC0088A5F4 /* Asset.swift */,
 				C65E8D9E27D0BDFC0088A5F4 /* AssetData.swift */,
+				D1D7268827D121F900A9E420 /* Transaction.swift */,
+				D1D7268A27D1221000A9E420 /* TransactionResponse.swift */,
+				D1CB407F27D27ADB00AC3AFA /* CandleResponse.swift */,
+				D1CB408127D27AE900AC3AFA /* Candle.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -192,6 +221,7 @@
 				C6A7AD7627CE577000851AA9 /* DetailView.swift */,
 				C6A7AD7827CE578800851AA9 /* DetailCore.swift */,
 				C6B6A1EB27CE694E00C4303F /* PriceView.swift */,
+				D1CB404727D1E0E400AC3AFA /* PriceCore.swift */,
 				D1C47B4B27CE76060006B7A3 /* Chart */,
 				D1C47B4C27CE76220006B7A3 /* Quote */,
 				D1C47B4D27CE76280006B7A3 /* Conclusion */,
@@ -384,6 +414,7 @@
 			children = (
 				D1C47B4E27CE76400006B7A3 /* ChartView.swift */,
 				D1C47B5427CE76650006B7A3 /* ChartCore.swift */,
+				D1CFCB6A27D2834A00B8B560 /* CandleChartView.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -403,8 +434,18 @@
 			children = (
 				D1C47B5227CE76530006B7A3 /* ConclusionView.swift */,
 				D1C47B5827CE76760006B7A3 /* ConclusionCore.swift */,
+				D1D7268327D118D300A9E420 /* ConclusionRow */,
 			);
 			path = Conclusion;
+			sourceTree = "<group>";
+		};
+		D1D7268327D118D300A9E420 /* ConclusionRow */ = {
+			isa = PBXGroup;
+			children = (
+				D1D7268127D118CF00A9E420 /* ConclusionRowView.swift */,
+				D1D7268427D118FD00A9E420 /* ConclusionRowCore.swift */,
+			);
+			path = ConclusionRow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -498,11 +539,13 @@
 				D1C47B4F27CE76400006B7A3 /* ChartView.swift in Sources */,
 				D184800E27CA781500213DD0 /* AwesomeTabItemStyle.swift in Sources */,
 				D10E600B27D0844600B68BCF /* TickerRowView.swift in Sources */,
+				D1D7268227D118CF00A9E420 /* ConclusionRowView.swift in Sources */,
 				C6B6344527D35E36009B2E97 /* HorizonDivider.swift in Sources */,
 				C653524027D11CEC0088AC3B /* QuoteSocketService.swift in Sources */,
 				D184809F27CD186000213DD0 /* AwesomeButtonType.swift in Sources */,
 				D184800827CA75D000213DD0 /* AssetCore.swift in Sources */,
 				D1D952B227D08F6D00149BEC /* HomeService.swift in Sources */,
+				D1CB408027D27ADB00AC3AFA /* CandleResponse.swift in Sources */,
 				D1C47B5527CE76650006B7A3 /* ChartCore.swift in Sources */,
 				C6B6A1EC27CE694E00C4303F /* PriceView.swift in Sources */,
 				D184800A27CA75E000213DD0 /* SettingView.swift in Sources */,
@@ -510,18 +553,24 @@
 				D1C47B5127CE76480006B7A3 /* QuoteView.swift in Sources */,
 				D184800427CA75BE00213DD0 /* HomeCore.swift in Sources */,
 				C65E8D9327D0B3750088A5F4 /* AssetListRow.swift in Sources */,
+				D1D7268B27D1221000A9E420 /* TransactionResponse.swift in Sources */,
 				C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */,
 				D17C652727C52800007705A7 /* AppView.swift in Sources */,
+				D1CB404827D1E0E400AC3AFA /* PriceCore.swift in Sources */,
 				D184809C27CD120100213DD0 /* AwesomeTabType.swift in Sources */,
 				D10E601327D0875100B68BCF /* FlatLinkStyle.swift in Sources */,
+				D1D7268527D118FD00A9E420 /* ConclusionRowCore.swift in Sources */,
 				D17C652527C52800007705A7 /* BithumbAwesomeApp.swift in Sources */,
 				D18480A127CD191D00213DD0 /* AwesomeButtonStyle.swift in Sources */,
 				D184800C27CA75EA00213DD0 /* SettingCore.swift in Sources */,
+				D1CB407E27D27AB200AC3AFA /* CandleSticktService.swift in Sources */,
 				D15D4FAF27D0905700E5E687 /* Ticker.swift in Sources */,
 				C6A7AD7B27CE58F200851AA9 /* UINavigationController+.swift in Sources */,
+				D1CB408227D27AE900AC3AFA /* Candle.swift in Sources */,
 				C65E8D9627D0B4840088A5F4 /* CurrentAssetStatus.swift in Sources */,
 				D1C47B5927CE76760006B7A3 /* ConclusionCore.swift in Sources */,
 				D184800227CA75B400213DD0 /* HomeView.swift in Sources */,
+				D1D7268927D121F900A9E420 /* Transaction.swift in Sources */,
 				D18480A327CD19E900213DD0 /* RadioButtonView.swift in Sources */,
 				C6A7AD7727CE577000851AA9 /* DetailView.swift in Sources */,
 				D184801027CA782B00213DD0 /* AwesomeTabBarStyle.swift in Sources */,
@@ -536,9 +585,12 @@
 				C65E8DA527D0C5CA0088A5F4 /* CryptoCurrencyType.swift in Sources */,
 				C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */,
 				D10E600D27D0850B00B68BCF /* TickerRowCore.swift in Sources */,
+				D1D7268727D121ED00A9E420 /* TransactionService.swift in Sources */,
 				D184800027CA759B00213DD0 /* AppCore.swift in Sources */,
 				C6A7AD7927CE578800851AA9 /* DetailCore.swift in Sources */,
 				C6A7AD7E27CE5C6D00851AA9 /* FavoriteButton.swift in Sources */,
+				D1CFCB6B27D2834A00B8B560 /* CandleChartView.swift in Sources */,
+				D1D7268D27D1227100A9E420 /* ResponseResult.swift in Sources */,
 				C65E8DA327D0C1240088A5F4 /* AssetService.swift in Sources */,
 				D1C47B5327CE76530006B7A3 /* ConclusionView.swift in Sources */,
 			);

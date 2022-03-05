@@ -22,19 +22,18 @@ extension HomeService {
         let headers: HTTPHeaders = [
           "Content-Type": "application/json",
         ]
-        let dataRequest = AF.request(URL,
-                                     method: .get,
-                                     encoding: JSONEncoding.default,
-                                     headers: headers
+        let dataRequest = AF.request(
+          URL,
+          method: .get,
+          encoding: JSONEncoding.default,
+          headers: headers
         )
         
-        dataRequest.responseData{ (response) in
+        dataRequest
+          .validate(statusCode: 200..<300)
+          .responseData{ (response) in
           switch response.result {
-          case .success(_):
-            guard let value = response.value,
-                  let status = response.response?.statusCode else { return }
-            switch status {
-            case 200:
+          case .success(let value):
               do {
                 if let json = try JSONSerialization.jsonObject(with: value, options: []) as? [String: Any] {
                   var items = json["data"] as? [String: Any]
@@ -49,9 +48,6 @@ extension HomeService {
               } catch {
                 subscriber.send(completion: .failure(Failure()))
               }
-            default:
-              break
-            }
           case .failure(_):
             subscriber.send(completion: .failure(Failure()))
             break

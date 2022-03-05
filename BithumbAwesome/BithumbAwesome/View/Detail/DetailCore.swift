@@ -8,33 +8,49 @@
 import ComposableArchitecture
 
 struct DetailState: Equatable {
+  var naviTitle: String
   var selectedButton: AwesomeButtonType = .chart
   var radioButtonState = RadioButtonState(buttons: [.chart,
                                                     .quote,
                                                     .conclusion],
                                           selectedButton: .chart)
-  var chartState: ChartState = .init()
+  var priceState: PriceState
+  var chartState: ChartState = .init(candleData: [])
   var quoteState: QuoteState = .init()
-  var conclustionState: ConclusionState = .init()
+  var conclusionState: ConclusionState = .init(transactionData: [])
 }
 
 enum DetailAction: Equatable {
+  case onAppear
+  
   case radioButtonAction(RadioButtonAction)
   
+  case priceAction(PriceAction)
   case chartAction(ChartAction)
   case quoteAction(QuoteAction)
   case conclusionAction(ConclusionAction)
 }
 
 struct DetailEnvironment {
+  var mainQueue: AnySchedulerOf<DispatchQueue>
+  var candleStickService: CandleStickService
+  var transactionService: TransactionService
 }
 
 let detailReducer = Reducer.combine([
+  priceReducer.pullback(
+    state: \.priceState,
+    action: /DetailAction.priceAction,
+    environment: { _ in
+      PriceEnvironment()
+    }
+  ) as Reducer<DetailState, DetailAction, DetailEnvironment>,
   chartReducer.pullback(
     state: \.chartState,
     action: /DetailAction.chartAction,
-    environment: { _ in
-      ChartEnvironment()
+    environment: {
+      ChartEnvironment(candleClient: $0.candleStickService,
+                       mainQueue: $0.mainQueue)
     }
   ) as Reducer<DetailState, DetailAction, DetailEnvironment>,
   quoteReducer.pullback(
@@ -45,10 +61,11 @@ let detailReducer = Reducer.combine([
     }
   ) as Reducer<DetailState, DetailAction, DetailEnvironment>,
   conclusionReducer.pullback(
-    state: \.conclustionState,
+    state: \.conclusionState,
     action: /DetailAction.conclusionAction,
-    environment: { _ in
-      ConclusionEnvironment()
+    environment: {
+      ConclusionEnvironment(transactionService: $0.transactionService,
+                            mainQueue: $0.mainQueue)
     }
   ) as Reducer<DetailState, DetailAction, DetailEnvironment>,
   radioButtonReducer.pullback(
@@ -74,6 +91,17 @@ let detailReducer = Reducer.combine([
       }
     case .radioButtonAction:
       return .none
+    case .conclusionAction:
+      return .none
+    case .chartAction:
+      return .none
+    case .onAppear:
+      struct TransactionID: Hashable {}
+      struct CandleID: Hashable {}
+      return .merge(
+        Effect(value: .chartAction(.buttonTap)),
+        Effect(value: .conclusionAction(.onAppear))
+      )
     }
   }
 ])
