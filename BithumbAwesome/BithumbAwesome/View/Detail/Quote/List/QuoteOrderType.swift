@@ -21,6 +21,6 @@ extension QuoteOrderType {
     }
   }
   var backgroundColor: Color {
-    self.color.opacity(0.1)
+    return self.color.opacity(0.1)
   }
 }

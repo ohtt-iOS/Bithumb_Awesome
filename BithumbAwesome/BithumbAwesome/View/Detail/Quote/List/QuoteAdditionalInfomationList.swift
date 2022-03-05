@@ -73,7 +73,7 @@ private enum ListRowType {
 
 extension ListRowType: CaseIterable, Identifiable {
   var id: UUID {
-    UUID()
+    return UUID()
   }
 }
 
