@@ -22,9 +22,15 @@ struct QuoteView: View {
           ScrollView(showsIndicators: false) {
             VStack(spacing: QuoteView.rowBlockPadding) {
               HStack(spacing: QuoteView.rowBlockPadding) {
-                QuoteListRow(width: geometryProxy.size.width)
+                QuoteListRow(type: QuoteOrderType.ask, width: geometryProxy.size.width)
                 
                 QuoteAdditionalInfomationList()
+              }
+              
+              HStack(spacing: QuoteView.rowBlockPadding) {
+                Spacer()
+                
+                QuoteListRow(type: QuoteOrderType.bid, width: geometryProxy.size.width)
               }
             }
             .id(self.scrollViewIdentifier)

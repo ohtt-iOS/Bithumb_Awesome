@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct QuoteListRow: View {
+  let type: QuoteOrderType
   let width: CGFloat
   
   private var rowBlockWidth: CGFloat {
@@ -18,17 +19,19 @@ struct QuoteListRow: View {
     VStack(spacing: QuoteView.rowBlockPadding) {
       ForEach(0..<30) { index in
         HStack(spacing: QuoteView.rowBlockPadding) {
-          HStack {
-            Spacer()
-            
-            Text("2.0100")
-              .font(Font.heading7)
-              .foregroundColor(Color.aGray4)
-              .padding(.trailing, 5)
-              .padding(.vertical, 15)
+          if self.type == .ask {
+            HStack {
+              Spacer()
+              
+              Text("2.0100")
+                .font(Font.heading7)
+                .foregroundColor(Color.aGray4)
+                .padding(.trailing, 5)
+                .padding(.vertical, 15)
+            }
+            .background(self.type.backgroundColor)
+            .frame(width: self.rowBlockWidth)
           }
-          .background(Color.aBlue1.opacity(0.1))
-          .frame(width: self.rowBlockWidth)
           
           HStack {
             Spacer()
@@ -45,8 +48,22 @@ struct QuoteListRow: View {
               .padding(.trailing, 2.5)
               .padding(.vertical, 15)
           }
-          .background(Color.aBlue1.opacity(0.1))
+          .background(self.type.backgroundColor)
           .frame(width: self.rowBlockWidth)
+          
+          if self.type == .bid {
+            HStack {
+              Text("2.0100")
+                .font(Font.heading7)
+                .foregroundColor(Color.aGray4)
+                .padding(.leading, 5)
+                .padding(.vertical, 15)
+              
+              Spacer()
+            }
+            .background(self.type.backgroundColor)
+            .frame(width: self.rowBlockWidth)
+          }
         }
       }
     }
