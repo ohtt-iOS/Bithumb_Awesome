@@ -38,34 +38,35 @@ struct HomeView: View {
           VStack(spacing: 10) {
             ForEach(viewStore.tickerData, id: \.id) { ticker in
               NavigationLink(
-                destination: DetailView(store: Store(
-                  initialState: DetailState(
-                    naviTitle: ticker.name,
-                    priceState: PriceState(
-                      tickerData: ticker)),
-                  reducer: detailReducer,
-                  environment: DetailEnvironment(mainQueue: .main,
-                                                 candleStickService: .candle,
-                                                 transactionService: .transaction)
-                ))){
-                  VStack {
-                    TickerRowView(
-                      store: Store(
-                        initialState: TickerState(
-                          ticker: ticker
-                        ),
-                        reducer: tickerReducer,
-                        environment: ()
+                destination:
+                  DetailView(store: Store(
+                    initialState: DetailState(
+                      naviTitle: ticker.name,
+                      priceState: PriceState(
+                        tickerData: ticker)),
+                    reducer: detailReducer,
+                    environment: DetailEnvironment(mainQueue: .main,
+                                                   candleStickService: .candle,
+                                                   transactionService: .transaction)
+                  ))){
+                    VStack {
+                      TickerRowView(
+                        store: Store(
+                          initialState: TickerState(
+                            ticker: ticker
+                          ),
+                          reducer: tickerReducer,
+                          environment: ()
+                        )
                       )
-                    )
-                      .frame(height: 40)
-                      .padding(.horizontal, 14)
-                    Rectangle()
-                      .frame(height: 1, alignment: .center)
-                      .foregroundColor(Color.aGray1)
+                        .frame(height: 40)
+                        .padding(.horizontal, 14)
+                      Rectangle()
+                        .frame(height: 1, alignment: .center)
+                        .foregroundColor(Color.aGray1)
+                    }
                   }
-                }
-                .buttonStyle(FlatLinkStyle())
+                  .buttonStyle(FlatLinkStyle())
             }
           }
           .padding(.top, 14)

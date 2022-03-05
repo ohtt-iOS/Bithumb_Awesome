@@ -63,7 +63,7 @@
 		D1C47B5727CE766E0006B7A3 /* QuoteCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5627CE766E0006B7A3 /* QuoteCore.swift */; };
 		D1C47B5927CE76760006B7A3 /* ConclusionCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C47B5827CE76760006B7A3 /* ConclusionCore.swift */; };
 		D1CB404827D1E0E400AC3AFA /* PriceCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CB404727D1E0E400AC3AFA /* PriceCore.swift */; };
-		D1CB407E27D27AB200AC3AFA /* CandleSticktService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CB407D27D27AB200AC3AFA /* CandleSticktService.swift */; };
+		D1CB407E27D27AB200AC3AFA /* CandleStickService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CB407D27D27AB200AC3AFA /* CandleStickService.swift */; };
 		D1CB408027D27ADB00AC3AFA /* CandleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CB407F27D27ADB00AC3AFA /* CandleResponse.swift */; };
 		D1CB408227D27AE900AC3AFA /* Candle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CB408127D27AE900AC3AFA /* Candle.swift */; };
 		D1CFCB6B27D2834A00B8B560 /* CandleChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFCB6A27D2834A00B8B560 /* CandleChartView.swift */; };
@@ -130,7 +130,7 @@
 		D1C47B5627CE766E0006B7A3 /* QuoteCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCore.swift; sourceTree = "<group>"; };
 		D1C47B5827CE76760006B7A3 /* ConclusionCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConclusionCore.swift; sourceTree = "<group>"; };
 		D1CB404727D1E0E400AC3AFA /* PriceCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCore.swift; sourceTree = "<group>"; };
-		D1CB407D27D27AB200AC3AFA /* CandleSticktService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleSticktService.swift; sourceTree = "<group>"; };
+		D1CB407D27D27AB200AC3AFA /* CandleStickService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleStickService.swift; sourceTree = "<group>"; };
 		D1CB407F27D27ADB00AC3AFA /* CandleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleResponse.swift; sourceTree = "<group>"; };
 		D1CB408127D27AE900AC3AFA /* Candle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candle.swift; sourceTree = "<group>"; };
 		D1CFCB6A27D2834A00B8B560 /* CandleChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleChartView.swift; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 				D1D952B127D08F6D00149BEC /* HomeService.swift */,
 				C65E8DA227D0C1240088A5F4 /* AssetService.swift */,
 				D1D7268627D121ED00A9E420 /* TransactionService.swift */,
-				D1CB407D27D27AB200AC3AFA /* CandleSticktService.swift */,
+				D1CB407D27D27AB200AC3AFA /* CandleStickService.swift */,
 				C653523F27D11CEC0088AC3B /* QuoteSocketService.swift */,
 			);
 			path = Service;
@@ -563,7 +563,7 @@
 				D17C652527C52800007705A7 /* BithumbAwesomeApp.swift in Sources */,
 				D18480A127CD191D00213DD0 /* AwesomeButtonStyle.swift in Sources */,
 				D184800C27CA75EA00213DD0 /* SettingCore.swift in Sources */,
-				D1CB407E27D27AB200AC3AFA /* CandleSticktService.swift in Sources */,
+				D1CB407E27D27AB200AC3AFA /* CandleStickService.swift in Sources */,
 				D15D4FAF27D0905700E5E687 /* Ticker.swift in Sources */,
 				C6A7AD7B27CE58F200851AA9 /* UINavigationController+.swift in Sources */,
 				D1CB408227D27AE900AC3AFA /* Candle.swift in Sources */,
