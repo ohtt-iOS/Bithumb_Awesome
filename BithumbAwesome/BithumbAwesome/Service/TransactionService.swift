@@ -23,7 +23,8 @@ extension TransactionService {
           "Content-Type": "application/json",
         ]
         
-        let dataRequest = AF.request(URL,
+        let dataRequest = AF.request(
+          URL,
                                      method: .get,
                                      encoding: JSONEncoding.default,
                                      headers: headers

@@ -22,7 +22,9 @@ struct Transaction: Codable, Equatable, Identifiable {
   var date: String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    guard let dateTo = dateFormatter.date(from: transactionDate) else { return "" }
+    guard let dateTo = dateFormatter.date(from: transactionDate) else {
+      return ""
+    }
     dateFormatter.dateFormat = "HH:mm:ss"
     return dateFormatter.string(from: dateTo)
   }

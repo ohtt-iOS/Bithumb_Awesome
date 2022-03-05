@@ -24,34 +24,30 @@ extension CandleStickService {
           "Content-Type": "application/json",
         ]
         
-        let dataRequest = AF.request(URL,
-                                     method: .get,
-                                     encoding: JSONEncoding.default,
-                                     headers: headers
+        let dataRequest = AF.request(
+          URL,
+          method: .get,
+          encoding: JSONEncoding.default,
+          headers: headers
         )
         
-        dataRequest.responseData{ (response) in
-          switch response.result {
-          case .success(_):
-            guard let value = response.value,
-                  let status = response.response?.statusCode else { return }
-            switch status {
-            case 200:
+        dataRequest
+          .validate(statusCode: 200..<300)
+          .responseData{ (response) in
+            switch response.result {
+            case .success(let value):
               do {
                 let result = try JSONDecoder().decode(ResponseResult<CandleResponse>.self, from: value)
                 let data = result.data?.map { Candle(candleResponse: $0) }
-                  subscriber.send(data!)
+                subscriber.send(data!)
               } catch {
                 subscriber.send(completion: .failure(Failure()))
               }
-            default:
+            case .failure(_):
+              subscriber.send(completion: .failure(Failure()))
               break
             }
-          case .failure(_):
-            subscriber.send(completion: .failure(Failure()))
-            break
           }
-        }
         return AnyCancellable {}
       }
     }
