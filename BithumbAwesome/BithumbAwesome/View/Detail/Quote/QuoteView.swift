@@ -9,23 +9,29 @@ import ComposableArchitecture
 import SwiftUI
 
 struct QuoteView: View {
+  static let rowBlockPadding: CGFloat = 1
+  
   let store: Store<QuoteState, QuoteAction>
   
   private let scrollViewIdentifier: Int = 1
   
   var body: some View {
     WithViewStore(self.store) { viewStore in
-      ScrollViewReader { scrollViewProxy in
-        ScrollView(showsIndicators: false) {
-          VStack(spacing: 1) {
-            ForEach(0..<100) { index in
-              Text("QuoteListRow\(index)")
+      GeometryReader { geometryProxy in
+        ScrollViewReader { scrollViewProxy in
+          ScrollView(showsIndicators: false) {
+            VStack(spacing: QuoteView.rowBlockPadding) {
+              HStack(spacing: QuoteView.rowBlockPadding) {
+                QuoteListRow(width: geometryProxy.size.width)
+                
+                QuoteAdditionalInfomationList()
+              }
             }
+            .id(self.scrollViewIdentifier)
           }
-          .id(self.scrollViewIdentifier)
-        }
-        .onAppear {
-          scrollViewProxy.scrollTo(self.scrollViewIdentifier, anchor: .center)
+          .onAppear {
+            scrollViewProxy.scrollTo(self.scrollViewIdentifier, anchor: .center)
+          }
         }
       }
     }

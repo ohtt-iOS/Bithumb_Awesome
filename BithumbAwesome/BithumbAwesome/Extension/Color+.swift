@@ -12,6 +12,7 @@ extension Color {
   static let aGray1: Color = Color("aGray1")
   static let aGray2: Color = Color("aGray2")
   static let aGray3: Color = Color("aGray3")
+  static let aGray4: Color = Color("aGray4")
   static let aRed1: Color = Color("aRed1")
   static let aBlue1: Color = Color("aBlue1")
 }

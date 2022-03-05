@@ -22,6 +22,8 @@
 		C6A7AD7B27CE58F200851AA9 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7A27CE58F200851AA9 /* UINavigationController+.swift */; };
 		C6A7AD7E27CE5C6D00851AA9 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7D27CE5C6D00851AA9 /* FavoriteButton.swift */; };
 		C6A7AD8027CE5CA400851AA9 /* FavoriteButtonCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7F27CE5CA400851AA9 /* FavoriteButtonCore.swift */; };
+		C6B6343C27D338E9009B2E97 /* QuoteListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6343B27D338E9009B2E97 /* QuoteListRow.swift */; };
+		C6B6344027D33927009B2E97 /* QuoteAdditionalInfomationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6343F27D33927009B2E97 /* QuoteAdditionalInfomationList.swift */; };
 		C6B6A1EC27CE694E00C4303F /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6A1EB27CE694E00C4303F /* PriceView.swift */; };
 		C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630B27C7D03D00E6DD98 /* Color+.swift */; };
 		C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630D27C7D47400E6DD98 /* Font+.swift */; };
@@ -78,6 +80,8 @@
 		C6A7AD7A27CE58F200851AA9 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		C6A7AD7D27CE5C6D00851AA9 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		C6A7AD7F27CE5CA400851AA9 /* FavoriteButtonCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonCore.swift; sourceTree = "<group>"; };
+		C6B6343B27D338E9009B2E97 /* QuoteListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteListRow.swift; sourceTree = "<group>"; };
+		C6B6343F27D33927009B2E97 /* QuoteAdditionalInfomationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteAdditionalInfomationList.swift; sourceTree = "<group>"; };
 		C6B6A1EB27CE694E00C4303F /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
 		C6DA630B27C7D03D00E6DD98 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		C6DA630D27C7D47400E6DD98 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
@@ -198,6 +202,15 @@
 				C6A7AD7F27CE5CA400851AA9 /* FavoriteButtonCore.swift */,
 			);
 			path = FavoriteButton;
+			sourceTree = "<group>";
+		};
+		C6B6343827D338C1009B2E97 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				C6B6343B27D338E9009B2E97 /* QuoteListRow.swift */,
+				C6B6343F27D33927009B2E97 /* QuoteAdditionalInfomationList.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		C6DA630A27C7D02C00E6DD98 /* Extension */ = {
@@ -366,6 +379,7 @@
 			children = (
 				D1C47B5027CE76480006B7A3 /* QuoteView.swift */,
 				D1C47B5627CE766E0006B7A3 /* QuoteCore.swift */,
+				C6B6343827D338C1009B2E97 /* List */,
 			);
 			path = Quote;
 			sourceTree = "<group>";
@@ -464,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C65E8DA127D0BDFC0088A5F4 /* Asset.swift in Sources */,
+				C6B6343C27D338E9009B2E97 /* QuoteListRow.swift in Sources */,
 				C6A7AD8027CE5CA400851AA9 /* FavoriteButtonCore.swift in Sources */,
 				D1C47B4F27CE76400006B7A3 /* ChartView.swift in Sources */,
 				D184800E27CA781500213DD0 /* AwesomeTabItemStyle.swift in Sources */,
@@ -475,6 +490,7 @@
 				D1C47B5527CE76650006B7A3 /* ChartCore.swift in Sources */,
 				C6B6A1EC27CE694E00C4303F /* PriceView.swift in Sources */,
 				D184800A27CA75E000213DD0 /* SettingView.swift in Sources */,
+				C6B6344027D33927009B2E97 /* QuoteAdditionalInfomationList.swift in Sources */,
 				D1C47B5127CE76480006B7A3 /* QuoteView.swift in Sources */,
 				D184800427CA75BE00213DD0 /* HomeCore.swift in Sources */,
 				C65E8D9327D0B3750088A5F4 /* AssetListRow.swift in Sources */,
