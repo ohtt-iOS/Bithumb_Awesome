@@ -22,15 +22,23 @@ struct QuoteView: View {
           ScrollView(showsIndicators: false) {
             VStack(spacing: QuoteView.rowBlockPadding) {
               HStack(spacing: QuoteView.rowBlockPadding) {
-                QuoteListRow(type: QuoteOrderType.ask, width: geometryProxy.size.width)
+                QuoteListRow(
+                  type: QuoteOrderType.ask,
+                  blockWidth: self.rowBlockWith(rowWidth: geometryProxy.size.width)
+                )
                 
                 QuoteAdditionalInfomationList()
+                  .frame(width: self.rowBlockWith(rowWidth: geometryProxy.size.width))
               }
               
               HStack(spacing: QuoteView.rowBlockPadding) {
                 Spacer()
+                  .frame(width: self.rowBlockWith(rowWidth: geometryProxy.size.width))
                 
-                QuoteListRow(type: QuoteOrderType.bid, width: geometryProxy.size.width)
+                QuoteListRow(
+                  type: QuoteOrderType.bid,
+                  blockWidth: self.rowBlockWith(rowWidth: geometryProxy.size.width)
+                )
               }
             }
             .id(self.scrollViewIdentifier)
@@ -41,5 +49,9 @@ struct QuoteView: View {
         }
       }
     }
+  }
+  
+  private func rowBlockWith(rowWidth: CGFloat) -> CGFloat {
+    (rowWidth - (QuoteView.rowBlockPadding * 2)) / 3
   }
 }

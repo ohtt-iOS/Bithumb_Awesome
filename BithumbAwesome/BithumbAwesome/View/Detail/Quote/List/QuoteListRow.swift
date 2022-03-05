@@ -9,11 +9,7 @@ import SwiftUI
 
 struct QuoteListRow: View {
   let type: QuoteOrderType
-  let width: CGFloat
-  
-  private var rowBlockWidth: CGFloat {
-    (self.width / 3) - (QuoteView.rowBlockPadding * 2)
-  }
+  let blockWidth: CGFloat
   
   var body: some View {
     VStack(spacing: QuoteView.rowBlockPadding) {
@@ -30,7 +26,7 @@ struct QuoteListRow: View {
                 .padding(.vertical, 15)
             }
             .background(self.type.backgroundColor)
-            .frame(width: self.rowBlockWidth)
+            .frame(width: self.blockWidth)
           }
           
           HStack {
@@ -49,7 +45,7 @@ struct QuoteListRow: View {
               .padding(.vertical, 15)
           }
           .background(self.type.backgroundColor)
-          .frame(width: self.rowBlockWidth)
+          .frame(width: self.blockWidth)
           
           if self.type == .bid {
             HStack {
@@ -62,7 +58,7 @@ struct QuoteListRow: View {
               Spacer()
             }
             .background(self.type.backgroundColor)
-            .frame(width: self.rowBlockWidth)
+            .frame(width: self.blockWidth)
           }
         }
       }
