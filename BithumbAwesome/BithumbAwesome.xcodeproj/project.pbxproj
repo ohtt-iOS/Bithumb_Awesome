@@ -25,6 +25,7 @@
 		C6B6343C27D338E9009B2E97 /* QuoteListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6343B27D338E9009B2E97 /* QuoteListRow.swift */; };
 		C6B6344027D33927009B2E97 /* QuoteAdditionalInfomationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6343F27D33927009B2E97 /* QuoteAdditionalInfomationList.swift */; };
 		C6B6344227D33D63009B2E97 /* QuoteOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6344127D33D63009B2E97 /* QuoteOrderType.swift */; };
+		C6B6344527D35E36009B2E97 /* HorizonDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6344427D35E36009B2E97 /* HorizonDivider.swift */; };
 		C6B6A1EC27CE694E00C4303F /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6A1EB27CE694E00C4303F /* PriceView.swift */; };
 		C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630B27C7D03D00E6DD98 /* Color+.swift */; };
 		C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630D27C7D47400E6DD98 /* Font+.swift */; };
@@ -84,6 +85,7 @@
 		C6B6343B27D338E9009B2E97 /* QuoteListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteListRow.swift; sourceTree = "<group>"; };
 		C6B6343F27D33927009B2E97 /* QuoteAdditionalInfomationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteAdditionalInfomationList.swift; sourceTree = "<group>"; };
 		C6B6344127D33D63009B2E97 /* QuoteOrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteOrderType.swift; sourceTree = "<group>"; };
+		C6B6344427D35E36009B2E97 /* HorizonDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonDivider.swift; sourceTree = "<group>"; };
 		C6B6A1EB27CE694E00C4303F /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
 		C6DA630B27C7D03D00E6DD98 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		C6DA630D27C7D47400E6DD98 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
@@ -216,6 +218,14 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		C6B6344327D35E2A009B2E97 /* Divider */ = {
+			isa = PBXGroup;
+			children = (
+				C6B6344427D35E36009B2E97 /* HorizonDivider.swift */,
+			);
+			path = Divider;
+			sourceTree = "<group>";
+		};
 		C6DA630A27C7D02C00E6DD98 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +349,7 @@
 		D184809927CD115500213DD0 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				C6B6344327D35E2A009B2E97 /* Divider */,
 				D10E601127D0874600B68BCF /* FlatLink */,
 				C6A7AD7C27CE5C6700851AA9 /* FavoriteButton */,
 				C6A7AD7227CE53F800851AA9 /* ANavigationBar */,
@@ -487,6 +498,7 @@
 				D1C47B4F27CE76400006B7A3 /* ChartView.swift in Sources */,
 				D184800E27CA781500213DD0 /* AwesomeTabItemStyle.swift in Sources */,
 				D10E600B27D0844600B68BCF /* TickerRowView.swift in Sources */,
+				C6B6344527D35E36009B2E97 /* HorizonDivider.swift in Sources */,
 				C653524027D11CEC0088AC3B /* QuoteSocketService.swift in Sources */,
 				D184809F27CD186000213DD0 /* AwesomeButtonType.swift in Sources */,
 				D184800827CA75D000213DD0 /* AssetCore.swift in Sources */,
