@@ -11,15 +11,15 @@ import Combine
 import ComposableArchitecture
 
 struct CandleStickService {
-  var getCandleData: () -> Effect<[Candle], Failure>
+  var getCandleData: (String, String, ChartRadioButtonType) -> Effect<[Candle], Failure>
   struct Failure: Error, Equatable {}
   
 }
 extension CandleStickService {
   static let candle = CandleStickService(
-    getCandleData: {
+    getCandleData: { order, payment, type in
       Effect.run { subscriber in
-        let URL = "https://api.bithumb.com/public/candlestick/BTC_KRW/3m"
+        let URL = "https://api.bithumb.com/public/candlestick/\(order)_\(payment)/\(type.parameter)"
         let headers: HTTPHeaders = [
           "Content-Type": "application/json",
         ]

@@ -41,7 +41,7 @@ struct HomeView: View {
                 destination:
                   DetailView(store: Store(
                     initialState: DetailState(
-                      naviTitle: ticker.name,
+                      ticker: ticker,
                       priceState: PriceState(
                         tickerData: ticker)),
                     reducer: detailReducer,
