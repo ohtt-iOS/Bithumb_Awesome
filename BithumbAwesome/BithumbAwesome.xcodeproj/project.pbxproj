@@ -34,6 +34,8 @@
 		D10E600D27D0850B00B68BCF /* TickerRowCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10E600C27D0850B00B68BCF /* TickerRowCore.swift */; };
 		D10E601327D0875100B68BCF /* FlatLinkStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10E601227D0875100B68BCF /* FlatLinkStyle.swift */; };
 		D15D4FAF27D0905700E5E687 /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D4FAE27D0905700E5E687 /* Ticker.swift */; };
+		D15E61FB27D3BCFB008ADB72 /* ChartRadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15E61FA27D3BCFB008ADB72 /* ChartRadioButtonView.swift */; };
+		D15E620027D3BDA2008ADB72 /* ChartRadioButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15E61FF27D3BDA2008ADB72 /* ChartRadioButtonType.swift */; };
 		D17C652527C52800007705A7 /* BithumbAwesomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C652427C52800007705A7 /* BithumbAwesomeApp.swift */; };
 		D17C652727C52800007705A7 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C652627C52800007705A7 /* AppView.swift */; };
 		D17C652927C52803007705A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D17C652827C52803007705A7 /* Assets.xcassets */; };
@@ -110,6 +112,8 @@
 		D10E600C27D0850B00B68BCF /* TickerRowCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerRowCore.swift; sourceTree = "<group>"; };
 		D10E601227D0875100B68BCF /* FlatLinkStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatLinkStyle.swift; sourceTree = "<group>"; };
 		D15D4FAE27D0905700E5E687 /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
+		D15E61FA27D3BCFB008ADB72 /* ChartRadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRadioButtonView.swift; sourceTree = "<group>"; };
+		D15E61FF27D3BDA2008ADB72 /* ChartRadioButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRadioButtonType.swift; sourceTree = "<group>"; };
 		D17C652127C52800007705A7 /* BithumbAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BithumbAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D17C652427C52800007705A7 /* BithumbAwesomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbAwesomeApp.swift; sourceTree = "<group>"; };
 		D17C652627C52800007705A7 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
@@ -299,6 +303,15 @@
 			path = FlatLink;
 			sourceTree = "<group>";
 		};
+		D15E61FE27D3BD8C008ADB72 /* ChartRadioButton */ = {
+			isa = PBXGroup;
+			children = (
+				D15E61FA27D3BCFB008ADB72 /* ChartRadioButtonView.swift */,
+				D15E61FF27D3BDA2008ADB72 /* ChartRadioButtonType.swift */,
+			);
+			path = ChartRadioButton;
+			sourceTree = "<group>";
+		};
 		D17C651827C52800007705A7 = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +407,7 @@
 		D184809927CD115500213DD0 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				D15E61FE27D3BD8C008ADB72 /* ChartRadioButton */,
 				C6B6344327D35E2A009B2E97 /* Divider */,
 				D10E601127D0874600B68BCF /* FlatLink */,
 				C6A7AD7C27CE5C6700851AA9 /* FavoriteButton */,
@@ -557,6 +571,7 @@
 			files = (
 				C65E8DA127D0BDFC0088A5F4 /* Asset.swift in Sources */,
 				C6B6344227D33D63009B2E97 /* QuoteOrderType.swift in Sources */,
+				D15E620027D3BDA2008ADB72 /* ChartRadioButtonType.swift in Sources */,
 				C6B6343C27D338E9009B2E97 /* QuoteListRow.swift in Sources */,
 				C6A7AD8027CE5CA400851AA9 /* FavoriteButtonCore.swift in Sources */,
 				D1C47B4F27CE76400006B7A3 /* ChartView.swift in Sources */,
@@ -577,6 +592,7 @@
 				D184800427CA75BE00213DD0 /* HomeCore.swift in Sources */,
 				C65E8D9327D0B3750088A5F4 /* AssetListRow.swift in Sources */,
 				D1D7268B27D1221000A9E420 /* TransactionResponse.swift in Sources */,
+				D15E61FB27D3BCFB008ADB72 /* ChartRadioButtonView.swift in Sources */,
 				C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */,
 				D17C652727C52800007705A7 /* AppView.swift in Sources */,
 				D1CB404827D1E0E400AC3AFA /* PriceCore.swift in Sources */,

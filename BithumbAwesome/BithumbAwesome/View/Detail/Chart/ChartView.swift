@@ -14,17 +14,21 @@ struct ChartView: View {
   var body: some View {
     WithViewStore(self.store) { viewStore in
       VStack {
-        HStack(spacing: 5) {
-          ForEach(0..<5) { index in
-            Button(
-              action: {  },
-              label: { Text("\(index)") }
-            )
-              .frame(maxWidth: .infinity)
-          }
-        }
+        Spacer()
+          .frame(height: 15)
         
-        CandleChartView(chartData: viewStore.candleData)
+        ChartRadioButtonView(
+          store: store.scope(
+            state: \.radioButtonState,
+            action: ChartAction.radioButtonAction
+          )
+        )
+          .background(Color.aGray1)
+        
+        CandleChartView(
+          chartData: viewStore.candleData,
+          chartType: viewStore.radioButtonState.selectedButton
+        )
           .frame(maxHeight: .infinity)
       }
     }

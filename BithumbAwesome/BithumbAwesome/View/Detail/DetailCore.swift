@@ -120,9 +120,9 @@ let detailReducer = Reducer.combine([
       struct TransactionID: Hashable {}
       struct CandleID: Hashable {}
       return .merge(
-        Effect(value: .chartAction(.buttonTap)),
-        Effect(value: .conclusionAction(.onAppear)),
-        Effect(value: .webSocket(.socketOnOff))
+        Effect(value: .webSocket(.socketOnOff)),
+        Effect(value: .chartAction(.radioButtonAction(.buttonTap(.min_1)))),
+        Effect(value: .conclusionAction(.onAppear))
       )
     case .webSocket(.webSocket(.didOpenWithProtocol)):
       return Effect(value: .webSocket(.sendFilter("ticker", [state.ticker.underScoreString], ["30M"])))
