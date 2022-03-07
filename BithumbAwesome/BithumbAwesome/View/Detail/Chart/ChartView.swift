@@ -25,9 +25,10 @@ struct ChartView: View {
         )
           .background(Color.aGray1)
         
-        // 이렇게 하면 두번 바뀌는듯 ㅠ_ㅠ 
-        CandleChartView(chartData: viewStore.candleData,
-                        chartType: viewStore.radioButtonState.selectedButton)
+        CandleChartView(
+          chartData: viewStore.candleData,
+          chartType: viewStore.radioButtonState.selectedButton
+        )
           .frame(maxHeight: .infinity)
       }
     }
