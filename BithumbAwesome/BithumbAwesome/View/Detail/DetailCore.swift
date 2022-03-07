@@ -8,23 +8,42 @@
 import ComposableArchitecture
 
 struct DetailState: Equatable {
-  var naviTitle: String
+  var ticker: Ticker
+  var transactionData: [Transaction] = []
+  
   var selectedButton: AwesomeButtonType = .chart
   var radioButtonState = RadioButtonState(buttons: [.chart,
                                                     .quote,
                                                     .conclusion],
                                           selectedButton: .chart)
-  var priceState: PriceState
+  
+  var tickerSocketState: TickerSocketState
+  var priceState: PriceState {
+    get {
+      PriceState(tickerData: ticker)
+    }
+    set {
+      ticker = newValue.tickerData
+    }
+  }
   var chartState: ChartState = .init(candleData: [])
   var quoteState: QuoteState = .init()
-  var conclusionState: ConclusionState = .init(transactionData: [])
+  var conclusionState: ConclusionState {
+    get {
+      ConclusionState(ticker: ticker,
+                      transactionData: self.transactionData)
+    }
+    set {
+      transactionData = newValue.transactionData
+    }
+  }
 }
 
 enum DetailAction: Equatable {
   case onAppear
   
   case radioButtonAction(RadioButtonAction)
-  
+  case webSocket(TickerSocketAction)
   case priceAction(PriceAction)
   case chartAction(ChartAction)
   case quoteAction(QuoteAction)
@@ -35,9 +54,18 @@ struct DetailEnvironment {
   var mainQueue: AnySchedulerOf<DispatchQueue>
   var candleStickService: CandleStickService
   var transactionService: TransactionService
+  var socketService: SocketService
 }
 
 let detailReducer = Reducer.combine([
+  tickerSocketReducer.pullback(
+    state: \.tickerSocketState,
+    action: /DetailAction.webSocket,
+    environment: {
+      TickerSocketEnvironment(mainQueue: $0.mainQueue,
+                              websocket: $0.socketService)
+    }
+  ) as Reducer<DetailState, DetailAction, DetailEnvironment>,
   priceReducer.pullback(
     state: \.priceState,
     action: /DetailAction.priceAction,
@@ -100,8 +128,18 @@ let detailReducer = Reducer.combine([
       struct CandleID: Hashable {}
       return .merge(
         Effect(value: .chartAction(.buttonTap)),
-        Effect(value: .conclusionAction(.onAppear))
+        Effect(value: .conclusionAction(.onAppear)),
+        Effect(value: .webSocket(.connectSocket))
       )
+    case .webSocket(.webSocket(.didOpenWithProtocol)):
+      return Effect(value: .webSocket(.sendFilter("ticker", [state.ticker.underScoreString], ["30M"])))
+      
+    case let .webSocket(.getTicker(ticker)):
+      state.ticker = ticker
+      return .none
+      
+    case .webSocket:
+      return .none
     }
   }
 ])

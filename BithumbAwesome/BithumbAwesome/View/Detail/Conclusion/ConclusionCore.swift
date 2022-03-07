@@ -8,6 +8,7 @@
 import ComposableArchitecture
 
 struct ConclusionState: Equatable {
+  var ticker: Ticker
   var transactionData: [Transaction]
 }
 
@@ -34,7 +35,7 @@ let conclusionReducer = Reducer<ConclusionState, ConclusionAction, ConclusionEnv
   case .onAppear:
     struct ConclusionID: Hashable {}
     return environment.transactionService
-      .getTransactionData("BTC", "KRW")
+      .getTransactionData(state.ticker.underScoreString)
       .receive(on: environment.mainQueue)
       .catchToEffect(ConclusionAction.transactionResponse)
       .cancellable(id: ConclusionID(), cancelInFlight: true)

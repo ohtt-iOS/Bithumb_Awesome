@@ -76,6 +76,10 @@
 		D1D7268D27D1227100A9E420 /* ResponseResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D7268C27D1227100A9E420 /* ResponseResult.swift */; };
 		D1D952B027D08EFC00149BEC /* TickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D952AF27D08EFC00149BEC /* TickerResponse.swift */; };
 		D1D952B227D08F6D00149BEC /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D952B127D08F6D00149BEC /* HomeService.swift */; };
+		D1E0CB3727D5F3370074D3AC /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E0CB3627D5F3370074D3AC /* SocketService.swift */; };
+		D1E0CB3927D5F3630074D3AC /* SocketResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E0CB3827D5F3630074D3AC /* SocketResponse.swift */; };
+		D1E0CB3B27D5F3790074D3AC /* TickerSocketResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E0CB3A27D5F3790074D3AC /* TickerSocketResponse.swift */; };
+		D1E0CB3D27D5F3990074D3AC /* TickerSocketCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E0CB3C27D5F3990074D3AC /* TickerSocketCore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +148,10 @@
 		D1D7268C27D1227100A9E420 /* ResponseResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseResult.swift; sourceTree = "<group>"; };
 		D1D952AF27D08EFC00149BEC /* TickerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerResponse.swift; sourceTree = "<group>"; };
 		D1D952B127D08F6D00149BEC /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		D1E0CB3627D5F3370074D3AC /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
+		D1E0CB3827D5F3630074D3AC /* SocketResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketResponse.swift; sourceTree = "<group>"; };
+		D1E0CB3A27D5F3790074D3AC /* TickerSocketResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerSocketResponse.swift; sourceTree = "<group>"; };
+		D1E0CB3C27D5F3990074D3AC /* TickerSocketCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerSocketCore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +178,7 @@
 				D1D7268627D121ED00A9E420 /* TransactionService.swift */,
 				D1CB407D27D27AB200AC3AFA /* CandleStickService.swift */,
 				C653523F27D11CEC0088AC3B /* QuoteSocketService.swift */,
+				D1E0CB3627D5F3370074D3AC /* SocketService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -186,6 +195,8 @@
 				D1D7268A27D1221000A9E420 /* TransactionResponse.swift */,
 				D1CB407F27D27ADB00AC3AFA /* CandleResponse.swift */,
 				D1CB408127D27AE900AC3AFA /* Candle.swift */,
+				D1E0CB3827D5F3630074D3AC /* SocketResponse.swift */,
+				D1E0CB3A27D5F3790074D3AC /* TickerSocketResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -220,6 +231,7 @@
 		C6A7AD7527CE575C00851AA9 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				D1E0CB3527D5F32A0074D3AC /* Socket */,
 				C6A7AD7627CE577000851AA9 /* DetailView.swift */,
 				C6A7AD7827CE578800851AA9 /* DetailCore.swift */,
 				C6B6A1EB27CE694E00C4303F /* PriceView.swift */,
@@ -451,6 +463,14 @@
 			path = ConclusionRow;
 			sourceTree = "<group>";
 		};
+		D1E0CB3527D5F32A0074D3AC /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				D1E0CB3C27D5F3990074D3AC /* TickerSocketCore.swift */,
+			);
+			path = Socket;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -570,11 +590,14 @@
 				D15D4FAF27D0905700E5E687 /* Ticker.swift in Sources */,
 				C6A7AD7B27CE58F200851AA9 /* UINavigationController+.swift in Sources */,
 				D1CB408227D27AE900AC3AFA /* Candle.swift in Sources */,
+				D1E0CB3D27D5F3990074D3AC /* TickerSocketCore.swift in Sources */,
 				C65E8D9627D0B4840088A5F4 /* CurrentAssetStatus.swift in Sources */,
 				D1C47B5927CE76760006B7A3 /* ConclusionCore.swift in Sources */,
 				D100F97027D5EDA30089F30E /* VerticalDivider.swift in Sources */,
 				D184800227CA75B400213DD0 /* HomeView.swift in Sources */,
+				D1E0CB3927D5F3630074D3AC /* SocketResponse.swift in Sources */,
 				D1D7268927D121F900A9E420 /* Transaction.swift in Sources */,
+				D1E0CB3727D5F3370074D3AC /* SocketService.swift in Sources */,
 				D18480A327CD19E900213DD0 /* RadioButtonView.swift in Sources */,
 				C6A7AD7727CE577000851AA9 /* DetailView.swift in Sources */,
 				D184801027CA782B00213DD0 /* AwesomeTabBarStyle.swift in Sources */,
@@ -590,6 +613,7 @@
 				C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */,
 				D10E600D27D0850B00B68BCF /* TickerRowCore.swift in Sources */,
 				D1D7268727D121ED00A9E420 /* TransactionService.swift in Sources */,
+				D1E0CB3B27D5F3790074D3AC /* TickerSocketResponse.swift in Sources */,
 				D184800027CA759B00213DD0 /* AppCore.swift in Sources */,
 				C6A7AD7927CE578800851AA9 /* DetailCore.swift in Sources */,
 				C6A7AD7E27CE5C6D00851AA9 /* FavoriteButton.swift in Sources */,

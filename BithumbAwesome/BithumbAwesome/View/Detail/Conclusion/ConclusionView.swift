@@ -30,6 +30,7 @@ struct ConclusionView: View {
               ConclusionRowView(
                 store: Store(
                   initialState: ConclusionRowState(
+                    ticker: viewStore.ticker,
                     data: transaction
                   ),
                   reducer: conclusionRowReducer,
