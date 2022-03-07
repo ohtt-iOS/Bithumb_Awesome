@@ -41,6 +41,9 @@ struct DetailView: View {
       .onAppear {
         viewStore.send(.onAppear)
       }
+      .onDisappear {
+        viewStore.send(.webSocket(.socketOnOff))
+      }
     }
   }
   

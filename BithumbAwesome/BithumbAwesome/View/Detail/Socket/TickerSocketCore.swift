@@ -22,7 +22,7 @@ struct TickerSocketState: Equatable {
 enum TickerSocketAction: Equatable {
   // socket
   case getTicker(Ticker)
-  case connectSocket
+  case socketOnOff
   case pingResponse(NSError?)
   case receivedSocketMessage(Result<SocketService.Message, NSError>)
   case sendFilter(String, [String], [String])
@@ -58,7 +58,7 @@ let tickerSocketReducer = Reducer<TickerSocketState, TickerSocketAction, TickerS
     state.ticker = ticker
     return .none
     
-  case .connectSocket:
+  case .socketOnOff:
     switch state.connectivityState {
     case .connected, .connecting:
       state.connectivityState = .disconnected

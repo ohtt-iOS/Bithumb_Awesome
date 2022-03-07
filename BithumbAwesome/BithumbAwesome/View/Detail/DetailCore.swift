@@ -122,7 +122,7 @@ let detailReducer = Reducer.combine([
       return .merge(
         Effect(value: .chartAction(.buttonTap)),
         Effect(value: .conclusionAction(.onAppear)),
-        Effect(value: .webSocket(.connectSocket))
+        Effect(value: .webSocket(.socketOnOff))
       )
     case .webSocket(.webSocket(.didOpenWithProtocol)):
       return Effect(value: .webSocket(.sendFilter("ticker", [state.ticker.underScoreString], ["30M"])))
