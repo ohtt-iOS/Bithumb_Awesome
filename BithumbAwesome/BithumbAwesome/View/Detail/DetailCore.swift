@@ -18,14 +18,7 @@ struct DetailState: Equatable {
                                           selectedButton: .chart)
   
   var tickerSocketState: TickerSocketState
-  var priceState: PriceState {
-    get {
-      PriceState(tickerData: ticker)
-    }
-    set {
-      ticker = newValue.tickerData
-    }
-  }
+  var priceState: PriceState 
   var chartState: ChartState = .init(candleData: [])
   var quoteState: QuoteState = .init()
   var conclusionState: ConclusionState {
@@ -136,9 +129,11 @@ let detailReducer = Reducer.combine([
       
     case let .webSocket(.getTicker(ticker)):
       state.ticker = ticker
-      return .none
+      return Effect(value: .priceAction(.getTickerData(ticker)))
       
     case .webSocket:
+      return .none
+    case .priceAction:
       return .none
     }
   }

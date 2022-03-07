@@ -42,7 +42,8 @@ struct HomeView: View {
                   DetailView(store: Store(
                     initialState: DetailState(
                       ticker: ticker,
-                      tickerSocketState: TickerSocketState()),
+                      tickerSocketState: TickerSocketState(),
+                      priceState: PriceState(tickerData: ticker)),
                     reducer: detailReducer,
                     environment: DetailEnvironment(mainQueue: .main,
                                                    candleStickService: .candle,

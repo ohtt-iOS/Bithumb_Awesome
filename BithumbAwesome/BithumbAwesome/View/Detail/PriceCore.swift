@@ -12,6 +12,7 @@ struct PriceState: Equatable {
 }
 
 enum PriceAction: Equatable {
+  case getTickerData(Ticker)
 }
 
 struct PriceEnvironment {
@@ -19,5 +20,8 @@ struct PriceEnvironment {
 
 let priceReducer = Reducer<PriceState, PriceAction, PriceEnvironment> { state, action, environment in
   switch action {
+  case let .getTickerData(ticker):
+    state.tickerData = ticker
+    return .none
   }
 }

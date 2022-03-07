@@ -29,7 +29,7 @@ let conclusionReducer = Reducer<ConclusionState, ConclusionAction, ConclusionEnv
     return .none
     
   case let .transactionResponse(.success(response)):
-    state.transactionData = response
+    state.transactionData = response.sorted(by: { $0.date > $1.date })
     return .none
     
   case .onAppear:
