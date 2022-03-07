@@ -15,7 +15,6 @@ struct AppState: Equatable {
 
 enum AppAction {
   case onAppear
-//  case tickerResponse(Result<[Ticker], HomeService.Failure>)
   
   case homeAction(HomeAction)
   case assetAction(AssetAction)

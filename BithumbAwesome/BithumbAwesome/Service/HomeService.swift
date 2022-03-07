@@ -19,6 +19,7 @@ extension HomeService {
     getTickerData: { order, payment in
       Effect.run { subscriber in
         let URL = "https://api.bithumb.com/public/ticker/\(order)_\(payment)"
+        print("🔗 URL : \(URL)")
         let headers: HTTPHeaders = [
           "Content-Type": "application/json",
         ]
