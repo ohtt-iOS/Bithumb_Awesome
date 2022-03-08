@@ -15,6 +15,8 @@ struct ConclusionState: Equatable {
 enum ConclusionAction: Equatable {
   case onAppear
   case transactionResponse(Result<[Transaction], TransactionService.Failure>)
+  case getTickerData(Ticker)
+  case getTransactionData(Transaction)
 }
 
 struct ConclusionEnvironment {
@@ -39,7 +41,12 @@ let conclusionReducer = Reducer<ConclusionState, ConclusionAction, ConclusionEnv
       .receive(on: environment.mainQueue)
       .catchToEffect(ConclusionAction.transactionResponse)
       .cancellable(id: ConclusionID(), cancelInFlight: true)
-  
+  case let .getTickerData(ticker):
+    state.ticker = ticker
+    return .none
+    
+  case let .getTransactionData(transaction):
+    state.transactionData.insert(transaction, at: 0)
+    return .none
   }
 }
-

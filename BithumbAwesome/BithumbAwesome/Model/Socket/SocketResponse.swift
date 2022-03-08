@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SocketResponse: Codable {
-  let status: String
-  let resmsg: String
+struct SocketResponse<T: Codable>: Codable {
+  var type: String?
+  var content: T?
 }

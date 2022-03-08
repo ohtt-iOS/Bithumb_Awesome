@@ -9,7 +9,6 @@ import ComposableArchitecture
 
 struct DetailState: Equatable {
   var ticker: Ticker
-  var transactionData: [Transaction] = []
   
   var selectedButton: AwesomeButtonType = .chart
   var radioButtonState = RadioButtonState(buttons: [.chart,
@@ -17,26 +16,19 @@ struct DetailState: Equatable {
                                                     .conclusion],
                                           selectedButton: .chart)
   
-  var tickerSocketState: TickerSocketState
+  var tickerSocketState: SocketState
   var priceState: PriceState 
   var chartState: ChartState
   var quoteState: QuoteState = .init()
-  var conclusionState: ConclusionState {
-    get {
-      ConclusionState(ticker: ticker,
-                      transactionData: self.transactionData)
-    }
-    set {
-      transactionData = newValue.transactionData
-    }
-  }
+  var conclusionState: ConclusionState
+  
 }
 
 enum DetailAction: Equatable {
   case onAppear
   
   case radioButtonAction(RadioButtonAction)
-  case webSocket(TickerSocketAction)
+  case webSocket(SocketAction)
   case priceAction(PriceAction)
   case chartAction(ChartAction)
   case quoteAction(QuoteAction)
@@ -51,11 +43,11 @@ struct DetailEnvironment {
 }
 
 let detailReducer = Reducer.combine([
-  tickerSocketReducer.pullback(
+  socketReducer.pullback(
     state: \.tickerSocketState,
     action: /DetailAction.webSocket,
     environment: {
-      TickerSocketEnvironment(mainQueue: $0.mainQueue,
+      SocketEnvironment(mainQueue: $0.mainQueue,
                               websocket: $0.socketService)
     }
   ) as Reducer<DetailState, DetailAction, DetailEnvironment>,
@@ -125,14 +117,20 @@ let detailReducer = Reducer.combine([
         Effect(value: .conclusionAction(.onAppear))
       )
     case .webSocket(.webSocket(.didOpenWithProtocol)):
-      return Effect(value: .webSocket(.sendFilter("ticker", [state.ticker.underScoreString], ["30M"])))
+      return .merge(
+        Effect(value: .webSocket(.sendFilter("ticker", [state.ticker.underScoreString], ["30M"]))),
+        Effect(value: .webSocket(.sendFilter("transaction", [state.ticker.underScoreString], nil)))
+      )
       
     case let .webSocket(.getTicker(ticker)):
       state.ticker = ticker
       return .merge(
         Effect(value: .priceAction(.getTickerData(ticker))),
-        Effect(value: .chartAction(.getTickerData(ticker)))
-        )
+        Effect(value: .chartAction(.getTickerData(ticker))),
+        Effect(value: .conclusionAction(.getTickerData(ticker)))
+      )
+    case let .webSocket(.getTransaction(transaction)):
+      return Effect(value: .conclusionAction(.getTransactionData(transaction)))
     case .webSocket:
       return .none
     case .priceAction:

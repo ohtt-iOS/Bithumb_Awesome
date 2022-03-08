@@ -1,5 +1,5 @@
 //
-//  TickerSocketCore.swift
+//  SocketCore.swift
 //  BithumbAwesome
 //
 //  Created by ohtt on 2022/03/07.
@@ -7,10 +7,10 @@
 
 import ComposableArchitecture
 
-struct TickerSocketState: Equatable {
+struct SocketState: Equatable {
   var ticker: Ticker?
   var connectivityState = ConnectivityState.disconnected
-
+  
   // socket
   enum ConnectivityState: String {
     case connected
@@ -19,36 +19,37 @@ struct TickerSocketState: Equatable {
   }
 }
 
-enum TickerSocketAction: Equatable {
+enum SocketAction: Equatable {
   // socket
   case getTicker(Ticker)
+  case getTransaction(Transaction)
   case socketOnOff
   case pingResponse(NSError?)
   case receivedSocketMessage(Result<SocketService.Message, NSError>)
-  case sendFilter(String, [String], [String])
+  case sendFilter(String, [String], [String]?)
   case sendResponse(NSError?)
   case webSocket(SocketService.Action)
 }
 
-struct TickerSocketEnvironment {
+struct SocketEnvironment {
   var mainQueue: AnySchedulerOf<DispatchQueue>
   var websocket: SocketService
 }
 
-let tickerSocketReducer = Reducer<TickerSocketState, TickerSocketAction, TickerSocketEnvironment> { state, action, environment in
+let socketReducer = Reducer<SocketState, SocketAction, SocketEnvironment> { state, action, environment in
   //socket
   struct WebSocketId: Hashable {}
-  var receiveSocketMessageEffect: Effect<TickerSocketAction, Never> {
+  var receiveSocketMessageEffect: Effect<SocketAction, Never> {
     return environment.websocket.receive(WebSocketId())
       .receive(on: environment.mainQueue)
       .catchToEffect()
-      .map(TickerSocketAction.receivedSocketMessage)
+      .map(SocketAction.receivedSocketMessage)
       .cancellable(id: WebSocketId())
   }
-  var sendPingEffect: Effect<TickerSocketAction, Never> {
+  var sendPingEffect: Effect<SocketAction, Never> {
     return environment.websocket.sendPing(WebSocketId())
       .delay(for: 10, scheduler: environment.mainQueue)
-      .map(TickerSocketAction.pingResponse)
+      .map(SocketAction.pingResponse)
       .eraseToEffect()
       .cancellable(id: WebSocketId())
   }
@@ -56,6 +57,9 @@ let tickerSocketReducer = Reducer<TickerSocketState, TickerSocketAction, TickerS
     
   case let .getTicker(ticker):
     state.ticker = ticker
+    return .none
+    
+  case let .getTransaction(transaction):
     return .none
     
   case .socketOnOff:
@@ -68,7 +72,7 @@ let tickerSocketReducer = Reducer<TickerSocketState, TickerSocketAction, TickerS
       state.connectivityState = .connecting
       return environment.websocket.open(WebSocketId(), URL(string: "wss://pubwss.bithumb.com/pub/ws")!, [])
         .receive(on: environment.mainQueue)
-        .map(TickerSocketAction.webSocket)
+        .map(SocketAction.webSocket)
         .eraseToEffect()
         .cancellable(id: WebSocketId())
     }
@@ -83,12 +87,31 @@ let tickerSocketReducer = Reducer<TickerSocketState, TickerSocketAction, TickerS
       return receiveSocketMessageEffect
     }
     do {
-      let response = try JSONDecoder().decode(TickerSocketResponse.self, from: data)
 
-      return .merge(
-        receiveSocketMessageEffect,
-        Effect(value: .getTicker(Ticker(socketTickerResponse: response)))
+      let decodedData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+      let type = decodedData?["type"] as? String
+      switch type {
+      case "ticker":
+        let response = try JSONDecoder().decode(SocketResponse<TickerSocketResponse>.self, from: data)
+        guard let responseData = response.content else {
+          return receiveSocketMessageEffect
+        }
+        return .merge(
+          receiveSocketMessageEffect,
+          Effect(value: .getTicker(Ticker(socketTickerResponse:responseData)))
         )
+      case "transaction":
+        let response = try JSONDecoder().decode(SocketResponse<TransactionListSocketResponse>.self, from: data)
+        guard let responseData = response.content?.list.first else {
+          return receiveSocketMessageEffect
+        }
+        return .merge(
+          receiveSocketMessageEffect,
+          Effect(value: .getTransaction(Transaction(transactionSocketResponse: responseData)))
+        )
+       default:
+        return receiveSocketMessageEffect
+      }
     }
     catch {
       return receiveSocketMessageEffect
@@ -104,7 +127,9 @@ let tickerSocketReducer = Reducer<TickerSocketState, TickerSocketAction, TickerS
     var parameter: [String: Any] = [:]
     parameter["type"] = type
     parameter["symbols"] = symbols
-    parameter["tickTypes"] = tickerTypes
+    if let tickerTypes = tickerTypes {
+      parameter["tickTypes"] = tickerTypes
+    }
     print(parameter)
     do {
       let data = try JSONSerialization.data(withJSONObject: parameter)
@@ -112,7 +137,7 @@ let tickerSocketReducer = Reducer<TickerSocketState, TickerSocketAction, TickerS
       return environment.websocket.send(WebSocketId(), .string(dataString))
         .receive(on: environment.mainQueue)
         .eraseToEffect()
-        .map(TickerSocketAction.sendResponse)
+        .map(SocketAction.sendResponse)
         .cancellable(id: WebSocketId())
     } catch {
       return .none

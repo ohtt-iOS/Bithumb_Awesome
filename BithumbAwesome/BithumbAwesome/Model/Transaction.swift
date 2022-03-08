@@ -36,4 +36,13 @@ struct Transaction: Codable, Equatable, Identifiable {
     self.price = Double(transactionResponse.price)
     self.total = Double(transactionResponse.total)
   }
+  
+  init(transactionSocketResponse: TransactionSocketResponse) {
+    let removeCommaDate = transactionSocketResponse.contDtm.split(separator: ".").first
+    self.transactionDate = String(removeCommaDate ?? "")
+    self.type = transactionType(rawValue: transactionSocketResponse.buySellGB)
+    self.unitsTraded = Double(transactionSocketResponse.contQty) // 거래량
+    self.price = Double(transactionSocketResponse.contPrice) // 거래가
+    self.total = Double(transactionSocketResponse.contAmt) // 거래금액
+  }
 }

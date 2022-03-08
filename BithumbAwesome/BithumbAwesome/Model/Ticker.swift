@@ -70,19 +70,19 @@ struct Ticker: Codable, Equatable, Identifiable {
   }
   
   init(socketTickerResponse: TickerSocketResponse) {
-    let list = socketTickerResponse.content.symbol.split(separator: "_")
+    let list = socketTickerResponse.symbol.split(separator: "_")
     self.ticker = String(list.first!)
     self.isKRW = (String(list.last!) == "KRW") ? true : false
-    self.openingPrice = socketTickerResponse.content.openPrice
-    self.closingPrice = socketTickerResponse.content.closePrice
-    self.minPrice = socketTickerResponse.content.lowPrice
-    self.maxPrice = socketTickerResponse.content.highPrice
-    self.unitsTraded = socketTickerResponse.content.volume
-    self.accTradeValue = socketTickerResponse.content.value
-    self.prevClosingPrice = socketTickerResponse.content.prevClosePrice
-    self.unitsTraded24H = socketTickerResponse.content.volume
-    self.accTradeValue24H = socketTickerResponse.content.value
-    self.fluctate24H = socketTickerResponse.content.chgAmt
-    self.fluctateRate24H = socketTickerResponse.content.chgRate
+    self.openingPrice = socketTickerResponse.openPrice
+    self.closingPrice = socketTickerResponse.closePrice
+    self.minPrice = socketTickerResponse.lowPrice
+    self.maxPrice = socketTickerResponse.highPrice
+    self.unitsTraded = socketTickerResponse.volume
+    self.accTradeValue = socketTickerResponse.value
+    self.prevClosingPrice = socketTickerResponse.prevClosePrice
+    self.unitsTraded24H = socketTickerResponse.volume
+    self.accTradeValue24H = socketTickerResponse.value
+    self.fluctate24H = socketTickerResponse.chgAmt
+    self.fluctateRate24H = socketTickerResponse.chgRate
   }
 }
