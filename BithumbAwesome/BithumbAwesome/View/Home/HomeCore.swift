@@ -9,6 +9,7 @@ import ComposableArchitecture
 
 struct HomeState: Equatable {
   var tickerData: [Ticker]
+  var requestState: AwesomeButtonType?
   var radioButtonState = RadioButtonState(buttons: [.koreanWon,
                                                     .bitcoin,
                                                     .interest,
@@ -19,6 +20,7 @@ struct HomeState: Equatable {
 enum HomeAction: Equatable {
   case tickerResponse(Result<[Ticker], HomeService.Failure>)
   case radioButtonAction(RadioButtonAction)
+  case requestTickerData(String, String)
 }
 
 struct HomeEnvironment {
@@ -41,30 +43,39 @@ let homeReducer = Reducer.combine([
       return .none
       
     case let .tickerResponse(.success(response)):
-      state.tickerData = response.sorted(by: { $0.ticker < $1.ticker})
+      if state.radioButtonState.selectedButton == .popularity {
+        state.tickerData = response.sorted(by: { $0.data.accTradeValue24H ?? "" > $1.data.accTradeValue24H ?? "" } )
+      } else {
+        state.tickerData = response.sorted(by: { $0.ticker < $1.ticker})
+      }
       return .none
       
-    case let .radioButtonAction(.buttonTap(type)):
+    case let .requestTickerData(order, payment):
       struct TickerId: Hashable {}
+      return environment.homeService
+        .getTickerData(order, payment)
+        .receive(on: environment.mainQueue)
+        .catchToEffect(HomeAction.tickerResponse)
+        .cancellable(id: TickerId(), cancelInFlight: true)
+      
+    case let .radioButtonAction(.buttonTap(type)):
       print(type)
+      // 이전과 같은 request라면 요청하지 않는다.
+      guard state.requestState != type else {
+        return .none
+      }
+      
+      state.requestState = type
       switch type {
       case .koreanWon:
-        return environment.homeService
-          .getTickerData("ALL", "KRW")
-          .receive(on: environment.mainQueue)
-          .catchToEffect(HomeAction.tickerResponse)
-          .cancellable(id: TickerId(), cancelInFlight: true)
+        return Effect(value: .requestTickerData("ALL", "KRW"))
       case .bitcoin:
-        return environment.homeService
-          .getTickerData("ALL", "BTC")
-          .receive(on: environment.mainQueue)
-          .catchToEffect(HomeAction.tickerResponse)
-          .cancellable(id: TickerId(), cancelInFlight: true)
+        return Effect(value: .requestTickerData("ALL", "BTC"))
       case .interest:
         state.tickerData = []
         return .none
       case .popularity:
-        return .none
+        return Effect(value: .requestTickerData("ALL", "KRW"))
       default:
         return .none
       }

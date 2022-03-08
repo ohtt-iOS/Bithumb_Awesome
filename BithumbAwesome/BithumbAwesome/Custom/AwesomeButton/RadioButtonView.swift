@@ -34,13 +34,14 @@ struct RadioButtonView: View {
     WithViewStore(self.store) { viewStore in
       HStack(spacing: 15) {
         ForEach(viewStore.state.buttons) { button in
-          let selectedState = button == viewStore.state.selectedButton
+          let selectedState = button == viewStore.selectedButton
           Button(
-            action: { viewStore.send(.buttonTap(button)) },
+            action: {
+              viewStore.send(.buttonTap(button)) },
             label: {
               HStack(spacing: 5) {
                 button.iconImage
-                  .foregroundColor(selectedState ? Color.aGray1 : Color.aGray3)
+                  .foregroundColor(button == viewStore.selectedButton ? Color.aGray1 : Color.aGray3)
                 Text(button.textString)
               }
               .padding(.horizontal, 10)
