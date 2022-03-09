@@ -75,8 +75,13 @@ let homeReducer = Reducer.combine([
       case .bitcoin:
         return requestTickerData(environment: environment, order: "ALL", payment: "BTC")
       case .interest:
-        state.tickerData = []
-        return .none
+        return requestFavoriteData(environment: environment, underscope: ["BTC_KRW",
+                                                                          "ETH_KRW",
+                                                                          "TRX_KRW",
+                                                                          "ETC_KRW",
+                                                                          "LOOM_KRW",
+                                                                          "ATOLO_KRW"
+                                                                         ])
       case .popularity:
         return requestTickerData(environment: environment, order: "ALL", payment: "KRW")
       default:
@@ -107,6 +112,16 @@ private func requestTickerData(environment: HomeEnvironment,
                                payment: String) -> Effect<HomeAction, Never> {
   return environment.homeService
     .getTickerData(order, payment)
+    .receive(on: environment.mainQueue)
+    .catchToEffect(HomeAction.tickerResponse)
+    .cancellable(id: TickerId(), cancelInFlight: true)
+}
+
+private func requestFavoriteData(environment: HomeEnvironment,
+                                 underscope: [String]) -> Effect<HomeAction, Never> {
+  struct TickerId: Hashable {}
+  return environment.homeService
+    .getFavoriteData(underscope)
     .receive(on: environment.mainQueue)
     .catchToEffect(HomeAction.tickerResponse)
     .cancellable(id: TickerId(), cancelInFlight: true)

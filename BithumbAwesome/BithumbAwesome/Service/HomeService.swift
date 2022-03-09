@@ -11,6 +11,7 @@ import ComposableArchitecture
 
 struct HomeService {
   var getTickerData: (String, String) -> Effect<[Ticker], Failure>
+  var getFavoriteData: ([String]) -> Effect<[Ticker], Failure>
   struct Failure: Error, Equatable {}
   
 }
@@ -56,6 +57,58 @@ extension HomeService {
         }
         return AnyCancellable {}
       }
+    },
+    getFavoriteData: { underscope in
+      Effect.run { subscriber in
+        var tickers: [Ticker] = []
+        for ticker in underscope {
+          DispatchQueue.global().async {
+            // TODO: 고차함수 처리
+            requestData(underscope: ticker, completion: { ticker in
+              tickers.append(ticker)
+              if tickers.count == underscope.count {
+                DispatchQueue.main.async {
+                  subscriber.send(tickers)
+                }
+              }
+            })
+          }
+        }
+        return AnyCancellable {}
+      }
     }
   )
+}
+
+private func requestData(underscope: String, completion: @escaping (Ticker) -> Void) {
+  let URL = "https://api.bithumb.com/public/ticker/\(underscope)"
+  print("🔗 URL : \(URL)")
+  let headers: HTTPHeaders = [
+    "Content-Type": "application/json",
+  ]
+  let dataRequest = AF.request(
+    URL,
+    method: .get,
+    encoding: JSONEncoding.default,
+    headers: headers
+  )
+  
+  dataRequest
+    .validate(statusCode: 200..<300)
+    .responseData{ (response) in
+      switch response.result {
+      case .success(let value):
+        do {
+          let result = try JSONDecoder().decode(ResponseSimpleResult<TickerResponse>.self, from: value)
+          let data = underscope.split(separator: "_")
+          let isKRW = String(data[1]) == "KRW" ? true : false
+          guard let ticker2 = result.data else { return }
+          let ticker = Ticker(ticker: String(data[0]), isKRW: isKRW, tickerResponse: ticker2)
+          completion(ticker)
+        } catch {
+        }
+      case .failure(_):
+        break
+      }
+    }
 }
