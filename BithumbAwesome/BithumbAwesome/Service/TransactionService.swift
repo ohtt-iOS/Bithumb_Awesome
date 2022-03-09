@@ -10,15 +10,15 @@ import Combine
 import ComposableArchitecture
 
 struct TransactionService {
-  var getTransactionData: (String, String) -> Effect<[Transaction], Failure>
+  var getTransactionData: (String) -> Effect<[Transaction], Failure>
   struct Failure: Error, Equatable {}
 }
 
 extension TransactionService {
   static let transaction = TransactionService(
-    getTransactionData: { order, payment in
+    getTransactionData: { underscopeString in
       Effect.run { subscriber in
-        let URL = "https://api.bithumb.com/public/transaction_history/\(order)_\(payment)"
+        let URL = "https://api.bithumb.com/public/transaction_history/\(underscopeString)"
         let headers: HTTPHeaders = [
           "Content-Type": "application/json",
         ]

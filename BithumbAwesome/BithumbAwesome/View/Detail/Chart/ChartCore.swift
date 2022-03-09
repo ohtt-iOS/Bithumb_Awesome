@@ -10,12 +10,14 @@ import ComposableArchitecture
 struct ChartState: Equatable {
   var radioButtonState = ChartRadioButtonState(buttons: ChartRadioButtonType.allCases,
                                                selectedButton: .min_1)
+  var ticker: Ticker
   var candleData: [Candle]
 }
 
 enum ChartAction: Equatable {
   case candleResponse(Result<[Candle], CandleStickService.Failure>)
   case radioButtonAction(ChartRadioButtonAction)
+  case getTickerData(Ticker)
 }
 
 struct ChartEnvironment {
@@ -44,10 +46,14 @@ let chartReducer = Reducer.combine([
     case let .radioButtonAction(.buttonTap(type)):
       struct CandleID: Hashable {}
       return environment.candleClient
-        .getCandleData("BTC", "KRW", type)
+        .getCandleData(state.ticker.underScoreString, type)
         .receive(on: environment.mainQueue)
         .catchToEffect(ChartAction.candleResponse)
         .cancellable(id: CandleID(), cancelInFlight: true)
+      
+    case let .getTickerData(ticker):
+      state.ticker = ticker
+      return .none
     }
   }
 ])

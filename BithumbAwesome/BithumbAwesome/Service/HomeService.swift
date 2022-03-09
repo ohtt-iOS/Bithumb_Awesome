@@ -42,7 +42,7 @@ extension HomeService {
                   let result = try items?.map { key, value -> Ticker in
                     let valueData = try JSONSerialization.data(withJSONObject: value, options: [])
                     let tickerResponse = try JSONDecoder().decode(TickerResponse.self, from: valueData)
-                    return Ticker(ticker: key, data: tickerResponse, isKRW: payment == "KRW")
+                    return Ticker(ticker: key, isKRW: payment == "KRW", tickerResponse: tickerResponse)
                   }
                   subscriber.send(result!)
                 }

@@ -35,12 +35,12 @@ struct TickerRowView: View {
           
           Spacer()
           VStack(alignment: .trailing) {
-            Text(toPrice(price:viewStore.ticker.data.closingPrice))
+            Text(toPrice(price:viewStore.ticker.closingPrice))
               .font(.heading6)
               .frame(width: g.size.width/4.5, alignment: .trailing)
               .foregroundColor(viewStore.ticker.textColor)
             if !viewStore.ticker.isKRW {
-              Text(toKRWPrice(btcPrice: viewStore.ticker.data.closingPrice))
+              Text(toKRWPrice(btcPrice: viewStore.ticker.closingPrice))
                 .lineLimit(1)
                 .font(.heading7)
                 .minimumScaleFactor(0.5)
@@ -50,12 +50,12 @@ struct TickerRowView: View {
           
           Spacer()
           VStack(alignment: .trailing) {
-            Text((viewStore.ticker.data.fluctateRate24H ?? "") + "%" )
+            Text((viewStore.ticker.fluctateRate24H ?? "") + "%" )
               .frame(width: g.size.width/4.5, alignment: .trailing)
               .font(.heading6)
               .foregroundColor(viewStore.ticker.textColor)
             if viewStore.ticker.isKRW {
-              Text(viewStore.ticker.data.fluctate24H ?? "")
+              Text(viewStore.ticker.fluctate24H ?? "")
                 .font(.heading7)
                 .foregroundColor(viewStore.ticker.textColor)
             }
@@ -63,14 +63,14 @@ struct TickerRowView: View {
           
           Spacer()
           VStack(alignment: .trailing) {
-            Text(setformat(of: viewStore.ticker.data.accTradeValue24H))
+            Text(setformat(of: viewStore.ticker.accTradeValue24H))
               .lineLimit(1)
               .frame(width: g.size.width/6, alignment: .trailing)
               .font(.heading6)
               .minimumScaleFactor(0.5)
               .foregroundColor(Color.aGray3)
             if !viewStore.ticker.isKRW {
-              Text(toKRWTradeValue(of: viewStore.ticker.data.accTradeValue24H))
+              Text(toKRWTradeValue(of: viewStore.ticker.accTradeValue24H))
                 .frame(alignment: .trailing)
                 .font(.heading7)
                 .foregroundColor(Color.aGray2)

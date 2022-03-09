@@ -42,12 +42,15 @@ struct HomeView: View {
                   DetailView(store: Store(
                     initialState: DetailState(
                       ticker: ticker,
-                      priceState: PriceState(
-                        tickerData: ticker)),
+                      tickerSocketState: SocketState(),
+                      priceState: PriceState(tickerData: ticker),
+                      chartState: ChartState(ticker: ticker, candleData: []),
+                      conclusionState: ConclusionState(ticker: ticker, transactionData: [])),
                     reducer: detailReducer,
                     environment: DetailEnvironment(mainQueue: .main,
                                                    candleStickService: .candle,
-                                                   transactionService: .transaction)
+                                                   transactionService: .transaction,
+                                                   socketService: .live)
                   ))){
                     VStack {
                       TickerRowView(

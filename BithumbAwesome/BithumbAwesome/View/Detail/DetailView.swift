@@ -32,6 +32,7 @@ struct DetailView: View {
             action: DetailAction.radioButtonAction
           )
         )
+          .id(UUID())
           .padding(.horizontal, 14)
         
         view(type: viewStore.selectedButton)
@@ -39,6 +40,9 @@ struct DetailView: View {
       }
       .onAppear {
         viewStore.send(.onAppear)
+      }
+      .onDisappear {
+        viewStore.send(.webSocket(.socketOnOff))
       }
     }
   }
