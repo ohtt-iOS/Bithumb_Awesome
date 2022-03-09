@@ -15,7 +15,7 @@ struct DetailView: View {
   var body: some View {
     WithViewStore(self.store) { viewStore in
       VStack(alignment: .leading) {
-        ANavigationBarView(titleTextString: viewStore.naviTitle,
+        ANavigationBarView(titleTextString: viewStore.ticker.name,
                            presentationMode: self.presentationMode)
         
         PriceView(

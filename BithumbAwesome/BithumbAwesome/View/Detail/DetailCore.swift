@@ -8,7 +8,7 @@
 import ComposableArchitecture
 
 struct DetailState: Equatable {
-  var naviTitle: String
+  var ticker: Ticker
   var selectedButton: AwesomeButtonType = .chart
   var radioButtonState = RadioButtonState(buttons: [.chart,
                                                     .quote,
@@ -99,7 +99,7 @@ let detailReducer = Reducer.combine([
       struct TransactionID: Hashable {}
       struct CandleID: Hashable {}
       return .merge(
-        Effect(value: .chartAction(.buttonTap)),
+        Effect(value: .chartAction(.radioButtonAction(.buttonTap(.min_1)))),
         Effect(value: .conclusionAction(.onAppear))
       )
     }
