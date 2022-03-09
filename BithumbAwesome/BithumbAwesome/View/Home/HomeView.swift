@@ -29,6 +29,21 @@ struct HomeView: View {
             .padding(.horizontal, 14)
         }
         
+        HStack {
+          Image.searchButton
+            .frame(width: 30, height: 30)
+          TextField(
+            "티커명을 입력해주세요 ",
+            text: viewStore.binding(
+              get: \.searchText,
+              send: HomeAction.searchTextFieldChanged
+            )
+          )
+            .accentColor(Color.aGray2)
+        }
+        .padding(.top, 14)
+        .padding(.horizontal, 14)
+        
         HomeHeaderView()
           .frame(height: 20)
           .padding(.horizontal, 14)
@@ -36,7 +51,7 @@ struct HomeView: View {
         
         ScrollView(showsIndicators: false) {
           VStack(spacing: 10) {
-            ForEach(viewStore.tickerData, id: \.id) { ticker in
+            ForEach(viewStore.filteredData, id: \.id) { ticker in
               NavigationLink(
                 destination:
                   DetailView(store: Store(

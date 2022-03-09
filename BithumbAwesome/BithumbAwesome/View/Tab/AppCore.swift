@@ -8,7 +8,7 @@
 import ComposableArchitecture
 
 struct AppState: Equatable {
-  var homeState: HomeState = .init(tickerData: [])
+  var homeState: HomeState = .init(tickerData: [], filteredData: [])
   var assetState: AssetState = .init(assetData: [])
   var settingState: SettingState = .init()
 }

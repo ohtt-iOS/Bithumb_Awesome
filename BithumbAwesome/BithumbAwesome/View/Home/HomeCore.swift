@@ -9,6 +9,8 @@ import ComposableArchitecture
 
 struct HomeState: Equatable {
   var tickerData: [Ticker]
+  var filteredData: [Ticker]
+  var searchText: String = ""
   var requestState: AwesomeButtonType?
   var radioButtonState = RadioButtonState(buttons: [.koreanWon,
                                                     .bitcoin,
@@ -21,6 +23,8 @@ enum HomeAction: Equatable {
   case tickerResponse(Result<[Ticker], HomeService.Failure>)
   case radioButtonAction(RadioButtonAction)
   case requestTickerData(String, String)
+  case searchTextFieldChanged(String)
+  case setFilteredData(String)
 }
 
 struct HomeEnvironment {
@@ -39,16 +43,23 @@ let homeReducer = Reducer.combine([
   Reducer<HomeState, HomeAction, HomeEnvironment> { state, action, environment in
     switch action {
     case .tickerResponse(.failure):
+      state.filteredData = []
       state.tickerData = []
       return .none
       
     case let .tickerResponse(.success(response)):
-      if state.radioButtonState.selectedButton == .popularity {
-        state.tickerData = response.sorted(by: { $0.accTradeValue24H ?? "" > $1.accTradeValue24H ?? "" } )
-      } else {
+      switch state.radioButtonState.selectedButton {
+      case .koreanWon, .bitcoin:
         state.tickerData = response.sorted(by: { $0.ticker < $1.ticker})
+      case .interest:
+        state.tickerData = response
+      case .popularity:
+        state.tickerData = response.sorted(by: { $0.accTradeValue24H ?? "" > $1.accTradeValue24H ?? "" } )
+      default:
+        return .none
       }
-      return .none
+      return Effect(value: .setFilteredData(state.searchText))
+
       
     case let .requestTickerData(order, payment):
       struct TickerId: Hashable {}
@@ -64,7 +75,6 @@ let homeReducer = Reducer.combine([
       guard state.requestState != type else {
         return .none
       }
-      
       state.requestState = type
       switch type {
       case .koreanWon:
@@ -79,7 +89,22 @@ let homeReducer = Reducer.combine([
       default:
         return .none
       }
+      
     case .radioButtonAction:
+      return .none
+      
+    case let .searchTextFieldChanged(text):
+      struct TextFieldID: Hashable {}
+      return Effect(value: .setFilteredData(text))
+        .debounce(id: TextFieldID(), for: 0.5, scheduler: environment.mainQueue)
+
+    case let .setFilteredData(text):
+      state.searchText = text
+      if state.searchText != "" {
+        state.filteredData = state.tickerData.filter { $0.name.contains(text) || $0.ticker.contains(text) }
+      } else {
+        state.filteredData = state.tickerData
+      }
       return .none
     }
   }
