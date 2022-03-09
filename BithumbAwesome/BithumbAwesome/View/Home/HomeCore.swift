@@ -22,7 +22,6 @@ struct HomeState: Equatable {
 enum HomeAction: Equatable {
   case tickerResponse(Result<[Ticker], HomeService.Failure>)
   case radioButtonAction(RadioButtonAction)
-  case requestTickerData(String, String)
   case searchTextFieldChanged(String)
   case setFilteredData(String)
 }
@@ -31,6 +30,9 @@ struct HomeEnvironment {
   var homeService: HomeService
   var mainQueue: AnySchedulerOf<DispatchQueue>
 }
+
+struct TextFieldID: Hashable {}
+struct TickerId: Hashable {}
 
 let homeReducer = Reducer.combine([
   radioButtonReducer.pullback(
@@ -59,15 +61,6 @@ let homeReducer = Reducer.combine([
         return .none
       }
       return Effect(value: .setFilteredData(state.searchText))
-
-      
-    case let .requestTickerData(order, payment):
-      struct TickerId: Hashable {}
-      return environment.homeService
-        .getTickerData(order, payment)
-        .receive(on: environment.mainQueue)
-        .catchToEffect(HomeAction.tickerResponse)
-        .cancellable(id: TickerId(), cancelInFlight: true)
       
     case let .radioButtonAction(.buttonTap(type)):
       print(type)
@@ -78,14 +71,14 @@ let homeReducer = Reducer.combine([
       state.requestState = type
       switch type {
       case .koreanWon:
-        return Effect(value: .requestTickerData("ALL", "KRW"))
+        return requestTickerData(environment: environment, order: "ALL", payment: "KRW")
       case .bitcoin:
-        return Effect(value: .requestTickerData("ALL", "BTC"))
+        return requestTickerData(environment: environment, order: "ALL", payment: "BTC")
       case .interest:
         state.tickerData = []
         return .none
       case .popularity:
-        return Effect(value: .requestTickerData("ALL", "KRW"))
+        return requestTickerData(environment: environment, order: "ALL", payment: "KRW")
       default:
         return .none
       }
@@ -94,10 +87,9 @@ let homeReducer = Reducer.combine([
       return .none
       
     case let .searchTextFieldChanged(text):
-      struct TextFieldID: Hashable {}
       return Effect(value: .setFilteredData(text))
         .debounce(id: TextFieldID(), for: 0.5, scheduler: environment.mainQueue)
-
+      
     case let .setFilteredData(text):
       state.searchText = text
       if state.searchText != "" {
@@ -109,3 +101,13 @@ let homeReducer = Reducer.combine([
     }
   }
 ])
+
+private func requestTickerData(environment: HomeEnvironment,
+                               order: String,
+                               payment: String) -> Effect<HomeAction, Never> {
+  return environment.homeService
+    .getTickerData(order, payment)
+    .receive(on: environment.mainQueue)
+    .catchToEffect(HomeAction.tickerResponse)
+    .cancellable(id: TickerId(), cancelInFlight: true)
+}

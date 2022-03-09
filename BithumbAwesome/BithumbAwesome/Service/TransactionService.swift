@@ -25,9 +25,9 @@ extension TransactionService {
         
         let dataRequest = AF.request(
           URL,
-                                     method: .get,
-                                     encoding: JSONEncoding.default,
-                                     headers: headers
+          method: .get,
+          encoding: JSONEncoding.default,
+          headers: headers
         )
         
         dataRequest.responseData{ (response) in
@@ -40,7 +40,7 @@ extension TransactionService {
               do {
                 let result = try JSONDecoder().decode(ResponseResult<TransactionResponse>.self, from: value)
                 let data = result.data?.map { Transaction(transactionResponse: $0) }
-                  subscriber.send(data!)
+                subscriber.send(data!)
               } catch {
                 subscriber.send(completion: .failure(Failure()))
               }

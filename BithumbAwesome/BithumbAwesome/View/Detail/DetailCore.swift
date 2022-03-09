@@ -9,7 +9,6 @@ import ComposableArchitecture
 
 struct DetailState: Equatable {
   var ticker: Ticker
-  
   var selectedButton: AwesomeButtonType = .chart
   var radioButtonState = RadioButtonState(buttons: [.chart,
                                                     .quote,
@@ -17,11 +16,10 @@ struct DetailState: Equatable {
                                           selectedButton: .chart)
   
   var tickerSocketState: SocketState
-  var priceState: PriceState 
+  var priceState: PriceState
   var chartState: ChartState
   var quoteState: QuoteState = .init()
   var conclusionState: ConclusionState
-  
 }
 
 enum DetailAction: Equatable {
@@ -42,13 +40,16 @@ struct DetailEnvironment {
   var socketService: SocketService
 }
 
+struct TransactionID: Hashable {}
+struct CandleID: Hashable {}
+
 let detailReducer = Reducer.combine([
   socketReducer.pullback(
     state: \.tickerSocketState,
     action: /DetailAction.webSocket,
     environment: {
       SocketEnvironment(mainQueue: $0.mainQueue,
-                              websocket: $0.socketService)
+                        websocket: $0.socketService)
     }
   ) as Reducer<DetailState, DetailAction, DetailEnvironment>,
   priceReducer.pullback(
@@ -108,20 +109,19 @@ let detailReducer = Reducer.combine([
       return .none
     case .chartAction:
       return .none
+      
     case .onAppear:
-      struct TransactionID: Hashable {}
-      struct CandleID: Hashable {}
       return .merge(
         Effect(value: .webSocket(.socketOnOff)),
         Effect(value: .chartAction(.radioButtonAction(.buttonTap(.min_1)))),
         Effect(value: .conclusionAction(.onAppear))
       )
+      
     case .webSocket(.webSocket(.didOpenWithProtocol)):
       return .merge(
         Effect(value: .webSocket(.sendFilter("ticker", [state.ticker.underScoreString], ["30M"]))),
         Effect(value: .webSocket(.sendFilter("transaction", [state.ticker.underScoreString], nil)))
       )
-      
     case let .webSocket(.getTicker(ticker)):
       state.ticker = ticker
       return .merge(
@@ -133,6 +133,7 @@ let detailReducer = Reducer.combine([
       return Effect(value: .conclusionAction(.getTransactionData(transaction)))
     case .webSocket:
       return .none
+      
     case .priceAction:
       return .none
     }

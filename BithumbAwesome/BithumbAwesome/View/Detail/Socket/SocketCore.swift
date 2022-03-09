@@ -87,7 +87,7 @@ let socketReducer = Reducer<SocketState, SocketAction, SocketEnvironment> { stat
       return receiveSocketMessageEffect
     }
     do {
-
+      
       let decodedData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
       let type = decodedData?["type"] as? String
       switch type {
@@ -109,7 +109,7 @@ let socketReducer = Reducer<SocketState, SocketAction, SocketEnvironment> { stat
           receiveSocketMessageEffect,
           Effect(value: .getTransaction(Transaction(transactionSocketResponse: responseData)))
         )
-       default:
+      default:
         return receiveSocketMessageEffect
       }
     }

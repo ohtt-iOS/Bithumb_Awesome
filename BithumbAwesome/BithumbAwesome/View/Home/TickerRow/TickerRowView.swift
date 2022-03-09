@@ -11,12 +11,6 @@ import ComposableArchitecture
 struct TickerRowView: View {
   var store: Store<TickerState, TickerAction>
   
-  private let numberFormatter: NumberFormatter = {
-    let nf = NumberFormatter()
-    nf.numberStyle = .decimal
-    return nf
-  }()
-  
   var body: some View {
     WithViewStore(self.store) { viewStore in
       GeometryReader { g in
@@ -80,44 +74,51 @@ struct TickerRowView: View {
       }
     }
   }
-  
-  func toPrice(price: String?) -> String {
-    guard let price = price,
-          let doubleValue = Double(price) else { return "" }
-    if doubleValue > 1 {
+}
+
+private let numberFormatter: NumberFormatter = {
+  let numberFormatter = NumberFormatter()
+  numberFormatter.numberStyle = .decimal
+  return numberFormatter
+}()
+
+private func toPrice(price: String?) -> String {
+  guard let price = price,
+        let doubleValue = Double(price) else { return "" }
+  if doubleValue > 1 {
     guard let number = numberFormatter.string(from: NSNumber(value: doubleValue)) else { return "" }
     return number
-    } else {
-      return price
-    }
-  }
-    
-  func toKRWPrice(btcPrice: String?) -> String {
-    guard let btcPrice = btcPrice,
-          let doubleValue = Double(btcPrice) else { return "" }
-    let btc: Double = 50000000
-    guard let number = numberFormatter.string(from: NSNumber(value: round(btc * doubleValue * 1000) / 1000)) else { return "" }
-    return number + "백만"
-  }
-  
-  func setformat(of tradeValue: String?) -> String {
-    guard let tradeValue = tradeValue,
-          let doubleValue = Double(tradeValue) else { return "" }
-    let unit: Double = 1000000
-    if doubleValue > unit {
-      guard let number = numberFormatter.string(from: NSNumber(value: Int(doubleValue / unit))) else { return "" }
-      return number + "백만"
-    } else {
-      return String(round(doubleValue * 1000) / 1000)
-    }
-  }
-  
-  func toKRWTradeValue(of tradeValue: String?) -> String {
-    guard let btcValue = tradeValue,
-          let doubleValue = Double(btcValue) else { return "" }
-    let btc: Double = 50000000
-    let unit: Double = 1000000
-    guard let number = numberFormatter.string(from: NSNumber(value: Int(btc * doubleValue / unit))) else { return "" }
-    return number + "백만"
+  } else {
+    return price
   }
 }
+
+private func toKRWPrice(btcPrice: String?) -> String {
+  guard let btcPrice = btcPrice,
+        let doubleValue = Double(btcPrice) else { return "" }
+  let btc: Double = 50000000
+  guard let number = numberFormatter.string(from: NSNumber(value: round(btc * doubleValue * 1000) / 1000)) else { return "" }
+  return number + "백만"
+}
+
+private func setformat(of tradeValue: String?) -> String {
+  guard let tradeValue = tradeValue,
+        let doubleValue = Double(tradeValue) else { return "" }
+  let unit: Double = 1000000
+  if doubleValue > unit {
+    guard let number = numberFormatter.string(from: NSNumber(value: Int(doubleValue / unit))) else { return "" }
+    return number + "백만"
+  } else {
+    return String(round(doubleValue * 1000) / 1000)
+  }
+}
+
+private func toKRWTradeValue(of tradeValue: String?) -> String {
+  guard let btcValue = tradeValue,
+        let doubleValue = Double(btcValue) else { return "" }
+  let btc: Double = 50000000
+  let unit: Double = 1000000
+  guard let number = numberFormatter.string(from: NSNumber(value: Int(btc * doubleValue / unit))) else { return "" }
+  return number + "백만"
+}
+
