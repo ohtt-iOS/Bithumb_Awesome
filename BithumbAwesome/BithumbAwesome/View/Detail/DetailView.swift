@@ -35,7 +35,7 @@ struct DetailView: View {
           .id(UUID())
           .padding(.horizontal, 14)
         
-        view(type: viewStore.selectedButton)
+        bottomView(type: viewStore.selectedButton)
           .frame(maxHeight: .infinity)
       }
       .onAppear {
@@ -47,7 +47,7 @@ struct DetailView: View {
     }
   }
   
-  func view(type: AwesomeButtonType) -> some View {
+  func bottomView(type: AwesomeButtonType) -> some View {
     VStack {
       switch type {
       case .chart:

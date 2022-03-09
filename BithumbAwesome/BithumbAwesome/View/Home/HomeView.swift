@@ -32,8 +32,7 @@ struct HomeView: View {
         HStack {
           Image.searchButton
             .frame(width: 30, height: 30)
-          TextField(
-            "티커명을 입력해주세요 ",
+          TextField("티커명을 입력해주세요",
             text: viewStore.binding(
               get: \.searchText,
               send: HomeAction.searchTextFieldChanged
