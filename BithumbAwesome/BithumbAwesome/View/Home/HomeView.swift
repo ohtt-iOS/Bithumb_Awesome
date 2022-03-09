@@ -56,7 +56,7 @@ struct HomeView: View {
                 destination:
                   DetailView(store: Store(
                     initialState: DetailState(
-                      ticker: ticker,
+                      tickerData: ticker,
                       tickerSocketState: SocketState(),
                       priceState: PriceState(tickerData: ticker),
                       chartState: ChartState(ticker: ticker, candleData: []),

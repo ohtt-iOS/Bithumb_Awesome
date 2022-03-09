@@ -75,13 +75,17 @@ let homeReducer = Reducer.combine([
       case .bitcoin:
         return requestTickerData(environment: environment, order: "ALL", payment: "BTC")
       case .interest:
-        return requestFavoriteData(environment: environment, underscope: ["BTC_KRW",
-                                                                          "ETH_KRW",
-                                                                          "TRX_KRW",
-                                                                          "ETC_KRW",
-                                                                          "LOOM_KRW",
-                                                                          "ATOLO_KRW"
-                                                                         ])
+        guard
+          let favoriteList = UserDefaults.standard.array(
+            forKey: UserDefaultsKey.favoriteList
+          ) as? [String],
+          !favoriteList.isEmpty
+        else {
+          state.filteredData = []
+          state.tickerData = []
+          return .none
+        }
+        return requestFavoriteData(environment: environment, underscope: favoriteList)
       case .popularity:
         return requestTickerData(environment: environment, order: "ALL", payment: "KRW")
       default:

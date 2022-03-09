@@ -34,8 +34,8 @@ extension HomeService {
         dataRequest
           .validate(statusCode: 200..<300)
           .responseData{ (response) in
-          switch response.result {
-          case .success(let value):
+            switch response.result {
+            case .success(let value):
               do {
                 if let json = try JSONSerialization.jsonObject(with: value, options: []) as? [String: Any] {
                   var items = json["data"] as? [String: Any]
@@ -50,11 +50,11 @@ extension HomeService {
               } catch {
                 subscriber.send(completion: .failure(Failure()))
               }
-          case .failure(_):
-            subscriber.send(completion: .failure(Failure()))
-            break
+            case .failure(_):
+              subscriber.send(completion: .failure(Failure()))
+              break
+            }
           }
-        }
         return AnyCancellable {}
       }
     },
@@ -99,11 +99,22 @@ private func requestData(underscope: String, completion: @escaping (Ticker) -> V
       switch response.result {
       case .success(let value):
         do {
-          let result = try JSONDecoder().decode(ResponseSimpleResult<TickerResponse>.self, from: value)
+          let result = try JSONDecoder().decode(ResponseSimpleResult<TickerResponse>.self,
+                                                from: value)
           let data = underscope.split(separator: "_")
-          let isKRW = String(data[1]) == "KRW" ? true : false
-          guard let ticker2 = result.data else { return }
-          let ticker = Ticker(ticker: String(data[0]), isKRW: isKRW, tickerResponse: ticker2)
+          
+          guard let orderCurrency = data.first,
+                let paymentCurrency = data.last,
+                let tickerResponse = result.data
+          else {
+            return
+          }
+          let isKRW = (String(paymentCurrency) == "KRW")
+          let ticker = Ticker(
+            ticker: String(orderCurrency),
+            isKRW: isKRW,
+            tickerResponse: tickerResponse
+          )
           completion(ticker)
         } catch {
         }
