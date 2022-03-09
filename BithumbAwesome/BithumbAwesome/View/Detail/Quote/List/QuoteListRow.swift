@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QuoteListRow: View {
-  let type: QuoteOrderType
+  let type: OrderType
   let blockWidth: CGFloat
   
   var body: some View {

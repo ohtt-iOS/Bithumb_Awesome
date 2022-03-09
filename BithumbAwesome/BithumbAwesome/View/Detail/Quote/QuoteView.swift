@@ -23,7 +23,7 @@ struct QuoteView: View {
             VStack(spacing: QuoteView.rowBlockPadding) {
               HStack(spacing: QuoteView.rowBlockPadding) {
                 QuoteListRow(
-                  type: QuoteOrderType.ask,
+                  type: OrderType.ask,
                   blockWidth: self.rowBlockWith(rowWidth: geometryProxy.size.width)
                 )
                 
@@ -36,7 +36,7 @@ struct QuoteView: View {
                   .frame(width: self.rowBlockWith(rowWidth: geometryProxy.size.width))
                 
                 QuoteListRow(
-                  type: QuoteOrderType.bid,
+                  type: OrderType.bid,
                   blockWidth: self.rowBlockWith(rowWidth: geometryProxy.size.width)
                 )
               }

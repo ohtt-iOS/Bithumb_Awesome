@@ -16,6 +16,7 @@
 		C65E8DA127D0BDFC0088A5F4 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8D9F27D0BDFC0088A5F4 /* Asset.swift */; };
 		C65E8DA327D0C1240088A5F4 /* AssetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8DA227D0C1240088A5F4 /* AssetService.swift */; };
 		C65E8DA527D0C5CA0088A5F4 /* CryptoCurrencyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8DA427D0C5CA0088A5F4 /* CryptoCurrencyType.swift */; };
+		C666778E27D91C35008B90CF /* OrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C666778D27D91C35008B90CF /* OrderType.swift */; };
 		C6A7AD7427CE541700851AA9 /* ANavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7327CE541700851AA9 /* ANavigationBarView.swift */; };
 		C6A7AD7727CE577000851AA9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7627CE577000851AA9 /* DetailView.swift */; };
 		C6A7AD7927CE578800851AA9 /* DetailCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7827CE578800851AA9 /* DetailCore.swift */; };
@@ -24,7 +25,6 @@
 		C6A7AD8027CE5CA400851AA9 /* FavoriteButtonCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7AD7F27CE5CA400851AA9 /* FavoriteButtonCore.swift */; };
 		C6B6343C27D338E9009B2E97 /* QuoteListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6343B27D338E9009B2E97 /* QuoteListRow.swift */; };
 		C6B6344027D33927009B2E97 /* QuoteAdditionalInfomationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6343F27D33927009B2E97 /* QuoteAdditionalInfomationList.swift */; };
-		C6B6344227D33D63009B2E97 /* QuoteOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6344127D33D63009B2E97 /* QuoteOrderType.swift */; };
 		C6B6344527D35E36009B2E97 /* HorizonDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6344427D35E36009B2E97 /* HorizonDivider.swift */; };
 		C6B6A1EC27CE694E00C4303F /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6A1EB27CE694E00C4303F /* PriceView.swift */; };
 		C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630B27C7D03D00E6DD98 /* Color+.swift */; };
@@ -95,6 +95,7 @@
 		C65E8D9F27D0BDFC0088A5F4 /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		C65E8DA227D0C1240088A5F4 /* AssetService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssetService.swift; path = BithumbAwesome/Service/AssetService.swift; sourceTree = SOURCE_ROOT; };
 		C65E8DA427D0C5CA0088A5F4 /* CryptoCurrencyType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyType.swift; sourceTree = "<group>"; };
+		C666778D27D91C35008B90CF /* OrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderType.swift; sourceTree = "<group>"; };
 		C6A7AD7327CE541700851AA9 /* ANavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ANavigationBarView.swift; sourceTree = "<group>"; };
 		C6A7AD7627CE577000851AA9 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		C6A7AD7827CE578800851AA9 /* DetailCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCore.swift; sourceTree = "<group>"; };
@@ -103,7 +104,6 @@
 		C6A7AD7F27CE5CA400851AA9 /* FavoriteButtonCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonCore.swift; sourceTree = "<group>"; };
 		C6B6343B27D338E9009B2E97 /* QuoteListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteListRow.swift; sourceTree = "<group>"; };
 		C6B6343F27D33927009B2E97 /* QuoteAdditionalInfomationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteAdditionalInfomationList.swift; sourceTree = "<group>"; };
-		C6B6344127D33D63009B2E97 /* QuoteOrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteOrderType.swift; sourceTree = "<group>"; };
 		C6B6344427D35E36009B2E97 /* HorizonDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonDivider.swift; sourceTree = "<group>"; };
 		C6B6A1EB27CE694E00C4303F /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
 		C6DA630B27C7D03D00E6DD98 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
@@ -210,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				C65E8DA427D0C5CA0088A5F4 /* CryptoCurrencyType.swift */,
+				C666778D27D91C35008B90CF /* OrderType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -262,7 +263,6 @@
 			children = (
 				C6B6343B27D338E9009B2E97 /* QuoteListRow.swift */,
 				C6B6343F27D33927009B2E97 /* QuoteAdditionalInfomationList.swift */,
-				C6B6344127D33D63009B2E97 /* QuoteOrderType.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -589,7 +589,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C65E8DA127D0BDFC0088A5F4 /* Asset.swift in Sources */,
-				C6B6344227D33D63009B2E97 /* QuoteOrderType.swift in Sources */,
 				D15E620027D3BDA2008ADB72 /* ChartRadioButtonType.swift in Sources */,
 				C6B6343C27D338E9009B2E97 /* QuoteListRow.swift in Sources */,
 				C6A7AD8027CE5CA400851AA9 /* FavoriteButtonCore.swift in Sources */,
@@ -638,6 +637,7 @@
 				D184801027CA782B00213DD0 /* AwesomeTabBarStyle.swift in Sources */,
 				D1D952B027D08EFC00149BEC /* TickerResponse.swift in Sources */,
 				D184800627CA75C700213DD0 /* AssetView.swift in Sources */,
+				C666778E27D91C35008B90CF /* OrderType.swift in Sources */,
 				D1C47B5727CE766E0006B7A3 /* QuoteCore.swift in Sources */,
 				C6A7AD7427CE541700851AA9 /* ANavigationBarView.swift in Sources */,
 				D11B73A427D73450001C2EDC /* TransactionSocketResponse.swift in Sources */,
