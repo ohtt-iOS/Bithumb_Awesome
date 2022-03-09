@@ -11,3 +11,8 @@ struct ResponseResult<T: Codable>: Codable {
   var status: String?
   var data: [T]?
 }
+
+struct ResponseSimpleResult<T: Codable>: Codable {
+  var status: String?
+  var data: T?
+}

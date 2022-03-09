@@ -29,14 +29,30 @@ struct HomeView: View {
             .padding(.horizontal, 14)
         }
         
+        HStack {
+          Image.searchButton
+            .frame(width: 30, height: 30)
+          TextField(
+            "티커명을 입력해주세요 ",
+            text: viewStore.binding(
+              get: \.searchText,
+              send: HomeAction.searchTextFieldChanged
+            )
+          )
+            .accentColor(Color.aGray2)
+        }
+        .padding(.top, 14)
+        .padding(.horizontal, 14)
+        
         HomeHeaderView()
           .frame(height: 20)
           .padding(.horizontal, 14)
           .padding(.top, 14)
         
+        if !viewStore.filteredData.isEmpty {
         ScrollView(showsIndicators: false) {
           VStack(spacing: 10) {
-            ForEach(viewStore.tickerData, id: \.id) { ticker in
+            ForEach(viewStore.filteredData, id: \.id) { ticker in
               NavigationLink(
                 destination:
                   DetailView(store: Store(
@@ -76,6 +92,19 @@ struct HomeView: View {
           .padding(.bottom, 80)
         }
         .frame(maxWidth: .infinity)
+        } else {
+          VStack {
+            Spacer()
+            Image.coins
+              .resizable()
+              .frame(width: 30, height: 30)
+            Text("해당되는 코인이 없습니다")
+              .foregroundColor(Color.aGray2)
+              .font(.heading3)
+            Spacer()
+          }
+          .frame(maxWidth: .infinity)
+        }
       }
     }
   }
