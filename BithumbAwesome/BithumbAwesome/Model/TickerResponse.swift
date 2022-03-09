@@ -19,6 +19,7 @@ struct TickerResponse: Codable, Equatable {
   let accTradeValue24H: String?
   let fluctate24H: String?
   let fluctateRate24H: String?
+  let date: String?
   
   enum CodingKeys: String, CodingKey {
     case openingPrice = "opening_price"
@@ -32,6 +33,7 @@ struct TickerResponse: Codable, Equatable {
     case accTradeValue24H = "acc_trade_value_24H"
     case fluctate24H = "fluctate_24H"
     case fluctateRate24H = "fluctate_rate_24H"
+    case date = "date"
   }
   
   init(from decoder: Decoder) throws {
@@ -47,6 +49,7 @@ struct TickerResponse: Codable, Equatable {
     self.accTradeValue24H = try? container.decode(String.self, forKey: .accTradeValue24H)
     self.fluctate24H = try? container.decode(String.self, forKey: .fluctate24H)
     self.fluctateRate24H = try? container.decode(String.self, forKey: .fluctateRate24H)
+    self.date = try? container.decode(String.self, forKey: .date)
   }
 }
 

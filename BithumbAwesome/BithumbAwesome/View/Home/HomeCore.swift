@@ -44,7 +44,7 @@ let homeReducer = Reducer.combine([
       
     case let .tickerResponse(.success(response)):
       if state.radioButtonState.selectedButton == .popularity {
-        state.tickerData = response.sorted(by: { $0.data.accTradeValue24H ?? "" > $1.data.accTradeValue24H ?? "" } )
+        state.tickerData = response.sorted(by: { $0.accTradeValue24H ?? "" > $1.accTradeValue24H ?? "" } )
       } else {
         state.tickerData = response.sorted(by: { $0.ticker < $1.ticker})
       }
