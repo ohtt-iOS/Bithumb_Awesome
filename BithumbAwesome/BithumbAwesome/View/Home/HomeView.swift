@@ -49,6 +49,7 @@ struct HomeView: View {
           .padding(.horizontal, 14)
           .padding(.top, 14)
         
+        if !viewStore.filteredData.isEmpty {
         ScrollView(showsIndicators: false) {
           VStack(spacing: 10) {
             ForEach(viewStore.filteredData, id: \.id) { ticker in
@@ -91,6 +92,19 @@ struct HomeView: View {
           .padding(.bottom, 80)
         }
         .frame(maxWidth: .infinity)
+        } else {
+          VStack {
+            Spacer()
+            Image.coins
+              .resizable()
+              .frame(width: 30, height: 30)
+            Text("해당되는 코인이 없습니다")
+              .foregroundColor(Color.aGray2)
+              .font(.heading3)
+            Spacer()
+          }
+          .frame(maxWidth: .infinity)
+        }
       }
     }
   }
