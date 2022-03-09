@@ -8,7 +8,8 @@
 import ComposableArchitecture
 
 struct FavoriteState: Equatable {
-  var isFavorited: Bool = false
+  var tickerData: Ticker
+  var isFavorited: Bool
 }
 
 enum FavoriteAction: Equatable {
@@ -18,7 +19,21 @@ enum FavoriteAction: Equatable {
 let favoriteReducer = Reducer<FavoriteState, FavoriteAction, Void> { state, action, _ in
   switch action {
   case .favoriteButtonTap:
+    let favoriteList = UserDefaults.standard.array(
+      forKey: UserDefaultsKey.favoriteList
+    ) as? [String] ?? []
+    var newFavoriteList: [String] = favoriteList
+    if state.isFavorited {
+      newFavoriteList = favoriteList.filter { tickerString in
+        tickerString != state.tickerData.underScoreString
+      }
+    } else {
+      newFavoriteList.append(state.tickerData.underScoreString)
+    }
+    
     state.isFavorited.toggle()
+    UserDefaults.standard.set(newFavoriteList, forKey: UserDefaultsKey.favoriteList)
+    
     return .none
   }
 }
