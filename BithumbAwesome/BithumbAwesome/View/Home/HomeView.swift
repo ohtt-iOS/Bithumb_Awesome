@@ -60,6 +60,7 @@ struct HomeView: View {
                       tickerSocketState: SocketState(),
                       priceState: PriceState(tickerData: ticker),
                       chartState: ChartState(ticker: ticker, candleData: []),
+                      quoteState: QuoteState(bids: [], asks: []),
                       conclusionState: ConclusionState(ticker: ticker, transactionData: [])),
                     reducer: detailReducer,
                     environment: DetailEnvironment(mainQueue: .main,

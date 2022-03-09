@@ -18,7 +18,7 @@ struct DetailState: Equatable {
   var tickerSocketState: SocketState
   var priceState: PriceState
   var chartState: ChartState
-  var quoteState: QuoteState = .init()
+  var quoteState: QuoteState
   var conclusionState: ConclusionState
 }
 

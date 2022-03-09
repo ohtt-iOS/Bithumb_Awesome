@@ -9,6 +9,8 @@ import ComposableArchitecture
 import Combine
 
 struct QuoteState: Equatable {
+  var bids: [OrderBookDepthModel]
+  var asks: [OrderBookDepthModel]
 }
 
 enum QuoteAction: Equatable {
@@ -32,12 +34,14 @@ let quoteReducer = Reducer<QuoteState, QuoteAction, QuoteEnvironment> { state, a
         .cancellable(id: QuoteID(), cancelInFlight: true)
       
     case .quoteResponse(.failure):
-//      state.transactionData = []
+      state.bids = []
+      state.asks = []
       return .none
       
     case let .quoteResponse(.success(response)):
       print("response: \(response)")
-//      state.transactionData = response.sorted(by: { $0.date > $1.date })
+      state.bids = response.bids
+      state.asks = response.asks
       return .none
     }
 }

@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct OrderBookDepthModel: Codable, Equatable {
+struct OrderBookDepthModel: Codable, Equatable, Identifiable {
+  let id: UUID = UUID()
   let quantity: String
   let price: String
 }
