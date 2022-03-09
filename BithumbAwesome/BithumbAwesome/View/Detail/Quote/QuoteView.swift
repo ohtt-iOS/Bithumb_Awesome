@@ -9,10 +9,9 @@ import ComposableArchitecture
 import SwiftUI
 
 struct QuoteView: View {
-  static let rowBlockPadding: CGFloat = 1
-  
   let store: Store<QuoteState, QuoteAction>
   
+  static let rowBlockPadding: CGFloat = 1
   private let scrollViewIdentifier: Int = 1
   
   var body: some View {

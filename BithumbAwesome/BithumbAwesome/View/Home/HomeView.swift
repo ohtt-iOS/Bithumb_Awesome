@@ -65,7 +65,8 @@ struct HomeView: View {
                     environment: DetailEnvironment(mainQueue: .main,
                                                    candleStickService: .candle,
                                                    transactionService: .transaction,
-                                                   socketService: .live)
+                                                   socketService: .live,
+                                                   quoteService: .quote)
                   ))){
                     VStack {
                       TickerRowView(

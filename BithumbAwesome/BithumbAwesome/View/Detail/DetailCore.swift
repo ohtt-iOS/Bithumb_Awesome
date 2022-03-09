@@ -38,6 +38,7 @@ struct DetailEnvironment {
   var candleStickService: CandleStickService
   var transactionService: TransactionService
   var socketService: SocketService
+  var quoteService: QuoteService
 }
 
 struct TransactionID: Hashable {}
@@ -70,8 +71,8 @@ let detailReducer = Reducer.combine([
   quoteReducer.pullback(
     state: \.quoteState,
     action: /DetailAction.quoteAction,
-    environment: { _ in
-      QuoteEnvironment()
+    environment: {
+      QuoteEnvironment(quoteService: $0.quoteService, mainQueue: $0.mainQueue)
     }
   ) as Reducer<DetailState, DetailAction, DetailEnvironment>,
   conclusionReducer.pullback(
@@ -114,7 +115,8 @@ let detailReducer = Reducer.combine([
       return .merge(
         Effect(value: .webSocket(.socketOnOff)),
         Effect(value: .chartAction(.radioButtonAction(.buttonTap(.min_1)))),
-        Effect(value: .conclusionAction(.onAppear))
+        Effect(value: .conclusionAction(.onAppear)),
+        Effect(value: .quoteAction(.onAppear))
       )
       
     case .webSocket(.webSocket(.didOpenWithProtocol)):
@@ -135,6 +137,9 @@ let detailReducer = Reducer.combine([
       return .none
       
     case .priceAction:
+      return .none
+      
+    case .quoteAction:
       return .none
     }
   }
