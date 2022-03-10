@@ -20,17 +20,7 @@ struct QuoteListRow: View {
         ForEach(viewStore.datas, id: \.id) { data in
           HStack(spacing: QuoteView.rowBlockPadding) {
             if self.type == .ask {
-              HStack {
-                Spacer()
-                
-                Text(data.quantity)
-                  .font(Font.heading7)
-                  .foregroundColor(Color.aGray4)
-                  .padding(.trailing, 5)
-                  .padding(.vertical, 15)
-              }
-              .background(self.type.backgroundColor)
-              .frame(width: self.blockWidth)
+              QuoteListRowBlock(type: .ask, data: data, width: self.blockWidth)
             }
             
             HStack {
@@ -52,17 +42,7 @@ struct QuoteListRow: View {
             .frame(width: self.blockWidth)
             
             if self.type == .bid {
-              HStack {
-                Text(data.quantity)
-                  .font(Font.heading7)
-                  .foregroundColor(Color.aGray4)
-                  .padding(.leading, 5)
-                  .padding(.vertical, 15)
-                
-                Spacer()
-              }
-              .background(self.type.backgroundColor)
-              .frame(width: self.blockWidth)
+              QuoteListRowBlock(type: .bid, data: data, width: self.blockWidth)
             }
           }
         }

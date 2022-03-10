@@ -24,4 +24,7 @@ extension OrderType {
   var backgroundColor: Color {
     return self.color.opacity(0.1)
   }
+  var rectangleColor: Color {
+    return self.color.opacity(0.2)
+  }
 }
