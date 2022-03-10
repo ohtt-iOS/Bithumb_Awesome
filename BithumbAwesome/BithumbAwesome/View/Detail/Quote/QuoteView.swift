@@ -36,7 +36,7 @@ struct QuoteView: View {
               }
               
               HStack(spacing: QuoteView.rowBlockPadding) {
-                Spacer()
+                QuoteConclusionView()
                   .frame(width: self.rowBlockWith(rowWidth: geometryProxy.size.width))
                 
                 QuoteListRow(
