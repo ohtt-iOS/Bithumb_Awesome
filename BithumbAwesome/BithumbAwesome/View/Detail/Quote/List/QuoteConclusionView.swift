@@ -9,6 +9,8 @@ import ComposableArchitecture
 import SwiftUI
 
 struct QuoteConclusionView: View {
+  var transactionData: [Transaction]
+  
   private var isColorRed: Bool {
     return Bool.random()
   }
@@ -28,13 +30,15 @@ struct QuoteConclusionView: View {
       }
       .padding(.top, 10)
       
-      ForEach(0..<50) { _ in
+      ForEach(transactionData, id: \.id) { data in
         HStack {
-          Text("3,381,000")
+          Text(toPrice(price: String(data.price ?? 0)))
           
           Spacer()
           
-          Text("0.0660")
+          Text("\(data.total ?? 0)")
+            .lineLimit(1)
+            .minimumScaleFactor(0.8)
         }
         .foregroundColor(self.isColorRed ? Color.aRed1 : Color.aBlue1)
       }
@@ -43,5 +47,33 @@ struct QuoteConclusionView: View {
     }
     .font(Font.heading7)
     .padding(.horizontal, 2)
+  }
+  
+  func textColor(socketPrice: String?, transcationPrice: Double?) -> Color {
+    guard let socketPrice = socketPrice,
+          let socketDoublePrice = Double(socketPrice),
+          let transactionPrice = transcationPrice
+    else {
+      return Color.aGray3
+    }
+    
+    return socketDoublePrice < transactionPrice ? Color.aRed1 : socketDoublePrice == transactionPrice ? Color.aGray3 : Color.aBlue1
+  }
+}
+
+private let numberFormatter: NumberFormatter = {
+  let numberFormatter = NumberFormatter()
+  numberFormatter.numberStyle = .decimal
+  return numberFormatter
+}()
+
+private func toPrice(price: String?) -> String {
+  guard let price = price,
+        let doubleValue = Double(price) else { return "" }
+  if doubleValue > 1 {
+    guard let number = numberFormatter.string(from: NSNumber(value: doubleValue)) else { return "" }
+    return number
+  } else {
+    return price
   }
 }

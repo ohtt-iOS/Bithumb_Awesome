@@ -57,10 +57,11 @@ struct HomeView: View {
                   DetailView(store: Store(
                     initialState: DetailState(
                       ticker: ticker,
+                      bids: [],
+                      asks: [],
                       tickerSocketState: SocketState(),
                       priceState: PriceState(tickerData: ticker),
                       chartState: ChartState(ticker: ticker, candleData: []),
-                      quoteState: QuoteState(bids: [], asks: []),
                       conclusionState: ConclusionState(ticker: ticker, transactionData: [])),
                     reducer: detailReducer,
                     environment: DetailEnvironment(mainQueue: .main,

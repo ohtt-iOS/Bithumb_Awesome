@@ -36,18 +36,22 @@ struct QuoteView: View {
               }
               
               HStack(spacing: QuoteView.rowBlockPadding) {
-                QuoteConclusionView()
+                QuoteConclusionView(transactionData: viewStore.transactionData)
                   .frame(width: self.rowBlockWith(rowWidth: geometryProxy.size.width))
                 
-                QuoteListRow(
-                  store: Store(
-                    initialState: QuoteListRowState(datas: viewStore.bids),
-                    reducer: quoteListRowReducer,
-                    environment: ()
-                  ),
-                  type: OrderType.bid,
-                  blockWidth: self.rowBlockWith(rowWidth: geometryProxy.size.width)
-                )
+                VStack {
+                  QuoteListRow(
+                    store: Store(
+                      initialState: QuoteListRowState(datas: viewStore.bids),
+                      reducer: quoteListRowReducer,
+                      environment: ()
+                    ),
+                    type: OrderType.bid,
+                    blockWidth: self.rowBlockWith(rowWidth: geometryProxy.size.width)
+                  )
+
+                  Spacer()
+                }
               }
             }
             .id(self.scrollViewIdentifier)

@@ -14,11 +14,25 @@ struct DetailState: Equatable {
                                                     .quote,
                                                     .conclusion],
                                           selectedButton: .chart)
+  var bids: [OrderBookDepthModel]
+  var asks: [OrderBookDepthModel]
   
   var tickerSocketState: SocketState
   var priceState: PriceState
   var chartState: ChartState
-  var quoteState: QuoteState
+  var quoteState: QuoteState {
+    get {
+      QuoteState(
+        bids: self.bids,
+        asks: self.asks,
+        transactionData: self.conclusionState.transactionData
+      )
+    }
+    set {
+      self.bids = newValue.bids
+      self.asks = newValue.asks
+    }
+  }
   var conclusionState: ConclusionState
 }
 

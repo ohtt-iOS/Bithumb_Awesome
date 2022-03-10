@@ -11,6 +11,7 @@ import Combine
 struct QuoteState: Equatable {
   var bids: [OrderBookDepthModel]
   var asks: [OrderBookDepthModel]
+  var transactionData: [Transaction]
 }
 
 enum QuoteAction: Equatable {
