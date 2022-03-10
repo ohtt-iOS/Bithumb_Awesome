@@ -58,7 +58,7 @@ struct HomeView: View {
                     initialState: DetailState(
                       ticker: ticker,
                       tickerSocketState: SocketState(),
-                      priceState: PriceState(tickerData: ticker),
+                      priceState: PriceState(tickerData: ticker, isUnderLine: false),
                       chartState: ChartState(ticker: ticker, candleData: []),
                       conclusionState: ConclusionState(ticker: ticker, transactionData: [])),
                     reducer: detailReducer,
