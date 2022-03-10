@@ -31,7 +31,7 @@ struct QuoteView: View {
                   blockWidth: self.rowBlockWith(rowWidth: geometryProxy.size.width)
                 )
                 
-                QuoteAdditionalInfomationList()
+                QuoteAdditionalInfomationList(ticker: viewStore.ticker)
                   .frame(width: self.rowBlockWith(rowWidth: geometryProxy.size.width))
               }
               

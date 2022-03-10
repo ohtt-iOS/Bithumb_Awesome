@@ -25,7 +25,8 @@ struct DetailState: Equatable {
       QuoteState(
         bids: self.bids,
         asks: self.asks,
-        transactionData: self.conclusionState.transactionData
+        transactionData: self.conclusionState.transactionData,
+        ticker: self.ticker
       )
     }
     set {
