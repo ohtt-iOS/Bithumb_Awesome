@@ -6,12 +6,15 @@
 //
 
 import ComposableArchitecture
+import Foundation
 
 struct HomeState: Equatable {
+  var filteredTickers = IdentifiedArrayOf<TickerState>()
+  var socketIdDictionary: [String: UUID] = [:]
   var tickerData: [Ticker]
-  var filteredData: [Ticker]
   var searchText: String = ""
   var requestState: AwesomeButtonType?
+  var socketState: SocketState
   var radioButtonState = RadioButtonState(buttons: [.koreanWon,
                                                     .bitcoin,
                                                     .interest,
@@ -24,31 +27,50 @@ enum HomeAction: Equatable {
   case radioButtonAction(RadioButtonAction)
   case searchTextFieldChanged(String)
   case setFilteredData(String)
+  case tickerRow(id: UUID, action: TickerAction)
+  case webSocket(SocketAction)
 }
 
 struct HomeEnvironment {
   var homeService: HomeService
+  var socketService: SocketService
   var mainQueue: AnySchedulerOf<DispatchQueue>
 }
 
 struct TextFieldID: Hashable {}
 struct TickerId: Hashable {}
+struct SocketTikcerID: Hashable {}
 
-let homeReducer = Reducer.combine([
+let homeReducer = Reducer.combine(
   radioButtonReducer.pullback(
     state: \.radioButtonState,
     action: /HomeAction.radioButtonAction,
     environment: { _ in
       RadioButtonEnvironment()
     }
-  ) as Reducer<HomeState, HomeAction, HomeEnvironment>,
+  ),
+  socketReducer.pullback(
+    state: \.socketState,
+    action: /HomeAction.webSocket,
+    environment: {
+      SocketEnvironment(mainQueue: $0.mainQueue,
+                        websocket: $0.socketService)
+    }
+  ),
+  tickerReducer.forEach(
+    state: \.filteredTickers,
+    action: /HomeAction.tickerRow(id:action:),
+    environment: {
+      TickerEnvironment(mainQueue: $0.mainQueue)
+    }
+  ),
   Reducer<HomeState, HomeAction, HomeEnvironment> { state, action, environment in
     switch action {
     case .tickerResponse(.failure):
-      state.filteredData = []
+      state.filteredTickers = []
       state.tickerData = []
       return .none
-      
+  
     case let .tickerResponse(.success(response)):
       switch state.radioButtonState.selectedButton {
       case .koreanWon, .bitcoin:
@@ -63,8 +85,6 @@ let homeReducer = Reducer.combine([
       return Effect(value: .setFilteredData(state.searchText))
       
     case let .radioButtonAction(.buttonTap(type)):
-      print(type)
-      // 이전과 같은 request라면 요청하지 않는다.
       guard state.requestState != type else {
         return .none
       }
@@ -81,7 +101,7 @@ let homeReducer = Reducer.combine([
           ) as? [String],
           !favoriteList.isEmpty
         else {
-          state.filteredData = []
+          state.filteredTickers = []
           state.tickerData = []
           return .none
         }
@@ -101,15 +121,34 @@ let homeReducer = Reducer.combine([
       
     case let .setFilteredData(text):
       state.searchText = text
-      if state.searchText != "" {
-        state.filteredData = state.tickerData.filter { $0.name.contains(text) || $0.ticker.contains(text) }
-      } else {
-        state.filteredData = state.tickerData
+      state.filteredTickers = []
+      state.socketIdDictionary = [:]
+      let filterdData = (state.searchText != "") ? state.tickerData.filter { $0.name.contains(text) || $0.ticker.contains(text) } : state.tickerData
+      var dictionary: [String: UUID] = [:]
+      var tickers = IdentifiedArrayOf<TickerState>()
+      for ticker in filterdData {
+        let id = UUID()
+        tickers.append(TickerState(id: id, ticker: ticker))
+        dictionary[ticker.underScoreString] = id
       }
+      state.socketIdDictionary = dictionary
+      state.filteredTickers = tickers
+      let keys = Array(state.socketIdDictionary.keys)
+      return Effect(value: .webSocket(.sendFilter("ticker", keys, ["30M"])))
+      
+    case .tickerRow(id: let id, action: let action):
+      return .none
+    case let .webSocket(.getTicker(ticker)):
+      guard let id = state.socketIdDictionary[ticker.underScoreString]
+      else {
+        return .none
+      }
+      return Effect(value: .tickerRow(id: id, action: .getTicker(ticker)))
+    case .webSocket:
       return .none
     }
   }
-])
+)
 
 private func requestTickerData(environment: HomeEnvironment,
                                order: String,
@@ -130,3 +169,4 @@ private func requestFavoriteData(environment: HomeEnvironment,
     .catchToEffect(HomeAction.tickerResponse)
     .cancellable(id: TickerId(), cancelInFlight: true)
 }
+

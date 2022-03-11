@@ -71,6 +71,9 @@ struct TickerRowView: View {
             }
           }
         }
+        .frame(height: 60)
+        .padding(.horizontal, 14)
+        .background(viewStore.isUnderLine ? viewStore.backgroundColor.opacity(0.1) : Color.clear)
       }
     }
   }
