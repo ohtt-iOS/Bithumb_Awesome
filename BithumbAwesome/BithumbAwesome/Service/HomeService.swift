@@ -59,28 +59,22 @@ extension HomeService {
       }
     },
     getFavoriteData: { underscope in
-      Effect.run { subscriber in
-        var tickers: [Ticker] = []
-        for ticker in underscope {
-          DispatchQueue.global().async {
-            // TODO: 고차함수 처리
-            requestData(underscope: ticker, completion: { ticker in
-              tickers.append(ticker)
-              if tickers.count == underscope.count {
-                DispatchQueue.main.async {
-                  subscriber.send(tickers)
-                }
-              }
-            })
+      let result: AnyPublisher<[Ticker], Failure> =
+      Publishers
+        .MergeMany(
+          underscope.map { str in
+            requestData(underscope: str)
           }
-        }
-        return AnyCancellable {}
-      }
+        )
+        .collect()
+        .eraseToAnyPublisher()
+      return result
+        .eraseToEffect()
     }
   )
 }
 
-private func requestData(underscope: String, completion: @escaping (Ticker) -> Void) {
+private func requestData(underscope: String) -> AnyPublisher<Ticker, HomeService.Failure> {
   let URL = "https://api.bithumb.com/public/ticker/\(underscope)"
   print("🔗 URL : \(URL)")
   let headers: HTTPHeaders = [
@@ -93,33 +87,35 @@ private func requestData(underscope: String, completion: @escaping (Ticker) -> V
     headers: headers
   )
   
-  dataRequest
-    .validate(statusCode: 200..<300)
-    .responseData{ (response) in
-      switch response.result {
-      case .success(let value):
-        do {
-          let result = try JSONDecoder().decode(ResponseSimpleResult<TickerResponse>.self,
-                                                from: value)
-          let data = underscope.split(separator: "_")
-          
-          guard let orderCurrency = data.first,
-                let paymentCurrency = data.last,
-                let tickerResponse = result.data
-          else {
-            return
+  return Future<Ticker, HomeService.Failure> { completion in
+    dataRequest
+      .validate(statusCode: 200..<300)
+      .responseData{ (response) in
+        switch response.result {
+        case .success(let value):
+          do {
+            let result = try JSONDecoder().decode(ResponseSimpleResult<TickerResponse>.self,
+                                                  from: value)
+            let data = underscope.split(separator: "_")
+            
+            guard let orderCurrency = data.first,
+                  let paymentCurrency = data.last,
+                  let tickerResponse = result.data
+            else {
+              return
+            }
+            let isKRW = (String(paymentCurrency) == "KRW")
+            let ticker = Ticker(
+              ticker: String(orderCurrency),
+              isKRW: isKRW,
+              tickerResponse: tickerResponse
+            )
+            completion(.success(ticker))
+          } catch {
           }
-          let isKRW = (String(paymentCurrency) == "KRW")
-          let ticker = Ticker(
-            ticker: String(orderCurrency),
-            isKRW: isKRW,
-            tickerResponse: tickerResponse
-          )
-          completion(ticker)
-        } catch {
+        case .failure(_):
+          break
         }
-      case .failure(_):
-        break
       }
-    }
+  }.eraseToAnyPublisher()
 }

@@ -307,13 +307,6 @@
 			path = FlatLink;
 			sourceTree = "<group>";
 		};
-		D11B73A027D72313001C2EDC /* Socket */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Socket;
-			sourceTree = "<group>";
-		};
 		D11B73A527D7345C001C2EDC /* Socket */ = {
 			isa = PBXGroup;
 			children = (
@@ -482,7 +475,6 @@
 		D1C47B4D27CE76280006B7A3 /* Conclusion */ = {
 			isa = PBXGroup;
 			children = (
-				D11B73A027D72313001C2EDC /* Socket */,
 				D1C47B5227CE76530006B7A3 /* ConclusionView.swift */,
 				D1C47B5827CE76760006B7A3 /* ConclusionCore.swift */,
 				D1D7268327D118D300A9E420 /* ConclusionRow */,
