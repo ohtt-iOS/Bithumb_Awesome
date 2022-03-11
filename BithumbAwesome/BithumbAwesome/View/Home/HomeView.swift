@@ -80,10 +80,16 @@ struct HomeView: View {
                               .frame(height: 1, alignment: .center)
                               .foregroundColor(Color.aGray1)
                           }
+                          .onAppear {
+                            viewStore.send(.onRowAppear(tickerRowViewStore.state.ticker.underScoreString))
+                          }
+                          .onDisappear {
+                            viewStore.send(.onRowDisappear(tickerRowViewStore.state.ticker.underScoreString))
+                          }
                         }
                         .simultaneousGesture(
                           TapGesture().onEnded{
-                            viewStore.send(.webSocket(.cancel))
+//                            viewStore.send(.webSocket(.cancel))
                           }
                         )
                         .buttonStyle(FlatLinkStyle())

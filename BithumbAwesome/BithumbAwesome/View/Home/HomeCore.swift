@@ -11,6 +11,7 @@ import Foundation
 struct HomeState: Equatable {
   var filteredTickers = IdentifiedArrayOf<TickerState>()
   var socketIdDictionary: [String: UUID] = [:]
+  var appearTicker: [String: Bool] = [:]
   var tickerData: [Ticker]
   var searchText: String = ""
   var requestState: AwesomeButtonType?
@@ -29,6 +30,9 @@ enum HomeAction: Equatable {
   case setFilteredData(String)
   case tickerRow(id: UUID, action: TickerAction)
   case webSocket(SocketAction)
+  
+  case onRowAppear(String)
+  case onRowDisappear(String)
 }
 
 struct HomeEnvironment {
@@ -139,12 +143,20 @@ let homeReducer = Reducer.combine(
     case .tickerRow(id: let id, action: let action):
       return .none
     case let .webSocket(.getTicker(ticker)):
-      guard let id = state.socketIdDictionary[ticker.underScoreString]
+      guard let id = state.socketIdDictionary[ticker.underScoreString],
+            let visable = state.appearTicker[ticker.underScoreString]
       else {
         return .none
       }
       return Effect(value: .tickerRow(id: id, action: .getTicker(ticker)))
     case .webSocket:
+      return .none
+      
+    case let .onRowAppear(ticker):
+      state.appearTicker[ticker] = true
+      return .none
+    case let .onRowDisappear(ticker):
+      state.appearTicker[ticker] = nil
       return .none
     }
   }
