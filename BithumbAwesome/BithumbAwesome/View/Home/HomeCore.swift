@@ -120,7 +120,7 @@ let homeReducer = Reducer.combine(
       return .none
       
     case let .searchTextFieldChanged(text):
-      return Effect(value: .setFilteredData(text))
+      return Effect(value: .setFilteredData(text.uppercased()))
         .debounce(id: TextFieldID(), for: 0.5, scheduler: environment.mainQueue)
       
     case let .setFilteredData(text):
