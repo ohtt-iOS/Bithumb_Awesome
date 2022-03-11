@@ -25,9 +25,10 @@ struct CandleChartView: UIViewRepresentable {
     chart.rightAxis.labelTextColor = UIColor(Color.aGray3)
     chart.rightAxis.gridColor = .clear
     chart.rightAxis.axisLineColor = .clear
-
+    chart.rightAxis.labelPosition = .insideChart
+    
     chart.drawOrder = [CombinedChartView.DrawOrder.bar.rawValue,
-                  CombinedChartView.DrawOrder.candle.rawValue]
+                       CombinedChartView.DrawOrder.candle.rawValue]
     chart.legend.enabled = false // 범례 삭제
     chart.autoScaleMinMaxEnabled = true // 차트 레이아웃 자동으로 세팅
     return chart
@@ -36,12 +37,12 @@ struct CandleChartView: UIViewRepresentable {
   func updateUIView(_ combinedView: CombinedChartView, context _: Context) {
     let combinedData = CombinedChartData()
     let data: [Candle] = chartData
-    combinedData.candleData = makeCandleData(data: data)
-    combinedData.barData = makeBarData(data: data)
-    combinedView.data = combinedData
-    combinedView.xAxis.valueFormatter = DateValueFormatter(dates: chartData.compactMap { $0.date },
-                                                           type: chartType)
     if !data.isEmpty {
+      combinedData.candleData = makeCandleData(data: data)
+      combinedData.barData = makeBarData(data: data)
+      combinedView.data = combinedData
+      combinedView.xAxis.valueFormatter = DateValueFormatter(dates: chartData.compactMap { $0.date },
+                                                             type: chartType)
       combinedView.zoom(scaleX: 0, scaleY: 0, x: 0, y: 0)
       let xScale = Double(data.count / 20)
       combinedView.zoom(scaleX: xScale, scaleY: 1, x: 0, y: 0)
@@ -51,11 +52,18 @@ struct CandleChartView: UIViewRepresentable {
   
   private func makeCandleData(data: [Candle]) -> CandleChartData {
     let candleEntries = data.enumerated().compactMap { index, entry -> CandleChartDataEntry in
-      CandleChartDataEntry(x: Double(index),
-                           shadowH: entry.highPrice ?? 0,
-                           shadowL: entry.lowPrice ?? 0,
-                           open: entry.openPrice ?? 0,
-                           close: entry.closePrice ?? 0)
+      guard let highPrice = entry.highPrice,
+            let lowPrice = entry.lowPrice,
+            let openPrice = entry.openPrice,
+            let closePrice = entry.closePrice
+      else {
+        return CandleChartDataEntry()
+      }
+      return CandleChartDataEntry(x: Double(index),
+                           shadowH: highPrice,
+                           shadowL: lowPrice,
+                           open: openPrice,
+                           close: closePrice)
     }
     let set = CandleChartDataSet(entries: candleEntries)
     set.neutralColor = NSUIColor(Color.aGray1)
