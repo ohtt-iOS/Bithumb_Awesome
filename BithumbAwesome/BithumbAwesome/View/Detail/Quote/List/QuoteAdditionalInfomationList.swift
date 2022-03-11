@@ -17,53 +17,65 @@ struct QuoteAdditionalInfomationList: View {
     VStack(spacing: self.rowSpacing) {
       Spacer()
       
-      ListRow(titleString: "거래량", valueString: ticker.unitsTraded24H ?? "")
-      ListRow(titleString: "거래금", valueString: ticker.accTradeValue24H ?? "")
+      ListRow(type: .transactionVolume, ticker: self.ticker)
+      ListRow(type: .transactionAmount, ticker: self.ticker)
 
       HorizonDivider()
       
-      ListRow(titleString: "전일종가", valueString: self.ticker.prevClosingPrice ?? "")
-      ListRow(titleString: "시가(당일)", valueString: self.ticker.openingPrice ?? "")
-      ListRow(titleString: "고가(당일)", valueString: self.ticker.maxPrice ?? "")
-      ListRow(titleString: "저가(당일)", valueString: self.ticker.minPrice ?? "")
+      ListRow(type: .closingPrice, ticker: self.ticker)
+      ListRow(type: .marketPrice, ticker: self.ticker)
+      ListRow(type: .highPrice, ticker: self.ticker)
+      ListRow(type: .lowPrice, ticker: self.ticker)
     }
     .padding(.horizontal, self.rowHorizontalPadding)
   }
 }
 
 private struct ListRow: View {
-  let titleString: String
-  let valueString: String
+  let type: ListRowType
+  let ticker: Ticker
   
   private let rowSpacing: CGFloat = 5
+  private var valueColor: Color {
+    guard self.type.haveColor
+    else {
+      return Color.aGray2
+    }
+    
+    let priceInt = Int(self.type.valueString(ticker: self.ticker)) ?? 0
+    let closingPriceInt = Int(self.ticker.closingPrice ?? "0") ?? 0
+    if priceInt > closingPriceInt {
+      return Color.aRed1
+    } else if priceInt < closingPriceInt {
+      return Color.aBlue1
+    } else {
+      return Color.aGray2
+    }
+  }
   
   var body: some View {
     VStack(spacing: self.rowSpacing) {
       HStack {
-        Text(self.titleString)
+        Text(self.type.titleString)
           .font(Font.heading7)
           .foregroundColor(Color.aGray2)
         
         Spacer()
         
-        Text(self.valueString)
+        Text(self.type.valueString(ticker: self.ticker))
           .font(Font.heading7)
-          .foregroundColor(Color.aRed1)
+          .foregroundColor(self.valueColor)
       }
       
-//      HStack {
-//        Spacer()
-//        
-//        if self.type == .highPrice {
-//          Text("0.18%")
-//            .font(Font.heading7)
-//            .foregroundColor(Color.aRed1)
-//        } else if self.type == .lowPrice {
-//          Text("-4.8%")
-//            .font(Font.heading7)
-//            .foregroundColor(Color.aBlue1)
-//        }
-//      }
+      HStack {
+        Spacer()
+        
+        if self.type.havePercentage {
+          Text(self.type.percentage(ticker: self.ticker))
+            .font(Font.heading7)
+            .foregroundColor(self.valueColor)
+        }
+      }
     }
   }
 }
@@ -73,14 +85,8 @@ private enum ListRowType {
   case closingPrice, marketPrice, highPrice, lowPrice
 }
 
-extension ListRowType: CaseIterable, Identifiable {
-  var id: UUID {
-    return UUID()
-  }
-}
-
 extension ListRowType {
-  var rowTitleString: String {
+  var titleString: String {
     switch self {
     case .transactionVolume:
       return "거래량"
@@ -96,20 +102,72 @@ extension ListRowType {
       return "저가(당일)"
     }
   }
-  var rowValueString: String {
+  var havePercentage: Bool {
+    switch self {
+    case .highPrice, .lowPrice:
+      return true
+    default:
+      return false
+    }
+  }
+  var haveColor: Bool {
+    return self.havePercentage
+  }
+  
+  private func price(ticker: Ticker) -> String? {
     switch self {
     case .transactionVolume:
-      return "3.165.686 BTC"
+      return ticker.unitsTraded24H
     case .transactionAmount:
-      return "1,603,900 억"
+      return ticker.accTradeValue24H
     case .closingPrice:
-      return "52,989,000"
+      return ticker.prevClosingPrice
     case .marketPrice:
-      return "52,989,000"
+      return ticker.openingPrice
     case .highPrice:
-      return "53,087,000"
+      return ticker.maxPrice
     case .lowPrice:
-      return "50,443,000"
+      return ticker.minPrice
     }
+  }
+  func valueString(ticker: Ticker) -> String {
+    let price = toPrice(price: self.price(ticker: ticker))
+    switch self {
+    case .transactionVolume:
+      return price + " ETH"
+    case .transactionAmount:
+      let priceInt = Double(ticker.accTradeValue24H ?? "0") ?? 0
+      return String(format: "%.3f", priceInt * 0.00000001) + " 억"
+    default:
+      return price
+    }
+  }
+  func percentage(ticker: Ticker) -> String {
+    let priceDouble = Double(self.price(ticker: ticker) ?? "0") ?? 0
+    let closingPriceDouble = Double(ticker.closingPrice ?? "0") ?? 0
+    if priceDouble > closingPriceDouble {
+      return "+\(String(format: "%.2f", priceDouble / closingPriceDouble * 0.01))%"
+    } else if priceDouble < closingPriceDouble {
+      return "-\(String(format: "%.2f", closingPriceDouble / priceDouble * 0.01))%"
+    } else {
+      return " 0.00%"
+    }
+  }
+}
+
+private let numberFormatter: NumberFormatter = {
+  let numberFormatter = NumberFormatter()
+  numberFormatter.numberStyle = .decimal
+  return numberFormatter
+}()
+
+private func toPrice(price: String?) -> String {
+  guard let price = price,
+        let doubleValue = Double(price) else { return "" }
+  if doubleValue > 1 {
+    guard let number = numberFormatter.string(from: NSNumber(value: doubleValue)) else { return "" }
+    return number
+  } else {
+    return price
   }
 }
