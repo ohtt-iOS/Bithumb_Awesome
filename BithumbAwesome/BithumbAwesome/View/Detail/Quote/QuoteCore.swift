@@ -18,6 +18,7 @@ struct QuoteState: Equatable {
 enum QuoteAction: Equatable {
   case onAppear
   case quoteResponse(Result<OrderBookDepthResponse, QuoteService.Failure>)
+  case getQuote(OrderBookDepthResponse)
 }
 
 struct QuoteEnvironment {
@@ -45,5 +46,43 @@ let quoteReducer = Reducer<QuoteState, QuoteAction, QuoteEnvironment> { state, a
       state.bids = response.bids
       state.asks = response.asks
       return .none
+      
+    case let .getQuote(orderBookDepthResponse):
+      state.bids = sortedQuoteArray(type: .bid, state, orderBookDepthResponse)
+      state.asks = sortedQuoteArray(type: .ask, state, orderBookDepthResponse)
+      return .none
     }
+}
+
+private func sortedQuoteArray(
+  type: OrderType,
+  _ state: QuoteState,
+  _ response: OrderBookDepthResponse
+) -> [OrderBookDepthModel] {
+  let originalArray: [OrderBookDepthModel] = (type == .bid) ? state.bids : state.asks
+  let responseArray: [OrderBookDepthModel] = (type == .bid) ? response.bids : response.asks
+  var tempArray = originalArray
+  
+  for data in originalArray {
+    for newData in responseArray where data.price == newData.price {
+      tempArray.remove(at: tempArray.firstIndex(of: data)!)
+    }
+  }
+  tempArray.append(contentsOf: responseArray)
+  tempArray = tempArray.sorted { array, nextArray in
+    array.price > nextArray.price
+  }
+  if tempArray.count > originalArray.count {
+    let addedCount = tempArray.count - originalArray.count
+    for _ in 1...addedCount {
+      switch type {
+      case .bid:
+        tempArray.removeLast()
+      case .ask:
+        tempArray.removeFirst()
+      }
+    }
+  }
+  
+  return tempArray
 }

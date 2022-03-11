@@ -23,6 +23,7 @@ enum SocketAction: Equatable {
   // socket
   case getTicker(Ticker)
   case getTransaction(Transaction)
+  case getQuote(OrderBookDepthResponse)
   case socketOnOff
   case pingResponse(NSError?)
   case receivedSocketMessage(Result<SocketService.Message, NSError>)
@@ -60,6 +61,9 @@ let socketReducer = Reducer<SocketState, SocketAction, SocketEnvironment> { stat
     return .none
     
   case let .getTransaction(transaction):
+    return .none
+    
+  case let .getQuote(orderBookDepthResponse):
     return .none
     
   case .socketOnOff:
@@ -108,6 +112,15 @@ let socketReducer = Reducer<SocketState, SocketAction, SocketEnvironment> { stat
         return .merge(
           receiveSocketMessageEffect,
           Effect(value: .getTransaction(Transaction(transactionSocketResponse: responseData)))
+        )
+      case "orderbookdepth":
+        let response = try JSONDecoder().decode(SocketResponse<QuoteListSocketResponse>.self, from: data)
+        guard let responseDatas = response.content?.list else {
+          return receiveSocketMessageEffect
+        }
+        return .merge(
+          receiveSocketMessageEffect,
+          Effect(value: .getQuote(OrderBookDepthResponse(quoteSocketResponses: responseDatas)))
         )
       default:
         return receiveSocketMessageEffect

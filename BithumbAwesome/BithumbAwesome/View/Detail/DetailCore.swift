@@ -137,7 +137,8 @@ let detailReducer = Reducer.combine([
     case .webSocket(.webSocket(.didOpenWithProtocol)):
       return .merge(
         Effect(value: .webSocket(.sendFilter("ticker", [state.ticker.underScoreString], ["30M"]))),
-        Effect(value: .webSocket(.sendFilter("transaction", [state.ticker.underScoreString], nil)))
+        Effect(value: .webSocket(.sendFilter("transaction", [state.ticker.underScoreString], nil))),
+        Effect(value: .webSocket(.sendFilter("orderbookdepth", [state.ticker.underScoreString], nil)))
       )
     case let .webSocket(.getTicker(ticker)):
       state.ticker = ticker
@@ -148,6 +149,10 @@ let detailReducer = Reducer.combine([
       )
     case let .webSocket(.getTransaction(transaction)):
       return Effect(value: .conclusionAction(.getTransactionData(transaction)))
+      
+    case let .webSocket(.getQuote(orderBookDepthResponse)):
+      return Effect(value: .quoteAction(.getQuote(orderBookDepthResponse)))
+      
     case .webSocket:
       return .none
       
