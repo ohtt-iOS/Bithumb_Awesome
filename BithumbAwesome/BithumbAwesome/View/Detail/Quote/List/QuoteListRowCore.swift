@@ -9,6 +9,7 @@ import ComposableArchitecture
 
 struct QuoteListRowState: Equatable {
   var datas: [OrderBookDepthModel]
+  var closingPrice: String?
 }
 
 enum QuoteListRowAction {

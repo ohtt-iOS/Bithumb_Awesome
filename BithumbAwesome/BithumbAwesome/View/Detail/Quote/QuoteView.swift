@@ -23,7 +23,10 @@ struct QuoteView: View {
               HStack(spacing: QuoteView.rowBlockPadding) {
                 QuoteListRow(
                   store: Store(
-                    initialState: QuoteListRowState(datas: viewStore.asks),
+                    initialState: QuoteListRowState(
+                      datas: viewStore.asks,
+                      closingPrice: viewStore.ticker.closingPrice
+                    ),
                     reducer: quoteListRowReducer,
                     environment: ()
                   ),
@@ -42,7 +45,10 @@ struct QuoteView: View {
                 VStack {
                   QuoteListRow(
                     store: Store(
-                      initialState: QuoteListRowState(datas: viewStore.bids),
+                      initialState: QuoteListRowState(
+                        datas: viewStore.bids,
+                        closingPrice: viewStore.ticker.closingPrice
+                      ),
                       reducer: quoteListRowReducer,
                       environment: ()
                     ),
