@@ -54,8 +54,8 @@ let appReducer = Reducer.combine([
     switch action {
     case .onAppear:
       return .merge(
-        Effect(value: .homeAction(.radioButtonAction(.buttonTap(.koreanWon)))),
-        Effect(value: .homeAction(.webSocket(.socketOnOff)))
+        Effect(value: .homeAction(.radioButtonAction(.buttonTap(.koreanWon))))
+//        Effect(value: .homeAction(.webSocket(.socketOnOff)))
         )
     case .homeAction:
       return .none
