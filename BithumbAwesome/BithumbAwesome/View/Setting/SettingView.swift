@@ -13,14 +13,19 @@ struct SettingView: View {
     VStack(spacing: 20) {
       LogoImageView()
       
-      SettingButtonView(textString: "오픈소스 라이선스")
+      SettingButtonView(type: .license)
       
-      SettingButtonView(textString: "어썸이 궁금하다면 ?")
+      Link(
+        destination: URL(string: AwesomeURL.notionPage)!,
+        label: {
+          SettingButtonView(type: .notion)
+        }
+      )
       
       HStack(spacing: 20) {
-        ProfileView(textString: "강경 @KangKyung")
-        
-        ProfileView(textString: "오뜨 @ohtt-iOS")
+        ForEach(ProfileType.allCases) { profileType in
+          ProfileLinkView(type: profileType)
+        }
       }
       
       Spacer()

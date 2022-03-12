@@ -29,5 +29,9 @@ extension Image {
   // MARK: asset image
   static let circle: Image = Image("Ellipse")
   static let coins: Image = Image("Money_perspective_matte")
+  
+  // MARK: profile image
+  static let profileKangkyung: Image = Image("profile_kangkyung")
+  static let profileOhtt: Image = Image("profile_ohtt")
 }
 

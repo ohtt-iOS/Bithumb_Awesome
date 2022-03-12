@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SettingButtonView: View {
-  let textString: String
+  let type: SettingButtonType
   
   var body: some View {
     HStack {
-      Text(self.textString)
+      Text(self.type.textString)
         .font(Font.heading4)
         .foregroundColor(Color.aGray3)
       

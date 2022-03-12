@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ProfileView: View {
-  let textString: String
+  let type: ProfileType
   
   var body: some View {
     HStack {
       Spacer()
       
       VStack {
-        Text(self.textString)
+        self.type.imageView
+        
+        Text(self.type.textString)
           .font(Font.heading4)
           .foregroundColor(Color.aGray3)
       }
