@@ -9,10 +9,9 @@ import ComposableArchitecture
 import SwiftUI
 
 struct QuoteView: View {
-  static let rowBlockPadding: CGFloat = 1
-  
   let store: Store<QuoteState, QuoteAction>
   
+  static let rowBlockPadding: CGFloat = 1
   private let scrollViewIdentifier: Int = 1
   
   var body: some View {
@@ -23,22 +22,46 @@ struct QuoteView: View {
             VStack(spacing: QuoteView.rowBlockPadding) {
               HStack(spacing: QuoteView.rowBlockPadding) {
                 QuoteListRow(
-                  type: QuoteOrderType.ask,
+                  store: Store(
+                    initialState: QuoteListRowState(
+                      datas: viewStore.asks,
+                      closingPrice: viewStore.ticker.closingPrice,
+                      openingPrice: viewStore.ticker.openingPrice
+                    ),
+                    reducer: quoteListRowReducer,
+                    environment: ()
+                  ),
+                  type: OrderType.ask,
                   blockWidth: self.rowBlockWith(rowWidth: geometryProxy.size.width)
                 )
                 
-                QuoteAdditionalInfomationList()
+                QuoteAdditionalInfomationList(ticker: viewStore.ticker)
                   .frame(width: self.rowBlockWith(rowWidth: geometryProxy.size.width))
+                  .padding(.bottom, 10)
               }
               
               HStack(spacing: QuoteView.rowBlockPadding) {
-                Spacer()
+                QuoteConclusionView(transactionData: viewStore.transactionData)
                   .frame(width: self.rowBlockWith(rowWidth: geometryProxy.size.width))
+                  .padding(.top, 10)
                 
-                QuoteListRow(
-                  type: QuoteOrderType.bid,
-                  blockWidth: self.rowBlockWith(rowWidth: geometryProxy.size.width)
-                )
+                VStack {
+                  QuoteListRow(
+                    store: Store(
+                      initialState: QuoteListRowState(
+                        datas: viewStore.bids,
+                        closingPrice: viewStore.ticker.closingPrice,
+                        openingPrice: viewStore.ticker.openingPrice
+                      ),
+                      reducer: quoteListRowReducer,
+                      environment: ()
+                    ),
+                    type: OrderType.bid,
+                    blockWidth: self.rowBlockWith(rowWidth: geometryProxy.size.width)
+                  )
+
+                  Spacer()
+                }
               }
             }
             .id(self.scrollViewIdentifier)

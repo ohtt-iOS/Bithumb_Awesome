@@ -63,6 +63,8 @@ struct HomeView: View {
                         DetailView(store: Store(
                           initialState: DetailState(
                             tickerData: tickerRowViewStore.state.ticker,
+                            bids: [],
+                            asks: [],
                             tickerSocketState: SocketState(),
                             priceState: PriceState(tickerData: tickerRowViewStore.state.ticker, isUnderLine: false),
                             chartState: ChartState(ticker: tickerRowViewStore.state.ticker, candleData: []),
@@ -82,7 +84,6 @@ struct HomeView: View {
                           }
                         }
                         .buttonStyle(FlatLinkStyle())
-                    
                   }
                 })
             }

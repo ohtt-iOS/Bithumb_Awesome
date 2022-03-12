@@ -14,11 +14,26 @@ struct DetailState: Equatable {
                                                     .quote,
                                                     .conclusion],
                                           selectedButton: .chart)
+  var bids: [OrderBookDepthModel]
+  var asks: [OrderBookDepthModel]
   
   var tickerSocketState: SocketState
   var priceState: PriceState
   var chartState: ChartState
-  var quoteState: QuoteState = .init()
+  var quoteState: QuoteState {
+    get {
+      QuoteState(
+        bids: self.bids,
+        asks: self.asks,
+        transactionData: self.conclusionState.transactionData,
+        ticker: self.ticker
+      )
+    }
+    set {
+      self.bids = newValue.bids
+      self.asks = newValue.asks
+    }
+  }
   var conclusionState: ConclusionState
 }
 
@@ -38,6 +53,7 @@ struct DetailEnvironment {
   var candleStickService: CandleStickService
   var transactionService: TransactionService
   var socketService: SocketService
+  var quoteService: QuoteService
 }
 
 struct TransactionID: Hashable {}
@@ -70,8 +86,8 @@ let detailReducer = Reducer.combine([
   quoteReducer.pullback(
     state: \.quoteState,
     action: /DetailAction.quoteAction,
-    environment: { _ in
-      QuoteEnvironment()
+    environment: {
+      QuoteEnvironment(quoteService: $0.quoteService, mainQueue: $0.mainQueue)
     }
   ) as Reducer<DetailState, DetailAction, DetailEnvironment>,
   conclusionReducer.pullback(
@@ -114,13 +130,15 @@ let detailReducer = Reducer.combine([
       return .merge(
         Effect(value: .webSocket(.socketOnOff)),
         Effect(value: .chartAction(.radioButtonAction(.buttonTap(.hour_24)))),
-        Effect(value: .conclusionAction(.onAppear))
+        Effect(value: .conclusionAction(.onAppear)),
+        Effect(value: .quoteAction(.onAppear))
       )
       
     case .webSocket(.webSocket(.didOpenWithProtocol)):
       return .merge(
-        Effect(value: .webSocket(.sendFilter("ticker", [state.tickerData.underScoreString], ["30M"]))),
-        Effect(value: .webSocket(.sendFilter("transaction", [state.tickerData.underScoreString], nil)))
+        Effect(value: .webSocket(.sendFilter("ticker", [state.ticker.underScoreString], ["30M"]))),
+        Effect(value: .webSocket(.sendFilter("transaction", [state.ticker.underScoreString], nil))),
+        Effect(value: .webSocket(.sendFilter("orderbookdepth", [state.ticker.underScoreString], nil)))
       )
     case let .webSocket(.getTicker(ticker)):
       state.tickerData = ticker
@@ -131,10 +149,17 @@ let detailReducer = Reducer.combine([
       )
     case let .webSocket(.getTransaction(transaction)):
       return Effect(value: .conclusionAction(.getTransactionData(transaction)))
+      
+    case let .webSocket(.getQuote(orderBookDepthResponse)):
+      return Effect(value: .quoteAction(.getQuote(orderBookDepthResponse)))
+      
     case .webSocket:
       return .none
       
     case .priceAction:
+      return .none
+      
+    case .quoteAction:
       return .none
     }
   }

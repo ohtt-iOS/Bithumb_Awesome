@@ -1,17 +1,18 @@
 //
-//  QuoteOrderType.swift
+//  OrderType.swift
 //  BithumbAwesome
 //
-//  Created by 강경 on 2022/03/05.
+//  Created by 강경 on 2022/03/10.
 //
 
 import SwiftUI
 
-enum QuoteOrderType {
-  case bid, ask
+enum OrderType: String, Codable {
+  case bid = "bid"
+  case ask = "ask"
 }
 
-extension QuoteOrderType {
+extension OrderType {
   var color: Color {
     switch self {
     case .bid:
@@ -22,5 +23,8 @@ extension QuoteOrderType {
   }
   var backgroundColor: Color {
     return self.color.opacity(0.1)
+  }
+  var rectangleColor: Color {
+    return self.color.opacity(0.2)
   }
 }

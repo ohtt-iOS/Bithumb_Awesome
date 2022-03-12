@@ -6,62 +6,106 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct QuoteListRow: View {
-  let type: QuoteOrderType
+  var store: Store<QuoteListRowState, QuoteListRowAction>
+  
+  let type: OrderType
   let blockWidth: CGFloat
   
   var body: some View {
-    VStack(spacing: QuoteView.rowBlockPadding) {
-      ForEach(0..<30) { index in
-        HStack(spacing: QuoteView.rowBlockPadding) {
-          if self.type == .ask {
+    WithViewStore(self.store) { viewStore in
+      VStack(spacing: QuoteView.rowBlockPadding) {
+        ForEach(viewStore.datas, id: \.id) { data in
+          HStack(spacing: QuoteView.rowBlockPadding) {
+            if self.type == .ask {
+              QuoteListRowBlock(
+                type: .ask,
+                data: data,
+                width: self.blockWidth,
+                topQuantity: self.topQuantity(of: viewStore.datas)
+              )
+            }
+            
             HStack {
               Spacer()
               
-              Text("2.0100")
+              Text(toPrice(price: data.price))
+                .font(Font.heading6)
+                .foregroundColor(
+                  self.priceColor(price: data.price, openingPrice: viewStore.openingPrice)
+                )
+              
+              Spacer()
+              
+              Text(self.pricePercentage(price: data.price, openingPrice: viewStore.openingPrice))
                 .font(Font.heading7)
-                .foregroundColor(Color.aGray4)
-                .padding(.trailing, 5)
+                .foregroundColor(
+                  self.priceColor(price: data.price, openingPrice: viewStore.openingPrice)
+                )
+                .padding(.trailing, 2.5)
                 .padding(.vertical, 15)
             }
             .background(self.type.backgroundColor)
             .frame(width: self.blockWidth)
-          }
-          
-          HStack {
-            Spacer()
+            .border(
+              data.price == viewStore.closingPrice ? Color.aGray4 : Color.clear,
+              width: 1
+            )
             
-            Text("3,385,000")
-              .font(Font.heading6)
-              .foregroundColor(Color.aRed1)
-            
-            Spacer()
-            
-            Text("+0.36%")
-              .font(Font.heading7)
-              .foregroundColor(Color.aRed1)
-              .padding(.trailing, 2.5)
-              .padding(.vertical, 15)
-          }
-          .background(self.type.backgroundColor)
-          .frame(width: self.blockWidth)
-          
-          if self.type == .bid {
-            HStack {
-              Text("2.0100")
-                .font(Font.heading7)
-                .foregroundColor(Color.aGray4)
-                .padding(.leading, 5)
-                .padding(.vertical, 15)
-              
-              Spacer()
+            if self.type == .bid {
+              QuoteListRowBlock(
+                type: .bid,
+                data: data,
+                width: self.blockWidth,
+                topQuantity: self.topQuantity(of: viewStore.datas)
+              )
             }
-            .background(self.type.backgroundColor)
-            .frame(width: self.blockWidth)
           }
         }
       }
     }
+  }
+  
+  private func topQuantity(of array: [OrderBookDepthModel]) -> Double {
+    let quantityArray: [Double] = array.map { data in
+      return Double(data.quantity) ?? 0
+    }
+
+    return quantityArray.max() ?? quantityArray.first!
+  }
+  private func priceColor(price: String, openingPrice: String?) -> Color {
+    let priceInt = Int(price) ?? 0
+    let openingPriceInt = Int(openingPrice ?? "0") ?? 0
+    return priceInt > openingPriceInt ? Color.aRed1 : Color.aBlue1
+  }
+
+  private func pricePercentage(price: String, openingPrice: String?) -> String {
+    let priceDouble = Double(price) ?? 0
+    let openingPriceDouble = Double(openingPrice ?? "0") ?? 0
+    let difference = (priceDouble - openingPriceDouble).magnitude
+    let sign = priceDouble > openingPriceDouble ? "+" :
+    (priceDouble < openingPriceDouble ? "-" : " ")
+    let number = (priceDouble == openingPriceDouble) ? "0.00" :
+    String(format: "%.2f", (difference / openingPriceDouble) * 100)
+    
+    return sign + number + "%"  }
+}
+
+private let numberFormatter: NumberFormatter = {
+  let numberFormatter = NumberFormatter()
+  numberFormatter.numberStyle = .decimal
+  return numberFormatter
+}()
+
+private func toPrice(price: String?) -> String {
+  guard let price = price,
+        let doubleValue = Double(price) else { return "" }
+  if doubleValue > 1 {
+    guard let number = numberFormatter.string(from: NSNumber(value: doubleValue)) else { return "" }
+    return number
+  } else {
+    return price
   }
 }

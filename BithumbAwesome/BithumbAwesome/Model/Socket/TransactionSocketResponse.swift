@@ -22,3 +22,16 @@ struct TransactionSocketResponse: Codable, Equatable {
         case contPrice, contQty, contAmt, contDtm, updn
     }
 }
+
+// MARK: - TransactionSocketResponse
+struct QuoteListSocketResponse: Codable, Equatable {
+  let list: [QuoteSocketResponse]
+}
+
+struct QuoteSocketResponse: Codable, Equatable {
+  let symbol: String
+  let orderType: String
+  let price: String
+  let quantity: String
+  let total: String
+}

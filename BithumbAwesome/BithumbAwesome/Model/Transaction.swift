@@ -8,13 +8,9 @@
 import Foundation
 
 struct Transaction: Codable, Equatable, Identifiable {
-  enum transactionType: String, Codable {
-    case bid = "bid"
-    case ask = "ask"
-  }
   var id = UUID()
   let transactionDate: String
-  let type: transactionType?
+  let type: OrderType?
   let unitsTraded: Double?
   let price: Double?
   let total: Double?
@@ -31,7 +27,7 @@ struct Transaction: Codable, Equatable, Identifiable {
   
   init(transactionResponse: TransactionResponse) {
     self.transactionDate = transactionResponse.transactionDate
-    self.type = transactionType(rawValue: transactionResponse.type)
+    self.type = OrderType(rawValue: transactionResponse.type)
     self.unitsTraded = Double(transactionResponse.unitsTraded)
     self.price = Double(transactionResponse.price)
     self.total = Double(transactionResponse.total)
@@ -40,7 +36,7 @@ struct Transaction: Codable, Equatable, Identifiable {
   init(transactionSocketResponse: TransactionSocketResponse) {
     let removeCommaDate = transactionSocketResponse.contDtm.split(separator: ".").first
     self.transactionDate = String(removeCommaDate ?? "")
-    self.type = transactionType(rawValue: transactionSocketResponse.buySellGB)
+    self.type = OrderType(rawValue: transactionSocketResponse.buySellGB)
     self.unitsTraded = Double(transactionSocketResponse.contQty) // 거래량
     self.price = Double(transactionSocketResponse.contPrice) // 거래가
     self.total = Double(transactionSocketResponse.contAmt) // 거래금액
