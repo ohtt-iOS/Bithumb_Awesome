@@ -9,21 +9,22 @@ import SwiftUI
 import ComposableArchitecture
 
 struct SettingView: View {
-  let store: Store<SettingState, SettingAction>
-  
   var body: some View {
-    WithViewStore(self.store) { viewStore in
-      Text("Setting")
+    VStack(spacing: 20) {
+      LogoImageView()
+      
+      SettingButtonView(textString: "오픈소스 라이선스")
+      
+      SettingButtonView(textString: "어썸이 궁금하다면 ?")
+      
+      HStack(spacing: 20) {
+        ProfileView(textString: "강경 @KangKyung")
+        
+        ProfileView(textString: "오뜨 @ohtt-iOS")
+      }
+      
+      Spacer()
     }
-  }
-}
-
-struct SettingView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingView(store: Store(
-      initialState: SettingState(),
-      reducer: settingReducer,
-      environment: SettingEnvironment()
-    ))
+    .padding(.horizontal, 20)
   }
 }
