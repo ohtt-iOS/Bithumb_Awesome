@@ -9,7 +9,7 @@ import ComposableArchitecture
 
 struct ChartState: Equatable {
   var radioButtonState = ChartRadioButtonState(buttons: ChartRadioButtonType.allCases,
-                                               selectedButton: .min_1)
+                                               selectedButton: .hour_24)
   var ticker: Ticker
   var candleData: [Candle]
 }

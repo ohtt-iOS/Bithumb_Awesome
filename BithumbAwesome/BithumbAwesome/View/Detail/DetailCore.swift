@@ -113,7 +113,7 @@ let detailReducer = Reducer.combine([
     case .onAppear:
       return .merge(
         Effect(value: .webSocket(.socketOnOff)),
-        Effect(value: .chartAction(.radioButtonAction(.buttonTap(.min_1)))),
+        Effect(value: .chartAction(.radioButtonAction(.buttonTap(.hour_24)))),
         Effect(value: .conclusionAction(.onAppear))
       )
       
