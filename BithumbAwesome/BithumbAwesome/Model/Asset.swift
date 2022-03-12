@@ -24,6 +24,6 @@ extension Asset {
 
 extension Asset: Equatable, Identifiable {
   var id: UUID {
-   UUID()
+   return UUID()
   }
 }

@@ -50,7 +50,6 @@
 		D17C652927C52803007705A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D17C652827C52803007705A7 /* Assets.xcassets */; };
 		D17C652C27C52803007705A7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D17C652B27C52803007705A7 /* Preview Assets.xcassets */; };
 		D17C653427C52871007705A7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D17C653327C52871007705A7 /* Alamofire */; };
-		D17C653727C5294D007705A7 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = D17C653627C5294D007705A7 /* Starscream */; };
 		D17C653A27C529B6007705A7 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = D17C653927C529B6007705A7 /* Charts */; };
 		D17C653D27C52B01007705A7 /* TabBar in Frameworks */ = {isa = PBXBuildFile; productRef = D17C653C27C52B01007705A7 /* TabBar */; };
 		D1847FF527CA736100213DD0 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = D1847FF427CA736100213DD0 /* ComposableArchitecture */; };
@@ -185,7 +184,6 @@
 				D17C653427C52871007705A7 /* Alamofire in Frameworks */,
 				D17C653A27C529B6007705A7 /* Charts in Frameworks */,
 				D17C653D27C52B01007705A7 /* TabBar in Frameworks */,
-				D17C653727C5294D007705A7 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +544,6 @@
 			name = BithumbAwesome;
 			packageProductDependencies = (
 				D17C653327C52871007705A7 /* Alamofire */,
-				D17C653627C5294D007705A7 /* Starscream */,
 				D17C653927C529B6007705A7 /* Charts */,
 				D17C653C27C52B01007705A7 /* TabBar */,
 				D1847FF427CA736100213DD0 /* ComposableArchitecture */,
@@ -944,11 +941,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D17C653227C52871007705A7 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		D17C653627C5294D007705A7 /* Starscream */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D17C653527C5294D007705A7 /* XCRemoteSwiftPackageReference "Starscream" */;
-			productName = Starscream;
 		};
 		D17C653927C529B6007705A7 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;

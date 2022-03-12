@@ -15,17 +15,23 @@ enum AwesomeTabType: Int, Tabbable {
   
   var icon: String {
     switch self {
-    case .home: return "house"
-    case .asset: return "menucard"
-    case .setting: return "gearshape"
+    case .home:
+      return "house"
+    case .asset:
+      return "menucard"
+    case .setting:
+      return "gearshape"
     }
   }
   
   var title: String {
     switch self {
-    case .home: return "First"
-    case .asset: return "Second"
-    case .setting: return "Third"
+    case .home:
+      return "First"
+    case .asset:
+      return "Second"
+    case .setting:
+      return "Third"
     }
   }
 }

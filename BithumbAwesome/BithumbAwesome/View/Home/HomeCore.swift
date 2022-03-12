@@ -37,7 +37,7 @@ struct HomeEnvironment {
 }
 
 struct TextFieldID: Hashable {}
-struct TickerId: Hashable {}
+struct TickerID: Hashable {}
 struct SocketTikcerID: Hashable {}
 
 let homeReducer = Reducer.combine(
@@ -156,7 +156,7 @@ private func requestTickerData(environment: HomeEnvironment,
     .getTickerData(order, payment)
     .receive(on: environment.mainQueue)
     .catchToEffect(HomeAction.tickerResponse)
-    .cancellable(id: TickerId(), cancelInFlight: true)
+    .cancellable(id: TickerID(), cancelInFlight: true)
 }
 
 private func requestFavoriteData(environment: HomeEnvironment,
@@ -165,6 +165,6 @@ private func requestFavoriteData(environment: HomeEnvironment,
     .getFavoriteData(underscope)
     .receive(on: environment.mainQueue)
     .catchToEffect(HomeAction.tickerResponse)
-    .cancellable(id: TickerId(), cancelInFlight: true)
+    .cancellable(id: TickerID(), cancelInFlight: true)
 }
 

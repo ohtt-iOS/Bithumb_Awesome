@@ -90,7 +90,8 @@ struct QuoteListRow: View {
     let number = (priceDouble == openingPriceDouble) ? "0.00" :
     String(format: "%.2f", (difference / openingPriceDouble) * 100)
     
-    return sign + number + "%"  }
+    return sign + number + "%"
+  }
 }
 
 private let numberFormatter: NumberFormatter = {
@@ -101,9 +102,15 @@ private let numberFormatter: NumberFormatter = {
 
 private func toPrice(price: String?) -> String {
   guard let price = price,
-        let doubleValue = Double(price) else { return "" }
+        let doubleValue = Double(price)
+  else {
+    return ""
+  }
   if doubleValue > 1 {
-    guard let number = numberFormatter.string(from: NSNumber(value: doubleValue)) else { return "" }
+    guard let number = numberFormatter.string(from: NSNumber(value: doubleValue))
+    else {
+      return ""
+    }
     return number
   } else {
     return price

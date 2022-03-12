@@ -13,7 +13,6 @@ struct HomeService {
   var getTickerData: (String, String) -> Effect<[Ticker], Failure>
   var getFavoriteData: ([String]) -> Effect<[Ticker], Failure>
   struct Failure: Error, Equatable {}
-  
 }
 extension HomeService {
   static let home = HomeService(

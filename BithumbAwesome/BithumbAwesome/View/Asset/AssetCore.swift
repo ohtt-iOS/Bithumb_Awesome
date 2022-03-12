@@ -21,7 +21,7 @@ struct AssetEnvironment {
   var mainQueue: AnySchedulerOf<DispatchQueue>
 }
 
-struct AssetId: Hashable {}
+struct AssetID: Hashable {}
 
 let assetReducer = Reducer<
   AssetState, AssetAction, AssetEnvironment
@@ -38,6 +38,6 @@ let assetReducer = Reducer<
       .fetchAssetData()
       .receive(on: environment.mainQueue)
       .catchToEffect(AssetAction.assetResponse)
-      .cancellable(id: AssetId(), cancelInFlight: true)
+      .cancellable(id: AssetID(), cancelInFlight: true)
   }
 }

@@ -36,22 +36,22 @@ struct SocketEnvironment {
   var websocket: SocketService
 }
 
-struct WebSocketId: Hashable {}
+struct WebSocketID: Hashable {}
 
 let socketReducer = Reducer<SocketState, SocketAction, SocketEnvironment> { state, action, environment in
   var receiveSocketMessageEffect: Effect<SocketAction, Never> {
-    return environment.websocket.receive(WebSocketId())
+    return environment.websocket.receive(WebSocketID())
       .receive(on: environment.mainQueue)
       .catchToEffect()
       .map(SocketAction.receivedSocketMessage)
-      .cancellable(id: WebSocketId())
+      .cancellable(id: WebSocketID())
   }
   var sendPingEffect: Effect<SocketAction, Never> {
-    return environment.websocket.sendPing(WebSocketId())
+    return environment.websocket.sendPing(WebSocketID())
       .delay(for: 10, scheduler: environment.mainQueue)
       .map(SocketAction.pingResponse)
       .eraseToEffect()
-      .cancellable(id: WebSocketId())
+      .cancellable(id: WebSocketID())
   }
   switch action {
     
@@ -69,15 +69,15 @@ let socketReducer = Reducer<SocketState, SocketAction, SocketEnvironment> { stat
     switch state.connectivityState {
     case .connected, .connecting:
       state.connectivityState = .disconnected
-      return .cancel(id: WebSocketId())
+      return .cancel(id: WebSocketID())
       
     case .disconnected:
       state.connectivityState = .connecting
-      return environment.websocket.open(WebSocketId(), URL(string: "wss://pubwss.bithumb.com/pub/ws")!, [])
+      return environment.websocket.open(WebSocketID(), URL(string: "wss://pubwss.bithumb.com/pub/ws")!, [])
         .receive(on: environment.mainQueue)
         .map(SocketAction.webSocket)
         .eraseToEffect()
-        .cancellable(id: WebSocketId())
+        .cancellable(id: WebSocketID())
     }
     
   case .pingResponse:
@@ -142,31 +142,30 @@ let socketReducer = Reducer<SocketState, SocketAction, SocketEnvironment> { stat
     }
     do {
       let data = try JSONSerialization.data(withJSONObject: parameter)
-      guard let dataString = String(data: data, encoding: .utf8) else { return .none }
-      return environment.websocket.send(WebSocketId(), .string(dataString))
+      guard let dataString = String(data: data, encoding: .utf8)
+      else {
+        return .none
+      }
+      return environment.websocket.send(WebSocketID(), .string(dataString))
         .receive(on: environment.mainQueue)
         .eraseToEffect()
         .map(SocketAction.sendResponse)
-        .cancellable(id: WebSocketId())
+        .cancellable(id: WebSocketID())
     } catch {
       return .none
     }
     
   case let .sendResponse(error):
-    if error != nil {
-    }
     return .none
     
   case let .webSocket(.didClose(code, _)):
     state.connectivityState = .disconnected
-    return .cancel(id: WebSocketId())
+    return .cancel(id: WebSocketID())
     
   case let .webSocket(.didBecomeInvalidWithError(error)),
     let .webSocket(.didCompleteWithError(error)):
     state.connectivityState = .disconnected
-    if error != nil {
-    }
-    return .cancel(id: WebSocketId())
+    return .cancel(id: WebSocketID())
     
   case .webSocket(.didOpenWithProtocol):
     state.connectivityState = .connected
@@ -176,6 +175,6 @@ let socketReducer = Reducer<SocketState, SocketAction, SocketEnvironment> { stat
     )
     
   case .cancel:
-    return .cancel(id: WebSocketId())
+    return .cancel(id: WebSocketID())
   }
 }

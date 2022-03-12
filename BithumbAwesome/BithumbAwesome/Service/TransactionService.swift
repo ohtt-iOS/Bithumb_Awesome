@@ -34,7 +34,10 @@ extension TransactionService {
           switch response.result {
           case .success(_):
             guard let value = response.value,
-                  let status = response.response?.statusCode else { return }
+                  let status = response.response?.statusCode
+            else {
+              return
+            }
             switch status {
             case 200:
               do {

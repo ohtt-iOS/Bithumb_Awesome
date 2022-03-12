@@ -16,11 +16,11 @@ struct SocketService {
     case didCompleteWithError(NSError?)
     case didOpenWithProtocol(String?)
   }
-
+  
   enum Message: Equatable {
     case data(Data)
     case string(String)
-
+    
     init?(_ message: URLSessionWebSocketTask.Message) {
       switch message {
       case let .data(data):
@@ -31,7 +31,7 @@ struct SocketService {
         return nil
       }
     }
-
+    
     static func == (lhs: Self, rhs: Self) -> Bool {
       switch (lhs, rhs) {
       case let (.data(lhs), .data(rhs)):
@@ -43,7 +43,7 @@ struct SocketService {
       }
     }
   }
-
+  
   var cancel: (AnyHashable, URLSessionWebSocketTask.CloseCode, Data?) -> Effect<Never, Never>
   var open: (AnyHashable, URL, [String]) -> Effect<Action, Never>
   var receive: (AnyHashable) -> Effect<Message, NSError>
@@ -54,11 +54,11 @@ struct SocketService {
 extension SocketService {
   static let live = SocketService(
     cancel: { id, closeCode, reason in
-      .fireAndForget {
-        dependencies[id]?.task.cancel(with: closeCode, reason: reason)
-        dependencies[id]?.subscriber.send(completion: .finished)
-        dependencies[id] = nil
-      }
+        .fireAndForget {
+          dependencies[id]?.task.cancel(with: closeCode, reason: reason)
+          dependencies[id]?.subscriber.send(completion: .finished)
+          dependencies[id] = nil
+        }
     },
     open: { id, url, protocols in
       Effect.run { subscriber in
@@ -87,32 +87,32 @@ extension SocketService {
       }
     },
     receive: { id in
-      .future { callback in
-        dependencies[id]?.task.receive { result in
-          switch result.map(Message.init) {
-          case let .success(.some(message)):
-            callback(.success(message))
-          case .success(.none):
-            callback(.failure(NSError.init(domain: "co.ohtt", code: 1)))
-          case let .failure(error):
-            callback(.failure(error as NSError))
+        .future { callback in
+          dependencies[id]?.task.receive { result in
+            switch result.map(Message.init) {
+            case let .success(.some(message)):
+              callback(.success(message))
+            case .success(.none):
+              callback(.failure(NSError.init(domain: "co.ohtt", code: 1)))
+            case let .failure(error):
+              callback(.failure(error as NSError))
+            }
           }
         }
-      }
     },
     send: { id, message in
-      .future { callback in
-        dependencies[id]?.task.send(message) { error in
-          callback(.success(error as NSError?))
+        .future { callback in
+          dependencies[id]?.task.send(message) { error in
+            callback(.success(error as NSError?))
+          }
         }
-      }
     },
     sendPing: { id in
-      .future { callback in
-        dependencies[id]?.task.sendPing { error in
-          callback(.success(error as NSError?))
+        .future { callback in
+          dependencies[id]?.task.sendPing { error in
+            callback(.success(error as NSError?))
+          }
         }
-      }
     })
 }
 
@@ -128,7 +128,7 @@ private class WebSocketDelegate: NSObject, URLSessionWebSocketDelegate {
   let didClose: (URLSessionWebSocketTask.CloseCode, Data?) -> Void
   let didCompleteWithError: (Error?) -> Void
   let didOpenWithProtocol: (String?) -> Void
-
+  
   init(
     didBecomeInvalidWithError: @escaping (Error?) -> Void,
     didClose: @escaping (URLSessionWebSocketTask.CloseCode, Data?) -> Void,
@@ -140,7 +140,7 @@ private class WebSocketDelegate: NSObject, URLSessionWebSocketDelegate {
     self.didCompleteWithError = didCompleteWithError
     self.didClose = didClose
   }
-
+  
   func urlSession(
     _ session: URLSession,
     webSocketTask: URLSessionWebSocketTask,
@@ -148,7 +148,7 @@ private class WebSocketDelegate: NSObject, URLSessionWebSocketDelegate {
   ) {
     self.didOpenWithProtocol(`protocol`)
   }
-
+  
   func urlSession(
     _ session: URLSession,
     webSocketTask: URLSessionWebSocketTask,
@@ -157,11 +157,11 @@ private class WebSocketDelegate: NSObject, URLSessionWebSocketDelegate {
   ) {
     self.didClose(closeCode, reason)
   }
-
+  
   func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
     self.didCompleteWithError(error)
   }
-
+  
   func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
     self.didBecomeInvalidWithError(error)
   }

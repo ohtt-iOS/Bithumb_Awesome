@@ -16,6 +16,5 @@ struct AwesomeButtonStyle: ButtonStyle {
       .foregroundColor(isSelected ? Color.aGray1 : Color.aGray3)
       .background(isSelected ? Color.aGray3 : Color.aGray1)
       .cornerRadius(20.0)
-    
   }
 }

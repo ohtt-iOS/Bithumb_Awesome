@@ -17,7 +17,8 @@ enum RadioButtonAction: Equatable {
   case buttonTap(AwesomeButtonType)
 }
 
-struct RadioButtonEnvironment { }
+struct RadioButtonEnvironment {
+}
 
 let radioButtonReducer = Reducer<RadioButtonState, RadioButtonAction, RadioButtonEnvironment> { state, action, environment in
   switch action {

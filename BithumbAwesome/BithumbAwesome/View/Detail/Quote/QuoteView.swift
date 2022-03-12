@@ -75,6 +75,6 @@ struct QuoteView: View {
   }
   
   private func rowBlockWith(rowWidth: CGFloat) -> CGFloat {
-    (rowWidth - (QuoteView.rowBlockPadding * 2)) / 3
+    return (rowWidth - (QuoteView.rowBlockPadding * 2)) / 3
   }
 }

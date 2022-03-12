@@ -24,13 +24,19 @@ struct Ticker: Codable, Equatable, Identifiable {
   let isKRW: Bool
   
   var name: String {
-    guard let name = CryptoCurrencyType.init(rawValue: ticker)?.koreanString else { return ticker }
+    guard let name = CryptoCurrencyType.init(rawValue: ticker)?.koreanString
+    else {
+      return ticker
+    }
     return name
   }
   
   var textColor: Color {
     guard let value = fluctateRate24H,
-          let doubleValue = Double(value) else { return Color.aGray2 }
+          let doubleValue = Double(value)
+    else {
+      return Color.aGray2
+    }
     switch doubleValue {
     case 0:
       return Color.aGray2
