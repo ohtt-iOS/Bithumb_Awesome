@@ -26,7 +26,7 @@ struct DetailState: Equatable {
         bids: self.bids,
         asks: self.asks,
         transactionData: self.conclusionState.transactionData,
-        ticker: self.ticker
+        ticker: self.tickerData
       )
     }
     set {
@@ -136,9 +136,9 @@ let detailReducer = Reducer.combine([
       
     case .webSocket(.webSocket(.didOpenWithProtocol)):
       return .merge(
-        Effect(value: .webSocket(.sendFilter("ticker", [state.ticker.underScoreString], ["30M"]))),
-        Effect(value: .webSocket(.sendFilter("transaction", [state.ticker.underScoreString], nil))),
-        Effect(value: .webSocket(.sendFilter("orderbookdepth", [state.ticker.underScoreString], nil)))
+        Effect(value: .webSocket(.sendFilter("ticker", [state.tickerData.underScoreString], ["30M"]))),
+        Effect(value: .webSocket(.sendFilter("transaction", [state.tickerData.underScoreString], nil))),
+        Effect(value: .webSocket(.sendFilter("orderbookdepth", [state.tickerData.underScoreString], nil)))
       )
     case let .webSocket(.getTicker(ticker)):
       state.tickerData = ticker
