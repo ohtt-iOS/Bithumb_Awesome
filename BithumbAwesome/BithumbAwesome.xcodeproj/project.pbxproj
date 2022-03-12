@@ -33,6 +33,7 @@
 		C6B6A1EC27CE694E00C4303F /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6A1EB27CE694E00C4303F /* PriceView.swift */; };
 		C6B861CC27D9E7360040F08B /* QuoteListRowBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B861CB27D9E7360040F08B /* QuoteListRowBlock.swift */; };
 		C6B861CE27D9EB610040F08B /* QuoteConclusionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B861CD27D9EB610040F08B /* QuoteConclusionView.swift */; };
+		C6CBA8A927DCB9AD00D48DA2 /* LogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CBA8A827DCB9AD00D48DA2 /* LogoImageView.swift */; };
 		C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630B27C7D03D00E6DD98 /* Color+.swift */; };
 		C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630D27C7D47400E6DD98 /* Font+.swift */; };
 		D100F97027D5EDA30089F30E /* VerticalDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D100F96F27D5EDA30089F30E /* VerticalDivider.swift */; };
@@ -118,6 +119,7 @@
 		C6B6A1EB27CE694E00C4303F /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
 		C6B861CB27D9E7360040F08B /* QuoteListRowBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteListRowBlock.swift; sourceTree = "<group>"; };
 		C6B861CD27D9EB610040F08B /* QuoteConclusionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteConclusionView.swift; sourceTree = "<group>"; };
+		C6CBA8A827DCB9AD00D48DA2 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
 		C6DA630B27C7D03D00E6DD98 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		C6DA630D27C7D47400E6DD98 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		D100F96F27D5EDA30089F30E /* VerticalDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalDivider.swift; sourceTree = "<group>"; };
@@ -294,6 +296,14 @@
 			path = Divider;
 			sourceTree = "<group>";
 		};
+		C6CBA8A727DCB9A000D48DA2 /* LogoImage */ = {
+			isa = PBXGroup;
+			children = (
+				C6CBA8A827DCB9AD00D48DA2 /* LogoImageView.swift */,
+			);
+			path = LogoImage;
+			sourceTree = "<group>";
+		};
 		C6DA630A27C7D02C00E6DD98 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +446,7 @@
 		D184809927CD115500213DD0 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				C6CBA8A727DCB9A000D48DA2 /* LogoImage */,
 				D15E61FE27D3BD8C008ADB72 /* ChartRadioButton */,
 				C6B6344327D35E2A009B2E97 /* Divider */,
 				D10E601127D0874600B68BCF /* FlatLink */,
@@ -635,6 +646,7 @@
 				D18480A127CD191D00213DD0 /* AwesomeButtonStyle.swift in Sources */,
 				D184800C27CA75EA00213DD0 /* SettingCore.swift in Sources */,
 				D1CB407E27D27AB200AC3AFA /* CandleStickService.swift in Sources */,
+				C6CBA8A927DCB9AD00D48DA2 /* LogoImageView.swift in Sources */,
 				D15D4FAF27D0905700E5E687 /* Ticker.swift in Sources */,
 				C6A7AD7B27CE58F200851AA9 /* UINavigationController+.swift in Sources */,
 				D1CB408227D27AE900AC3AFA /* Candle.swift in Sources */,

@@ -14,12 +14,7 @@ struct AssetView: View {
   var body: some View {
     WithViewStore(self.store) { viewStore in
       VStack(spacing: 0) {
-        HStack {
-          Image.logo
-            .resizable()
-            .frame(width: 216, height: 61, alignment: .leading)
-          Spacer()
-        }
+        LogoImageView()
         
         List {
           Section(header: AssetListHeader()) {

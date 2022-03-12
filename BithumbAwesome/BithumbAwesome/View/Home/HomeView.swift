@@ -14,10 +14,7 @@ struct HomeView: View {
   var body: some View {
     WithViewStore(self.store) { viewStore in
       VStack(alignment: .leading) {
-        Image.logo
-          .resizable()
-          .frame(width: 216, height: 61, alignment: .leading)
-        Spacer()
+        LogoImageView()
         
         ScrollView(.horizontal, showsIndicators: false) {
           RadioButtonView(
