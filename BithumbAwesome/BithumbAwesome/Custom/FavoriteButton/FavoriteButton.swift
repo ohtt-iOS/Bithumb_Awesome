@@ -13,7 +13,7 @@ struct FavoriteButton: View {
   
   var body: some View {
     WithViewStore(self.store) { viewStore in
-      (viewStore.state.isFavorited ? Image.favoriteFillButton : Image.favoriteEmptyButton)
+      (viewStore.isFavorited ? Image.favoriteFillButton : Image.favoriteEmptyButton)
         .resizable()
         .frame(width: 40, height: 40)
         .onTapGesture {

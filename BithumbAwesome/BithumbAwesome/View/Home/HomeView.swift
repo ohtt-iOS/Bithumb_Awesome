@@ -59,13 +59,13 @@ struct HomeView: View {
                       destination:
                         DetailView(store: Store(
                           initialState: DetailState(
-                            tickerData: tickerRowViewStore.state.ticker,
+                            tickerData: tickerRowViewStore.ticker,
                             bids: [],
                             asks: [],
                             tickerSocketState: SocketState(),
-                            priceState: PriceState(tickerData: tickerRowViewStore.state.ticker, isUnderLine: false),
-                            chartState: ChartState(ticker: tickerRowViewStore.state.ticker, candleData: []),
-                            conclusionState: ConclusionState(ticker: tickerRowViewStore.state.ticker, transactionData: [])),
+                            priceState: PriceState(tickerData: tickerRowViewStore.ticker, isUnderLine: false),
+                            chartState: ChartState(ticker: tickerRowViewStore.ticker, candleData: []),
+                            conclusionState: ConclusionState(ticker: tickerRowViewStore.ticker, transactionData: [])),
                           reducer: detailReducer,
                           environment: DetailEnvironment(mainQueue: .main,
                                                          candleStickService: .candle,

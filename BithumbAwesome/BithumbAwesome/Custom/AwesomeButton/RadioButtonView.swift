@@ -33,7 +33,7 @@ struct RadioButtonView: View {
   var body: some View {
     WithViewStore(self.store) { viewStore in
       HStack(spacing: 15) {
-        ForEach(viewStore.state.buttons) { button in
+        ForEach(viewStore.buttons) { button in
           let selectedState = button == viewStore.selectedButton
           Button(
             action: {
