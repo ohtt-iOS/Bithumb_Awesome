@@ -11,6 +11,8 @@ struct OpenSourceLibraryDetailView: View {
   let titleString: String
   let contentString: String
   
+  @State private var isOpen: Bool = false
+  
   var body: some View {
     VStack(alignment: .leading, spacing: 20) {
       HStack {
@@ -25,13 +27,18 @@ struct OpenSourceLibraryDetailView: View {
           .frame(width: 24, height: 24)
       }
       
-      Text(self.contentString)
-        .font(Font.heading6)
-        .foregroundColor(Color.aGray3)
-        .lineLimit(nil)
+      if self.isOpen {
+        Text(self.contentString)
+          .font(Font.heading6)
+          .foregroundColor(Color.aGray3)
+          .lineLimit(nil)
+      }
     }
     .padding(20)
     .background(Color.aGray1)
-    .cornerRadius(10)\
+    .cornerRadius(10)
+    .onTapGesture {
+      self.isOpen.toggle()
+    }
   }
 }
