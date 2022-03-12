@@ -5,9 +5,9 @@
 //  Created by ohtt on 2022/03/03.
 //
 
-import Alamofire
 import Combine
 import ComposableArchitecture
+import Alamofire
 
 struct HomeService {
   var getTickerData: (String, String) -> Effect<[Ticker], Failure>

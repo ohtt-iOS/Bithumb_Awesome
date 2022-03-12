@@ -5,9 +5,9 @@
 //  Created by ohtt on 2022/03/03.
 //
 
-import ComposableArchitecture
-import Combine
 import SwiftUI
+import Combine
+import ComposableArchitecture
 
 struct TickerState: Equatable, Identifiable {
   var id: UUID

@@ -5,9 +5,9 @@
 //  Created by 강경 on 2022/03/04.
 //
 
-import Alamofire
 import Combine
 import ComposableArchitecture
+import Alamofire
 
 struct QuoteService {
   var getOrderBookDepth: (String) -> Effect<OrderBookDepthResponse, Failure>

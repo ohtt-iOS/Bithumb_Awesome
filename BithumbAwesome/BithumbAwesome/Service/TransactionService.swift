@@ -5,9 +5,9 @@
 //  Created by ohtt on 2022/03/04.
 //
 
-import Alamofire
 import Combine
 import ComposableArchitecture
+import Alamofire
 
 struct TransactionService {
   var getTransactionData: (String) -> Effect<[Transaction], Failure>

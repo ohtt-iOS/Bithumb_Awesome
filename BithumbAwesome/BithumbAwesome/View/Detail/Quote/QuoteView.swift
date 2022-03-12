@@ -5,8 +5,8 @@
 //  Created by ohtt on 2022/03/02.
 //
 
-import ComposableArchitecture
 import SwiftUI
+import ComposableArchitecture
 
 struct QuoteView: View {
   let store: Store<QuoteState, QuoteAction>

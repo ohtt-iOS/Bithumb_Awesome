@@ -5,10 +5,9 @@
 //  Created by ohtt on 2022/03/05.
 //
 
-
-import Alamofire
 import Combine
 import ComposableArchitecture
+import Alamofire
 
 struct CandleStickService {
   var getCandleData: (String, ChartRadioButtonType) -> Effect<[Candle], Failure>

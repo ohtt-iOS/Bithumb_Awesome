@@ -5,8 +5,8 @@
 //  Created by ohtt on 2022/02/26.
 //
 
-import ComposableArchitecture
 import SwiftUI
+import ComposableArchitecture
 
 struct SettingView: View {
   let store: Store<SettingState, SettingAction>

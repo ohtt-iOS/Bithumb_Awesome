@@ -5,9 +5,9 @@
 //  Created by ohtt on 2022/03/04.
 //
 
-import ComposableArchitecture
-import Combine
 import SwiftUI
+import Combine
+import ComposableArchitecture
 
 struct PriceState: Equatable {
   var tickerData: Ticker

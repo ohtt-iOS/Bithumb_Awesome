@@ -5,8 +5,8 @@
 //  Created by ohtt on 2022/03/02.
 //
 
-import ComposableArchitecture
 import Combine
+import ComposableArchitecture
 
 struct QuoteState: Equatable {
   var bids: [OrderBookDepthModel]

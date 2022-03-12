@@ -5,9 +5,9 @@
 //  Created by ohtt on 2022/03/07.
 //
 
+import SwiftUI
 import Combine
 import ComposableArchitecture
-import SwiftUI
 
 struct SocketService {
   enum Action: Equatable {

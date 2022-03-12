@@ -5,8 +5,8 @@
 //  Created by ohtt on 2022/03/05.
 //
 
-import Charts
 import SwiftUI
+import Charts
 
 struct CandleChartView: UIViewRepresentable {
   var chartData: [Candle]

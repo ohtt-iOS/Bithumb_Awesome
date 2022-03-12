@@ -5,8 +5,8 @@
 //  Created by 강경 on 2022/03/10.
 //
 
-import ComposableArchitecture
 import SwiftUI
+import ComposableArchitecture
 
 struct QuoteConclusionView: View {
   var transactionData: [Transaction]

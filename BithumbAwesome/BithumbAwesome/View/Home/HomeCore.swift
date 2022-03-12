@@ -6,7 +6,6 @@
 //
 
 import ComposableArchitecture
-import Foundation
 
 struct HomeState: Equatable {
   var filteredTickers = IdentifiedArrayOf<TickerState>()

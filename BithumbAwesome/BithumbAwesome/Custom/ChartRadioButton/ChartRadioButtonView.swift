@@ -5,8 +5,8 @@
 //  Created by ohtt on 2022/03/06.
 //
 
-import ComposableArchitecture
 import SwiftUI
+import ComposableArchitecture
 
 struct ChartRadioButtonState: Equatable {
   var buttons: [ChartRadioButtonType]
