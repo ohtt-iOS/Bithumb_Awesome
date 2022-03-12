@@ -34,7 +34,7 @@ extension AwesomeButtonType {
     case .quote:
       return "호가"
     case .conclusion:
-      return "채결"
+      return "체결"
     }
   }
   var iconImage: Image {
