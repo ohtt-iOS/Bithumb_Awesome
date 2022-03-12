@@ -11,6 +11,7 @@ import ComposableArchitecture
 
 struct HomeService {
   var getTickerData: (String, String) -> Effect<[Ticker], Failure>
+  var getFavoriteData: ([String]) -> Effect<[Ticker], Failure>
   struct Failure: Error, Equatable {}
   
 }
@@ -33,8 +34,8 @@ extension HomeService {
         dataRequest
           .validate(statusCode: 200..<300)
           .responseData{ (response) in
-          switch response.result {
-          case .success(let value):
+            switch response.result {
+            case .success(let value):
               do {
                 if let json = try JSONSerialization.jsonObject(with: value, options: []) as? [String: Any] {
                   var items = json["data"] as? [String: Any]
@@ -49,13 +50,72 @@ extension HomeService {
               } catch {
                 subscriber.send(completion: .failure(Failure()))
               }
-          case .failure(_):
-            subscriber.send(completion: .failure(Failure()))
-            break
+            case .failure(_):
+              subscriber.send(completion: .failure(Failure()))
+              break
+            }
           }
-        }
         return AnyCancellable {}
       }
+    },
+    getFavoriteData: { underscope in
+      let result: AnyPublisher<[Ticker], Failure> =
+      Publishers
+        .MergeMany(
+          underscope.map { str in
+            requestData(underscope: str)
+          }
+        )
+        .collect()
+        .eraseToAnyPublisher()
+      return result
+        .eraseToEffect()
     }
   )
+}
+
+private func requestData(underscope: String) -> AnyPublisher<Ticker, HomeService.Failure> {
+  let URL = "https://api.bithumb.com/public/ticker/\(underscope)"
+  print("🔗 URL : \(URL)")
+  let headers: HTTPHeaders = [
+    "Content-Type": "application/json",
+  ]
+  let dataRequest = AF.request(
+    URL,
+    method: .get,
+    encoding: JSONEncoding.default,
+    headers: headers
+  )
+  
+  return Future<Ticker, HomeService.Failure> { completion in
+    dataRequest
+      .validate(statusCode: 200..<300)
+      .responseData{ (response) in
+        switch response.result {
+        case .success(let value):
+          do {
+            let result = try JSONDecoder().decode(ResponseSimpleResult<TickerResponse>.self,
+                                                  from: value)
+            let data = underscope.split(separator: "_")
+            
+            guard let orderCurrency = data.first,
+                  let paymentCurrency = data.last,
+                  let tickerResponse = result.data
+            else {
+              return
+            }
+            let isKRW = (String(paymentCurrency) == "KRW")
+            let ticker = Ticker(
+              ticker: String(orderCurrency),
+              isKRW: isKRW,
+              tickerResponse: tickerResponse
+            )
+            completion(.success(ticker))
+          } catch {
+          }
+        case .failure(_):
+          break
+        }
+      }
+  }.eraseToAnyPublisher()
 }

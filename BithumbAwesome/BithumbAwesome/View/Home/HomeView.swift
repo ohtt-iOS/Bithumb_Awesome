@@ -33,10 +33,10 @@ struct HomeView: View {
           Image.searchButton
             .frame(width: 30, height: 30)
           TextField("티커명을 입력해주세요",
-            text: viewStore.binding(
-              get: \.searchText,
-              send: HomeAction.searchTextFieldChanged
-            )
+                    text: viewStore.binding(
+                      get: \.searchText,
+                      send: HomeAction.searchTextFieldChanged
+                    )
           )
             .accentColor(Color.aGray2)
         }
@@ -48,52 +48,48 @@ struct HomeView: View {
           .padding(.horizontal, 14)
           .padding(.top, 14)
         
-        if !viewStore.filteredData.isEmpty {
-        ScrollView(showsIndicators: false) {
-          VStack(spacing: 10) {
-            ForEach(viewStore.filteredData, id: \.id) { ticker in
-              NavigationLink(
-                destination:
-                  DetailView(store: Store(
-                    initialState: DetailState(
-                      ticker: ticker,
-                      bids: [],
-                      asks: [],
-                      tickerSocketState: SocketState(),
-                      priceState: PriceState(tickerData: ticker),
-                      chartState: ChartState(ticker: ticker, candleData: []),
-                      conclusionState: ConclusionState(ticker: ticker, transactionData: [])),
-                    reducer: detailReducer,
-                    environment: DetailEnvironment(mainQueue: .main,
-                                                   candleStickService: .candle,
-                                                   transactionService: .transaction,
-                                                   socketService: .live,
-                                                   quoteService: .quote)
-                  ))){
-                    VStack {
-                      TickerRowView(
-                        store: Store(
-                          initialState: TickerState(
-                            ticker: ticker
-                          ),
-                          reducer: tickerReducer,
-                          environment: ()
-                        )
-                      )
-                        .frame(height: 40)
-                        .padding(.horizontal, 14)
-                      Rectangle()
-                        .frame(height: 1, alignment: .center)
-                        .foregroundColor(Color.aGray1)
-                    }
+        if !viewStore.filteredTickers.isEmpty {
+          ScrollView(showsIndicators: false) {
+            LazyVStack(spacing: 0) {
+              ForEachStore(
+                store.scope(
+                  state: \.filteredTickers,
+                  action: HomeAction.tickerRow(id:action:)
+                ),
+                content: { tickerRowStore in
+                  WithViewStore(tickerRowStore) { tickerRowViewStore in
+                    NavigationLink(
+                      destination:
+                        DetailView(store: Store(
+                          initialState: DetailState(
+                            tickerData: tickerRowViewStore.state.ticker,
+                            bids: [],
+                            asks: [],
+                            tickerSocketState: SocketState(),
+                            priceState: PriceState(tickerData: tickerRowViewStore.state.ticker, isUnderLine: false),
+                            chartState: ChartState(ticker: tickerRowViewStore.state.ticker, candleData: []),
+                            conclusionState: ConclusionState(ticker: tickerRowViewStore.state.ticker, transactionData: [])),
+                          reducer: detailReducer,
+                          environment: DetailEnvironment(mainQueue: .main,
+                                                         candleStickService: .candle,
+                                                         transactionService: .transaction,
+                                                         socketService: .live)
+                        ))){
+                          VStack(spacing: 0) {
+                            TickerRowView(store: tickerRowStore)
+                              .frame(height: 60)
+                            Rectangle()
+                              .frame(height: 1, alignment: .center)
+                              .foregroundColor(Color.aGray1)
+                          }
+                        }
+                        .buttonStyle(FlatLinkStyle())
                   }
-                  .buttonStyle(FlatLinkStyle())
+                })
             }
+            .padding(.bottom, 80)
           }
-          .padding(.top, 14)
-          .padding(.bottom, 80)
-        }
-        .frame(maxWidth: .infinity)
+          .frame(maxWidth: .infinity)
         } else {
           VStack {
             Spacer()

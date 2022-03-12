@@ -44,7 +44,7 @@ struct TickerRowView: View {
           
           Spacer()
           VStack(alignment: .trailing) {
-            Text((viewStore.ticker.fluctateRate24H ?? "") + "%" )
+            Text(percentText(of: viewStore.ticker.fluctateRate24H))
               .frame(width: g.size.width/4.5, alignment: .trailing)
               .font(.heading6)
               .foregroundColor(viewStore.ticker.textColor)
@@ -71,6 +71,9 @@ struct TickerRowView: View {
             }
           }
         }
+        .frame(height: 60)
+        .padding(.horizontal, 14)
+        .background(viewStore.isUnderLine ? viewStore.backgroundColor.opacity(0.1) : Color.clear)
       }
     }
   }
@@ -112,6 +115,12 @@ private func setformat(of tradeValue: String?) -> String {
     return String(round(doubleValue * 1000) / 1000)
   }
 }
+
+private func percentText(of percent: String?) -> String {
+  guard let percent = percent else { return "-" }
+  return percent + "%"
+}
+
 
 private func toKRWTradeValue(of tradeValue: String?) -> String {
   guard let btcValue = tradeValue,

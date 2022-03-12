@@ -30,6 +30,7 @@ enum SocketAction: Equatable {
   case sendFilter(String, [String], [String]?)
   case sendResponse(NSError?)
   case webSocket(SocketService.Action)
+  case cancel
 }
 
 struct SocketEnvironment {
@@ -178,5 +179,8 @@ let socketReducer = Reducer<SocketState, SocketAction, SocketEnvironment> { stat
       receiveSocketMessageEffect,
       sendPingEffect
     )
+    
+  case .cancel:
+    return .cancel(id: WebSocketId())
   }
 }

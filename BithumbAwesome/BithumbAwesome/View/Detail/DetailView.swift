@@ -15,7 +15,7 @@ struct DetailView: View {
   var body: some View {
     WithViewStore(self.store) { viewStore in
       VStack(alignment: .leading) {
-        ANavigationBarView(titleTextString: viewStore.ticker.name,
+        ANavigationBarView(tickerData: viewStore.tickerData,
                            presentationMode: self.presentationMode)
         
         PriceView(
@@ -40,9 +40,6 @@ struct DetailView: View {
       }
       .onAppear {
         viewStore.send(.onAppear)
-      }
-      .onDisappear {
-        viewStore.send(.webSocket(.socketOnOff))
       }
     }
   }

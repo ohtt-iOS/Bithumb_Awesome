@@ -8,7 +8,7 @@
 import ComposableArchitecture
 
 struct AppState: Equatable {
-  var homeState: HomeState = .init(tickerData: [], filteredData: [])
+  var homeState: HomeState = .init(tickerData: [], socketState: SocketState())
   var assetState: AssetState = .init(assetData: [])
   var settingState: SettingState = .init()
 }
@@ -32,6 +32,7 @@ let appReducer = Reducer.combine([
     action: /AppAction.homeAction,
     environment: { _ in
       HomeEnvironment(homeService: .home,
+                      socketService: .live,
                       mainQueue: .main)
     }
   ) as Reducer<AppState, AppAction, AppEnvironment>,
@@ -52,7 +53,10 @@ let appReducer = Reducer.combine([
   Reducer<AppState, AppAction, AppEnvironment> { state, action, environment in
     switch action {
     case .onAppear:
-      return Effect(value: .homeAction(.radioButtonAction(.buttonTap(.koreanWon))))
+      return .merge(
+        Effect(value: .homeAction(.radioButtonAction(.buttonTap(.koreanWon))))
+//        Effect(value: .homeAction(.webSocket(.socketOnOff)))
+        )
     case .homeAction:
       return .none
     case .assetAction:

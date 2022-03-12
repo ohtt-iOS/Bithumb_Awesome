@@ -8,7 +8,7 @@
 import ComposableArchitecture
 
 struct DetailState: Equatable {
-  var ticker: Ticker
+  var tickerData: Ticker
   var selectedButton: AwesomeButtonType = .chart
   var radioButtonState = RadioButtonState(buttons: [.chart,
                                                     .quote,
@@ -129,7 +129,7 @@ let detailReducer = Reducer.combine([
     case .onAppear:
       return .merge(
         Effect(value: .webSocket(.socketOnOff)),
-        Effect(value: .chartAction(.radioButtonAction(.buttonTap(.min_1)))),
+        Effect(value: .chartAction(.radioButtonAction(.buttonTap(.hour_24)))),
         Effect(value: .conclusionAction(.onAppear)),
         Effect(value: .quoteAction(.onAppear))
       )
@@ -141,7 +141,7 @@ let detailReducer = Reducer.combine([
         Effect(value: .webSocket(.sendFilter("orderbookdepth", [state.ticker.underScoreString], nil)))
       )
     case let .webSocket(.getTicker(ticker)):
-      state.ticker = ticker
+      state.tickerData = ticker
       return .merge(
         Effect(value: .priceAction(.getTickerData(ticker))),
         Effect(value: .chartAction(.getTickerData(ticker))),
