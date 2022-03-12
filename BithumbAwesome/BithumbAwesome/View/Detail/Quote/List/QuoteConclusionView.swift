@@ -36,7 +36,7 @@ struct QuoteConclusionView: View {
           
           Spacer()
           
-          Text("\(data.total ?? 0)")
+          Text(self.amountOfStickers(priceDouble: data.total))
             .lineLimit(1)
             .minimumScaleFactor(0.8)
         }
@@ -49,7 +49,7 @@ struct QuoteConclusionView: View {
     .padding(.horizontal, 2)
   }
   
-  func textColor(socketPrice: String?, transcationPrice: Double?) -> Color {
+  private func textColor(socketPrice: String?, transcationPrice: Double?) -> Color {
     guard let socketPrice = socketPrice,
           let socketDoublePrice = Double(socketPrice),
           let transactionPrice = transcationPrice
@@ -57,7 +57,12 @@ struct QuoteConclusionView: View {
       return Color.aGray3
     }
     
-    return socketDoublePrice < transactionPrice ? Color.aRed1 : socketDoublePrice == transactionPrice ? Color.aGray3 : Color.aBlue1
+    return socketDoublePrice < transactionPrice ? Color.aRed1 :
+    (socketDoublePrice > transactionPrice ? Color.aBlue1 : Color.aGray3)
+  }
+  private func amountOfStickers(priceDouble price: Double?) -> String {
+    let formattedPrice = (price ?? 0) * 0.0000001
+    return String(format: "%.4f", formattedPrice)
   }
 }
 
