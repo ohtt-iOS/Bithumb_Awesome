@@ -20,7 +20,12 @@ struct QuoteListRow: View {
         ForEach(viewStore.datas, id: \.id) { data in
           HStack(spacing: QuoteView.rowBlockPadding) {
             if self.type == .ask {
-              QuoteListRowBlock(type: .ask, data: data, width: self.blockWidth)
+              QuoteListRowBlock(
+                type: .ask,
+                data: data,
+                width: self.blockWidth,
+                topQuantity: self.topQuantity(of: viewStore.datas)
+              )
             }
             
             HStack {
@@ -29,24 +34,33 @@ struct QuoteListRow: View {
               Text(toPrice(price: data.price))
                 .font(Font.heading6)
                 .foregroundColor(
-                  self.priceColor(price: data.price, closingPrice: viewStore.closingPrice)
+                  self.priceColor(price: data.price, openingPrice: viewStore.openingPrice)
                 )
               
               Spacer()
               
-              Text(self.pricePercentage(price: data.price, closingPrice: viewStore.closingPrice))
+              Text(self.pricePercentage(price: data.price, openingPrice: viewStore.openingPrice))
                 .font(Font.heading7)
                 .foregroundColor(
-                  self.priceColor(price: data.price, closingPrice: viewStore.closingPrice)
+                  self.priceColor(price: data.price, openingPrice: viewStore.openingPrice)
                 )
                 .padding(.trailing, 2.5)
                 .padding(.vertical, 15)
             }
             .background(self.type.backgroundColor)
             .frame(width: self.blockWidth)
+            .border(
+              data.price == viewStore.closingPrice ? Color.aGray4 : Color.clear,
+              width: 1
+            )
             
             if self.type == .bid {
-              QuoteListRowBlock(type: .bid, data: data, width: self.blockWidth)
+              QuoteListRowBlock(
+                type: .bid,
+                data: data,
+                width: self.blockWidth,
+                topQuantity: self.topQuantity(of: viewStore.datas)
+              )
             }
           }
         }
@@ -54,28 +68,29 @@ struct QuoteListRow: View {
     }
   }
   
-  private func priceColor(price: String, closingPrice: String?) -> Color {
+  private func topQuantity(of array: [OrderBookDepthModel]) -> Double {
+    let quantityArray: [Double] = array.map { data in
+      return Double(data.quantity) ?? 0
+    }
+
+    return quantityArray.max() ?? quantityArray.first!
+  }
+  private func priceColor(price: String, openingPrice: String?) -> Color {
     let priceInt = Int(price) ?? 0
-    let closingPriceInt = Int(closingPrice ?? "0") ?? 0
-    if priceInt > closingPriceInt {
-      return Color.aRed1
-    } else if priceInt < closingPriceInt {
-      return Color.aBlue1
-    } else {
-      return Color.aGray4
-    }
+    let openingPriceInt = Int(openingPrice ?? "0") ?? 0
+    return priceInt > openingPriceInt ? Color.aRed1 : Color.aBlue1
   }
-  private func pricePercentage(price: String, closingPrice: String?) -> String {
+
+  private func pricePercentage(price: String, openingPrice: String?) -> String {
     let priceDouble = Double(price) ?? 0
-    let closingPriceDouble = Double(closingPrice ?? "0") ?? 0
-    if priceDouble > closingPriceDouble {
-      return "+\(String(format: "%.2f", priceDouble / closingPriceDouble * 0.01))%"
-    } else if priceDouble < closingPriceDouble {
-      return "-\(String(format: "%.2f", closingPriceDouble / priceDouble * 0.01))%"
-    } else {
-      return " 0.00%"
-    }
-  }
+    let openingPriceDouble = Double(openingPrice ?? "0") ?? 0
+    let difference = (priceDouble - openingPriceDouble).magnitude
+    let sign = priceDouble > openingPriceDouble ? "+" :
+    (priceDouble < openingPriceDouble ? "-" : " ")
+    let number = (priceDouble == openingPriceDouble) ? "0.00" :
+    String(format: "%.2f", (difference / openingPriceDouble) * 100)
+    
+    return sign + number + "%"  }
 }
 
 private let numberFormatter: NumberFormatter = {

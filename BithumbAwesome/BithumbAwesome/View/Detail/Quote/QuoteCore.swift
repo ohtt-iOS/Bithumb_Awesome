@@ -31,7 +31,7 @@ let quoteReducer = Reducer<QuoteState, QuoteAction, QuoteEnvironment> { state, a
     switch action {
     case .onAppear:
       return environment.quoteService
-        .getOrderBookDepth("BTC_KRW")
+        .getOrderBookDepth(state.ticker.ticker)
         .receive(on: environment.mainQueue)
         .catchToEffect(QuoteAction.quoteResponse)
         .cancellable(id: QuoteID(), cancelInFlight: true)
@@ -60,7 +60,10 @@ private func sortedQuoteArray(
   _ response: OrderBookDepthResponse
 ) -> [OrderBookDepthModel] {
   let originalArray: [OrderBookDepthModel] = (type == .bid) ? state.bids : state.asks
-  let responseArray: [OrderBookDepthModel] = (type == .bid) ? response.bids : response.asks
+  var responseArray: [OrderBookDepthModel] = (type == .bid) ? response.bids : response.asks
+  responseArray = responseArray.filter { data in
+    Double(data.quantity) ?? 0 != 0
+  }
   var tempArray = originalArray
   
   for data in originalArray {

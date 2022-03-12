@@ -11,9 +11,12 @@ struct QuoteListRowBlock: View {
   let type: OrderType
   let data: OrderBookDepthModel
   let width: CGFloat
+  let topQuantity: Double
   
-  private var blockWidthRatio: CGFloat {
-    return self.width * 0.03
+  private var rectangleWidth: CGFloat {
+    let blockWidthRatio = self.data.rectangleWidth / self.topQuantity
+    let resultWidth = self.width * blockWidthRatio
+    return resultWidth < self.width ? resultWidth : self.width
   }
   private var isTypeOfAsk: Bool {
     return self.type == .ask
@@ -22,17 +25,14 @@ struct QuoteListRowBlock: View {
   var body: some View {
     ZStack(alignment: self.isTypeOfAsk ? .trailing : .leading) {
       Rectangle()
-        .frame(
-          width: self.data.rectangleWidth * self.blockWidthRatio,
-          height: self.data.rectangleHeight
-        )
+        .frame(width: self.rectangleWidth, height: self.data.rectangleHeight)
         .foregroundColor(self.type.rectangleColor)
       
       HStack {
         Spacer()
           .frame(maxWidth: self.isTypeOfAsk ? .infinity : 0)
         
-        Text(self.data.quantity)
+        Text(String(format: "%.4f", Double(self.data.quantity) ?? 0))
           .font(Font.heading7)
           .foregroundColor(Color.aGray4)
           .padding(self.isTypeOfAsk ? .trailing : .leading, 5)

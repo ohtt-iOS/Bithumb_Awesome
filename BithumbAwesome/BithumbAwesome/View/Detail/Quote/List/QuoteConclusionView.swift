@@ -17,19 +17,6 @@ struct QuoteConclusionView: View {
   
   var body: some View {
     VStack(spacing: 10) {
-      HStack {
-        HStack {
-          Text("체결강도")
-            .foregroundColor(Color.aGray2)
-          
-          Spacer()
-          
-          Text("165.53%")
-            .foregroundColor(self.isColorRed ? Color.aRed1 : Color.aBlue1)
-        }
-      }
-      .padding(.top, 10)
-      
       ForEach(transactionData, id: \.id) { data in
         HStack {
           Text(toPrice(price: String(data.price ?? 0)))

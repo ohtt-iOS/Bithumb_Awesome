@@ -25,7 +25,8 @@ struct QuoteView: View {
                   store: Store(
                     initialState: QuoteListRowState(
                       datas: viewStore.asks,
-                      closingPrice: viewStore.ticker.closingPrice
+                      closingPrice: viewStore.ticker.closingPrice,
+                      openingPrice: viewStore.ticker.openingPrice
                     ),
                     reducer: quoteListRowReducer,
                     environment: ()
@@ -36,18 +37,21 @@ struct QuoteView: View {
                 
                 QuoteAdditionalInfomationList(ticker: viewStore.ticker)
                   .frame(width: self.rowBlockWith(rowWidth: geometryProxy.size.width))
+                  .padding(.bottom, 10)
               }
               
               HStack(spacing: QuoteView.rowBlockPadding) {
                 QuoteConclusionView(transactionData: viewStore.transactionData)
                   .frame(width: self.rowBlockWith(rowWidth: geometryProxy.size.width))
+                  .padding(.top, 10)
                 
                 VStack {
                   QuoteListRow(
                     store: Store(
                       initialState: QuoteListRowState(
                         datas: viewStore.bids,
-                        closingPrice: viewStore.ticker.closingPrice
+                        closingPrice: viewStore.ticker.closingPrice,
+                        openingPrice: viewStore.ticker.openingPrice
                       ),
                       reducer: quoteListRowReducer,
                       environment: ()

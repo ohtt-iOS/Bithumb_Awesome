@@ -42,15 +42,9 @@ private struct ListRow: View {
       return Color.aGray2
     }
     
-    let priceInt = Int(self.type.valueString(ticker: self.ticker)) ?? 0
-    let closingPriceInt = Int(self.ticker.closingPrice ?? "0") ?? 0
-    if priceInt > closingPriceInt {
-      return Color.aRed1
-    } else if priceInt < closingPriceInt {
-      return Color.aBlue1
-    } else {
-      return Color.aGray2
-    }
+    let priceDouble = Double(self.type.price(ticker: self.ticker) ?? "0") ?? 0
+    let marketPriceDouble = Double(self.ticker.openingPrice ?? "0") ?? 0
+    return priceDouble > marketPriceDouble ? Color.aRed1 : Color.aBlue1
   }
   
   var body: some View {
@@ -114,7 +108,7 @@ extension ListRowType {
     return self.havePercentage
   }
   
-  private func price(ticker: Ticker) -> String? {
+  func price(ticker: Ticker) -> String? {
     switch self {
     case .transactionVolume:
       return ticker.unitsTraded24H
@@ -144,14 +138,14 @@ extension ListRowType {
   }
   func percentage(ticker: Ticker) -> String {
     let priceDouble = Double(self.price(ticker: ticker) ?? "0") ?? 0
-    let closingPriceDouble = Double(ticker.closingPrice ?? "0") ?? 0
-    if priceDouble > closingPriceDouble {
-      return "+\(String(format: "%.2f", priceDouble / closingPriceDouble * 0.01))%"
-    } else if priceDouble < closingPriceDouble {
-      return "-\(String(format: "%.2f", closingPriceDouble / priceDouble * 0.01))%"
-    } else {
-      return " 0.00%"
-    }
+    let marketPriceDouble = Double(ticker.openingPrice ?? "0") ?? 0
+    let difference = (priceDouble - marketPriceDouble).magnitude
+    let sign = priceDouble > marketPriceDouble ? "+" :
+    (priceDouble < marketPriceDouble ? "-" : " ")
+    let number = (priceDouble == marketPriceDouble) ? "0.00" :
+    String(format: "%.2f", (difference / marketPriceDouble) * 100)
+    
+    return sign + number + "%"
   }
 }
 
