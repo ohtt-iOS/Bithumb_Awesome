@@ -19,6 +19,5 @@ enum QuoteListRowAction {
 let quoteListRowReducer = Reducer<
   QuoteListRowState, QuoteListRowAction, Void
 > { state, action, _ in
-  switch action {
-  }
+  return .none
 }

@@ -18,7 +18,7 @@ extension AssetService {
   static let asset = AssetService(
     fetchAssetData: {
       Effect.run { subscriber in
-        let URL = "https://api.bithumb.com/public/assetsstatus/ALL"
+        let URL = AwesomeURL.assetsStatus + "/ALL"
         let headers: HTTPHeaders = [
           "Content-Type": "application/json"
         ]

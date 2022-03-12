@@ -18,8 +18,7 @@ extension QuoteService {
   static let quote = QuoteService(
     getOrderBookDepth: { orderBookType in
       Effect.run { subscriber in
-        let URL = "https://api.bithumb.com/public/orderbook/\(orderBookType)"
-        print("🔗 URL : \(URL)")
+        let URL = AwesomeURL.orderbook + "/\(orderBookType)"
         let headers: HTTPHeaders = [
           "Content-Type": "application/json",
         ]

@@ -25,6 +25,8 @@ struct ChartEnvironment {
   var mainQueue: AnySchedulerOf<DispatchQueue>
 }
 
+struct CandleID: Hashable {}
+
 let chartReducer = Reducer.combine([
   chartRadioButtonReducer.pullback(
     state: \.radioButtonState,
@@ -44,7 +46,6 @@ let chartReducer = Reducer.combine([
       return .none
       
     case let .radioButtonAction(.buttonTap(type)):
-      struct CandleID: Hashable {}
       return environment.candleClient
         .getCandleData(state.ticker.underScoreString, type)
         .receive(on: environment.mainQueue)

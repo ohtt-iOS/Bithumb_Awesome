@@ -5,13 +5,6 @@
 //  Created by ohtt on 2022/03/03.
 //
 
-//
-//  Ticker.swift
-//  BithumbAwesome
-//
-//  Created by ohtt on 2022/03/03.
-//
-
 import SwiftUI
 
 struct Ticker: Codable, Equatable, Identifiable {
@@ -72,7 +65,7 @@ struct Ticker: Codable, Equatable, Identifiable {
   init(socketTickerResponse: TickerSocketResponse) {
     let list = socketTickerResponse.symbol.split(separator: "_")
     self.ticker = String(list.first!)
-    self.isKRW = (String(list.last!) == "KRW") ? true : false
+    self.isKRW = (String(list.last!) == "KRW")
     self.openingPrice = socketTickerResponse.openPrice
     self.closingPrice = socketTickerResponse.closePrice
     self.minPrice = socketTickerResponse.lowPrice

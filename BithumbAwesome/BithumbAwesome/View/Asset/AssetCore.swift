@@ -21,6 +21,8 @@ struct AssetEnvironment {
   var mainQueue: AnySchedulerOf<DispatchQueue>
 }
 
+struct AssetId: Hashable {}
+
 let assetReducer = Reducer<
   AssetState, AssetAction, AssetEnvironment
 > { state, action, environment in
@@ -32,7 +34,6 @@ let assetReducer = Reducer<
     state.assetData = response
     return .none
   case .fetchData:
-    struct AssetId: Hashable {}
     return environment.assetClient
       .fetchAssetData()
       .receive(on: environment.mainQueue)

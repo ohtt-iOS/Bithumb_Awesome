@@ -15,8 +15,8 @@ struct CandleChartView: UIViewRepresentable {
   func makeUIView(context: Context) -> CombinedChartView {
     
     let chart = CombinedChartView()
-    chart.leftAxis.enabled = false // 왼쪽 축 삭제
-    chart.xAxis.labelPosition = .bottom // x축 아래로 세팅
+    chart.leftAxis.enabled = false
+    chart.xAxis.labelPosition = .bottom
     chart.xAxis.labelCount = 4
     chart.xAxis.labelTextColor = UIColor(Color.aGray3)
     chart.xAxis.gridColor = .clear
@@ -29,8 +29,8 @@ struct CandleChartView: UIViewRepresentable {
     
     chart.drawOrder = [CombinedChartView.DrawOrder.bar.rawValue,
                        CombinedChartView.DrawOrder.candle.rawValue]
-    chart.legend.enabled = false // 범례 삭제
-    chart.autoScaleMinMaxEnabled = true // 차트 레이아웃 자동으로 세팅
+    chart.legend.enabled = false
+    chart.autoScaleMinMaxEnabled = true
     return chart
   }
   

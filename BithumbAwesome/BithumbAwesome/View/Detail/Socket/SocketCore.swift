@@ -11,7 +11,6 @@ struct SocketState: Equatable {
   var ticker: Ticker?
   var connectivityState = ConnectivityState.disconnected
   
-  // socket
   enum ConnectivityState: String {
     case connected
     case connecting
@@ -20,7 +19,6 @@ struct SocketState: Equatable {
 }
 
 enum SocketAction: Equatable {
-  // socket
   case getTicker(Ticker)
   case getTransaction(Transaction)
   case getQuote(OrderBookDepthResponse)
@@ -38,9 +36,9 @@ struct SocketEnvironment {
   var websocket: SocketService
 }
 
+struct WebSocketId: Hashable {}
+
 let socketReducer = Reducer<SocketState, SocketAction, SocketEnvironment> { state, action, environment in
-  //socket
-  struct WebSocketId: Hashable {}
   var receiveSocketMessageEffect: Effect<SocketAction, Never> {
     return environment.websocket.receive(WebSocketId())
       .receive(on: environment.mainQueue)
@@ -86,9 +84,7 @@ let socketReducer = Reducer<SocketState, SocketAction, SocketEnvironment> { stat
     return sendPingEffect
     
   case let .receivedSocketMessage(.success(.string(string))):
-    print(string)
     guard let data = string.data(using: .utf8) else {
-      print("ERROR - Cannot deserialize data")
       return receiveSocketMessageEffect
     }
     do {
@@ -144,7 +140,6 @@ let socketReducer = Reducer<SocketState, SocketAction, SocketEnvironment> { stat
     if let tickerTypes = tickerTypes {
       parameter["tickTypes"] = tickerTypes
     }
-    print(parameter)
     do {
       let data = try JSONSerialization.data(withJSONObject: parameter)
       guard let dataString = String(data: data, encoding: .utf8) else { return .none }

@@ -17,7 +17,5 @@ struct SettingEnvironment {
 }
 
 let settingReducer = Reducer<SettingState, SettingAction, SettingEnvironment> { state, action, environment in
-  switch action {
-  
-  }
+  return .none
 }

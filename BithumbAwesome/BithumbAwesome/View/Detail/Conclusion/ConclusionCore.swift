@@ -24,6 +24,8 @@ struct ConclusionEnvironment {
   var mainQueue: AnySchedulerOf<DispatchQueue>
 }
 
+struct ConclusionID: Hashable {}
+
 let conclusionReducer = Reducer<ConclusionState, ConclusionAction, ConclusionEnvironment> { state, action, environment in
   switch action {
   case .transactionResponse(.failure):
@@ -35,7 +37,6 @@ let conclusionReducer = Reducer<ConclusionState, ConclusionAction, ConclusionEnv
     return .none
     
   case .onAppear:
-    struct ConclusionID: Hashable {}
     return environment.transactionService
       .getTransactionData(state.ticker.underScoreString)
       .receive(on: environment.mainQueue)

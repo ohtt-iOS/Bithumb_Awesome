@@ -27,6 +27,7 @@ struct QuoteEnvironment {
 }
 
 struct QuoteID: Hashable {}
+
 let quoteReducer = Reducer<QuoteState, QuoteAction, QuoteEnvironment> { state, action, environment in
     switch action {
     case .onAppear:
@@ -42,7 +43,6 @@ let quoteReducer = Reducer<QuoteState, QuoteAction, QuoteEnvironment> { state, a
       return .none
       
     case let .quoteResponse(.success(response)):
-      print("response: \(response)")
       state.bids = response.bids
       state.asks = response.asks
       return .none

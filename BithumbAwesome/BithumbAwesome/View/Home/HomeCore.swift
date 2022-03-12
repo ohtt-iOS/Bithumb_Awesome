@@ -161,7 +161,6 @@ private func requestTickerData(environment: HomeEnvironment,
 
 private func requestFavoriteData(environment: HomeEnvironment,
                                  underscope: [String]) -> Effect<HomeAction, Never> {
-  struct TickerId: Hashable {}
   return environment.homeService
     .getFavoriteData(underscope)
     .receive(on: environment.mainQueue)

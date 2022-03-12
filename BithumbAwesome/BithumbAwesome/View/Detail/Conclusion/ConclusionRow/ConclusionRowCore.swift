@@ -16,6 +16,5 @@ enum ConclusionRowAction {
 }
 
 let conclusionRowReducer = Reducer<ConclusionRowState, ConclusionRowAction, Void> { state, action, _ in
-  switch action {
-  }
+  return .none
 }

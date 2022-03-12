@@ -57,7 +57,6 @@ struct DetailEnvironment {
 }
 
 struct TransactionID: Hashable {}
-struct CandleID: Hashable {}
 
 let detailReducer = Reducer.combine([
   socketReducer.pullback(

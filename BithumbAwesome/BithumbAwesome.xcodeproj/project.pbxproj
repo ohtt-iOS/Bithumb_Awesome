@@ -34,6 +34,7 @@
 		C6B861CC27D9E7360040F08B /* QuoteListRowBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B861CB27D9E7360040F08B /* QuoteListRowBlock.swift */; };
 		C6B861CE27D9EB610040F08B /* QuoteConclusionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B861CD27D9EB610040F08B /* QuoteConclusionView.swift */; };
 		C6CBA8A927DCB9AD00D48DA2 /* LogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CBA8A827DCB9AD00D48DA2 /* LogoImageView.swift */; };
+		C6CBA8AB27DCC7F300D48DA2 /* AwesomeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CBA8AA27DCC7F300D48DA2 /* AwesomeURL.swift */; };
 		C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630B27C7D03D00E6DD98 /* Color+.swift */; };
 		C6DA630E27C7D47400E6DD98 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630D27C7D47400E6DD98 /* Font+.swift */; };
 		D100F97027D5EDA30089F30E /* VerticalDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D100F96F27D5EDA30089F30E /* VerticalDivider.swift */; };
@@ -120,6 +121,7 @@
 		C6B861CB27D9E7360040F08B /* QuoteListRowBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteListRowBlock.swift; sourceTree = "<group>"; };
 		C6B861CD27D9EB610040F08B /* QuoteConclusionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteConclusionView.swift; sourceTree = "<group>"; };
 		C6CBA8A827DCB9AD00D48DA2 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
+		C6CBA8AA27DCC7F300D48DA2 /* AwesomeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeURL.swift; sourceTree = "<group>"; };
 		C6DA630B27C7D03D00E6DD98 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		C6DA630D27C7D47400E6DD98 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		D100F96F27D5EDA30089F30E /* VerticalDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalDivider.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				C65E8DA427D0C5CA0088A5F4 /* CryptoCurrencyType.swift */,
 				C666778D27D91C35008B90CF /* OrderType.swift */,
 				C66847F827D90A8E005E65B3 /* UserDefaultsKey.swift */,
+				C6CBA8AA27DCC7F300D48DA2 /* AwesomeURL.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C65E8DA127D0BDFC0088A5F4 /* Asset.swift in Sources */,
+				C6CBA8AB27DCC7F300D48DA2 /* AwesomeURL.swift in Sources */,
 				C666779427D92B4C008B90CF /* QuoteListRowCore.swift in Sources */,
 				D15E620027D3BDA2008ADB72 /* ChartRadioButtonType.swift in Sources */,
 				C6B6343C27D338E9009B2E97 /* QuoteListRow.swift in Sources */,
@@ -815,12 +819,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BithumbAwesome/Preview Content\"";
-				DEVELOPMENT_TEAM = 269D672VZ4;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -833,7 +838,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -845,12 +850,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BithumbAwesome/Preview Content\"";
-				DEVELOPMENT_TEAM = 269D672VZ4;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -863,7 +869,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

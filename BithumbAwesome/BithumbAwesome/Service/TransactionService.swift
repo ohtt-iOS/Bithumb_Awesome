@@ -18,7 +18,7 @@ extension TransactionService {
   static let transaction = TransactionService(
     getTransactionData: { underscopeString in
       Effect.run { subscriber in
-        let URL = "https://api.bithumb.com/public/transaction_history/\(underscopeString)"
+        let URL = AwesomeURL.transactionHistory + "/\(underscopeString)"
         let headers: HTTPHeaders = [
           "Content-Type": "application/json",
         ]

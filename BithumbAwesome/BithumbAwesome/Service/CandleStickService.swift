@@ -18,7 +18,7 @@ extension CandleStickService {
   static let candle = CandleStickService(
     getCandleData: { underscopeString, type in
       Effect.run { subscriber in
-        let URL = "https://api.bithumb.com/public/candlestick/\(underscopeString)/\(type.parameter)"
+        let URL = AwesomeURL.candlestick + "/\(underscopeString)/\(type.parameter)"
         let headers: HTTPHeaders = [
           "Content-Type": "application/json",
         ]

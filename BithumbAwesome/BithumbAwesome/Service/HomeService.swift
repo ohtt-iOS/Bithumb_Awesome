@@ -19,8 +19,7 @@ extension HomeService {
   static let home = HomeService(
     getTickerData: { order, payment in
       Effect.run { subscriber in
-        let URL = "https://api.bithumb.com/public/ticker/\(order)_\(payment)"
-        print("🔗 URL : \(URL)")
+        let URL = AwesomeURL.ticker + "/\(order)_\(payment)"
         let headers: HTTPHeaders = [
           "Content-Type": "application/json",
         ]
@@ -75,8 +74,7 @@ extension HomeService {
 }
 
 private func requestData(underscope: String) -> AnyPublisher<Ticker, HomeService.Failure> {
-  let URL = "https://api.bithumb.com/public/ticker/\(underscope)"
-  print("🔗 URL : \(URL)")
+  let URL = AwesomeURL.ticker + "/\(underscope)"
   let headers: HTTPHeaders = [
     "Content-Type": "application/json",
   ]
