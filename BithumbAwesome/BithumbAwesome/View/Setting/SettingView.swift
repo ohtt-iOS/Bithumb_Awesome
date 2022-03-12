@@ -13,7 +13,12 @@ struct SettingView: View {
     VStack(spacing: 20) {
       LogoImageView()
       
-      SettingButtonView(type: .license)
+      NavigationLink(
+        destination: OpenSourceLibraryView(),
+        label: {
+          SettingButtonView(type: .license)
+        }
+      )
       
       Link(
         destination: URL(string: AwesomeURL.notionPage)!,

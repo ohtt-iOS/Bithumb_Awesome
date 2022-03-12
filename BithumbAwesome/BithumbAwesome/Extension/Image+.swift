@@ -25,6 +25,7 @@ extension Image {
   static let favoriteEmptyButton: Image = Image("Star")
   static let searchButton: Image = Image("Search_alt_duotone_line")
   static let nextButton: Image = Image("Expand_right_light")
+  static let expandButton: Image = Image("Expand_down_light")
   
   // MARK: asset image
   static let circle: Image = Image("Ellipse")
