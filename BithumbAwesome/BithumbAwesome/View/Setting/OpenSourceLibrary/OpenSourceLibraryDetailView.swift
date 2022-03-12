@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct OpenSourceLibraryDetailView: View {
-  let titleString: String
-  let contentString: String
+  var type: OpenSourceLibraryType
   
   @State private var isOpen: Bool = false
   
   var body: some View {
     VStack(alignment: .leading, spacing: 20) {
       HStack {
-        Text(self.titleString)
+        Text(self.type.titleString)
           .font(Font.heading4)
           .foregroundColor(Color.aGray3)
         
@@ -28,7 +27,7 @@ struct OpenSourceLibraryDetailView: View {
       }
       
       if self.isOpen {
-        Text(self.contentString)
+        Text(self.type.contentString)
           .font(Font.heading6)
           .foregroundColor(Color.aGray3)
           .lineLimit(nil)

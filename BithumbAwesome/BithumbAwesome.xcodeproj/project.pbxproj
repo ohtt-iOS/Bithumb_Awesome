@@ -40,6 +40,7 @@
 		C6C65FF627DD18DA00ABEAE7 /* SettingButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C65FF527DD18DA00ABEAE7 /* SettingButtonType.swift */; };
 		C6C6600327DD1DDF00ABEAE7 /* OpenSourceLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6600127DD1DDF00ABEAE7 /* OpenSourceLibraryView.swift */; };
 		C6C6600427DD1DDF00ABEAE7 /* OpenSourceLibraryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6600227DD1DDF00ABEAE7 /* OpenSourceLibraryDetailView.swift */; };
+		C6C6600627DD21B700ABEAE7 /* OpenSourceLibraryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6600527DD21B700ABEAE7 /* OpenSourceLibraryType.swift */; };
 		C6CBA8A927DCB9AD00D48DA2 /* LogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CBA8A827DCB9AD00D48DA2 /* LogoImageView.swift */; };
 		C6CBA8AB27DCC7F300D48DA2 /* AwesomeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CBA8AA27DCC7F300D48DA2 /* AwesomeURL.swift */; };
 		C6DA630C27C7D03D00E6DD98 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DA630B27C7D03D00E6DD98 /* Color+.swift */; };
@@ -132,6 +133,7 @@
 		C6C65FF527DD18DA00ABEAE7 /* SettingButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButtonType.swift; sourceTree = "<group>"; };
 		C6C6600127DD1DDF00ABEAE7 /* OpenSourceLibraryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenSourceLibraryView.swift; sourceTree = "<group>"; };
 		C6C6600227DD1DDF00ABEAE7 /* OpenSourceLibraryDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenSourceLibraryDetailView.swift; sourceTree = "<group>"; };
+		C6C6600527DD21B700ABEAE7 /* OpenSourceLibraryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceLibraryType.swift; sourceTree = "<group>"; };
 		C6CBA8A827DCB9AD00D48DA2 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
 		C6CBA8AA27DCC7F300D48DA2 /* AwesomeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeURL.swift; sourceTree = "<group>"; };
 		C6DA630B27C7D03D00E6DD98 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 			children = (
 				C6C6600127DD1DDF00ABEAE7 /* OpenSourceLibraryView.swift */,
 				C6C6600227DD1DDF00ABEAE7 /* OpenSourceLibraryDetailView.swift */,
+				C6C6600527DD21B700ABEAE7 /* OpenSourceLibraryType.swift */,
 			);
 			path = OpenSourceLibrary;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				C6A7AD7B27CE58F200851AA9 /* UINavigationController+.swift in Sources */,
 				D1CB408227D27AE900AC3AFA /* Candle.swift in Sources */,
 				D1E0CB3D27D5F3990074D3AC /* SocketCore.swift in Sources */,
+				C6C6600627DD21B700ABEAE7 /* OpenSourceLibraryType.swift in Sources */,
 				C6B861CC27D9E7360040F08B /* QuoteListRowBlock.swift in Sources */,
 				C65E8D9627D0B4840088A5F4 /* CurrentAssetStatus.swift in Sources */,
 				D1C47B5927CE76760006B7A3 /* ConclusionCore.swift in Sources */,

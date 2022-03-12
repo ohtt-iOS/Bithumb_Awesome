@@ -23,12 +23,14 @@ struct OpenSourceLibraryView: View {
         Spacer()
       }
       
-      VStack {
-        OpenSourceLibraryDetailView(titleString: "title", contentString: "content")
-          .padding(.top, 30)
-          .padding(.horizontal, 30)
-        
-        Spacer()
+      ScrollView {
+        VStack {
+          ForEach(OpenSourceLibraryType.allCases) { libraryType in
+            OpenSourceLibraryDetailView(type: libraryType)
+              .padding(.top, 30)
+              .padding(.horizontal, 30)
+          }
+        }
       }
     }
   }
