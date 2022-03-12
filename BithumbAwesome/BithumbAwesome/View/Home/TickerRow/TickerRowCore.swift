@@ -35,8 +35,15 @@ let tickerReducer = Reducer<TickerState, TickerAction, TickerEnvironment> { stat
     else {
       return .none
     }
+    state.backgroundColor = beforePrice > nowPrice ? Color.aBlue1 : beforePrice < nowPrice ? Color.aRed1 : Color.aGray1
     state.ticker = ticker
-    return .none
+    state.isUnderLine = true
+    return Effect.run { subscriber in
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        subscriber.send(.changeToInvisable(false))
+      }
+      return AnyCancellable { }
+    }
     
   case let .changeToInvisable(boolType):
     state.isUnderLine = boolType

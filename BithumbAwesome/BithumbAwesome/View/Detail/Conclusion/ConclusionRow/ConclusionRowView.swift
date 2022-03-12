@@ -34,7 +34,7 @@ struct ConclusionRowView: View {
             VerticalDivider()
             Spacer()
             
-            Text(String(viewStore.data.total ?? 0))
+            Text(String(viewStore.data.unitsTraded ?? 0))
               .frame(width: g.size.width/3.5, height: g.size.height, alignment: .trailing)
               .font(.heading6)
               .foregroundColor(textColor(socketPrice: viewStore.ticker.closingPrice, transcationPrice: viewStore.data.price))

@@ -17,7 +17,7 @@ struct PriceView: View {
         Text(toPrice(price: viewStore.tickerData.closingPrice))
           .font(Font.heading1)
           .foregroundColor(viewStore.tickerData.textColor)
-          .background(viewStore.isUnderLine ? viewStore.tickerData.textColor.opacity(0.1) : Color.clear)
+          .background(viewStore.isUnderLine ? viewStore.backgroundColor.opacity(0.1) : Color.clear)
         
         HStack(spacing: 10) {
           Text(toPrice(price: viewStore.tickerData.fluctate24H))
