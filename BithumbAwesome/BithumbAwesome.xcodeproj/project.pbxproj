@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C62E49A727DD8AF6009AA66B /* Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62E49A627DD8AF6009AA66B /* Convert.swift */; };
 		C653524027D11CEC0088AC3B /* QuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C653523F27D11CEC0088AC3B /* QuoteService.swift */; };
 		C65E8D8927D0B1650088A5F4 /* AssetListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8D8527D0B1650088A5F4 /* AssetListHeader.swift */; };
 		C65E8D9327D0B3750088A5F4 /* AssetListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8D9227D0B3750088A5F4 /* AssetListRow.swift */; };
@@ -93,6 +94,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C62E49A627DD8AF6009AA66B /* Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convert.swift; sourceTree = "<group>"; };
 		C653523F27D11CEC0088AC3B /* QuoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteService.swift; sourceTree = "<group>"; };
 		C65E8D8527D0B1650088A5F4 /* AssetListHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListHeader.swift; sourceTree = "<group>"; };
 		C65E8D9227D0B3750088A5F4 /* AssetListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListRow.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				C666778D27D91C35008B90CF /* OrderType.swift */,
 				C66847F827D90A8E005E65B3 /* UserDefaultsKey.swift */,
 				C6CBA8AA27DCC7F300D48DA2 /* AwesomeURL.swift */,
+				C62E49A627DD8AF6009AA66B /* Convert.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				D100F97027D5EDA30089F30E /* VerticalDivider.swift in Sources */,
 				D184800227CA75B400213DD0 /* HomeView.swift in Sources */,
 				D1E0CB3927D5F3630074D3AC /* SocketResponse.swift in Sources */,
+				C62E49A727DD8AF6009AA66B /* Convert.swift in Sources */,
 				D1D7268927D121F900A9E420 /* Transaction.swift in Sources */,
 				D1E0CB3727D5F3370074D3AC /* SocketService.swift in Sources */,
 				D18480A327CD19E900213DD0 /* RadioButtonView.swift in Sources */,

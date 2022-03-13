@@ -19,7 +19,7 @@ struct QuoteConclusionView: View {
     VStack(spacing: 10) {
       ForEach(transactionData, id: \.id) { data in
         HStack {
-          Text(toPrice(price: String(data.price ?? 0)))
+          Text(Convert.toPrice(price: String(data.price ?? 0)))
           
           Spacer()
           
@@ -50,28 +50,5 @@ struct QuoteConclusionView: View {
   private func amountOfStickers(priceDouble price: Double?) -> String {
     let formattedPrice = (price ?? 0) * 0.0000001
     return String(format: "%.4f", formattedPrice)
-  }
-}
-
-private let numberFormatter: NumberFormatter = {
-  let numberFormatter = NumberFormatter()
-  numberFormatter.numberStyle = .decimal
-  return numberFormatter
-}()
-
-private func toPrice(price: String?) -> String {
-  guard let price = price,
-        let doubleValue = Double(price)
-  else {
-    return ""
-  }
-  if doubleValue > 1 {
-    guard let number = numberFormatter.string(from: NSNumber(value: doubleValue))
-    else {
-      return ""
-    }
-    return number
-  } else {
-    return price
   }
 }

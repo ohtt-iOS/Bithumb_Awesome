@@ -14,14 +14,14 @@ struct PriceView: View {
   var body: some View {
     WithViewStore(self.store) { viewStore in
       VStack(alignment: .leading, spacing: 10) {
-        Text(toPrice(price: viewStore.tickerData.closingPrice))
+        Text(Convert.toPrice(price: viewStore.tickerData.closingPrice))
           .font(Font.heading1)
           .foregroundColor(viewStore.tickerData.textColor)
           .background(viewStore.isUnderLine ? viewStore.backgroundColor.opacity(0.1) : Color.clear)
         
         HStack(spacing: 10) {
-          Text(toPrice(price: viewStore.tickerData.fluctate24H))
-          Text(setPercentText(percentChange:viewStore.tickerData.fluctateRate24H))
+          Text(Convert.toPrice(price: viewStore.tickerData.fluctate24H))
+          Text(Convert.toPercentText(percentChange:viewStore.tickerData.fluctateRate24H))
         }
         .font(Font.heading2)
         .foregroundColor(viewStore.tickerData.textColor)
@@ -50,21 +50,6 @@ private func toPrice(price: String?) -> String {
     return number
   } else {
     return price
-  }
-}
-
-private func setPercentText(percentChange: String?) -> String {
-  guard let percent = percentChange,
-        let doubleValue = Double(percent)
-  else {
-    return ""
-  }
-  if doubleValue > 0 {
-    return "▲ \(percent)%"
-  } else if doubleValue < 0{
-    return "▼ \(doubleValue.magnitude)%"
-  } else {
-    return "\(percent)%"
   }
 }
 

@@ -31,7 +31,7 @@ struct QuoteListRow: View {
             HStack {
               Spacer()
               
-              Text(toPrice(price: data.price))
+              Text(Convert.toPrice(price: data.price))
                 .font(Font.heading6)
                 .foregroundColor(
                   self.priceColor(price: data.price, openingPrice: viewStore.openingPrice)
@@ -91,28 +91,5 @@ struct QuoteListRow: View {
     String(format: "%.2f", (difference / openingPriceDouble) * 100)
     
     return sign + number + "%"
-  }
-}
-
-private let numberFormatter: NumberFormatter = {
-  let numberFormatter = NumberFormatter()
-  numberFormatter.numberStyle = .decimal
-  return numberFormatter
-}()
-
-private func toPrice(price: String?) -> String {
-  guard let price = price,
-        let doubleValue = Double(price)
-  else {
-    return ""
-  }
-  if doubleValue > 1 {
-    guard let number = numberFormatter.string(from: NSNumber(value: doubleValue))
-    else {
-      return ""
-    }
-    return number
-  } else {
-    return price
   }
 }

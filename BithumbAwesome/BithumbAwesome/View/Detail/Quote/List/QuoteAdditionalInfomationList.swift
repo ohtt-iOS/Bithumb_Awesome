@@ -125,7 +125,7 @@ extension ListRowType {
     }
   }
   func valueString(ticker: Ticker) -> String {
-    let price = toPrice(price: self.price(ticker: ticker))
+    let price = Convert.toPrice(price: self.price(ticker: ticker))
     switch self {
     case .transactionVolume:
       return price + " ETH"
@@ -146,28 +146,5 @@ extension ListRowType {
     String(format: "%.2f", (difference / marketPriceDouble) * 100)
     
     return sign + number + "%"
-  }
-}
-
-private let numberFormatter: NumberFormatter = {
-  let numberFormatter = NumberFormatter()
-  numberFormatter.numberStyle = .decimal
-  return numberFormatter
-}()
-
-private func toPrice(price: String?) -> String {
-  guard let price = price,
-        let doubleValue = Double(price)
-  else {
-    return ""
-  }
-  if doubleValue > 1 {
-    guard let number = numberFormatter.string(from: NSNumber(value: doubleValue))
-    else {
-      return ""
-    }
-    return number
-  } else {
-    return price
   }
 }
