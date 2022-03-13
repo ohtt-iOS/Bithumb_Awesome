@@ -9,21 +9,32 @@ import SwiftUI
 import ComposableArchitecture
 
 struct SettingView: View {
-  let store: Store<SettingState, SettingAction>
-  
   var body: some View {
-    WithViewStore(self.store) { viewStore in
-      Text("Setting")
+    VStack(spacing: 20) {
+      LogoImageView()
+      
+      NavigationLink(
+        destination: OpenSourceLibraryView(),
+        label: {
+          SettingButtonView(type: .license)
+        }
+      )
+      
+      Link(
+        destination: URL(string: AwesomeURL.notionPage)!,
+        label: {
+          SettingButtonView(type: .notion)
+        }
+      )
+      
+      HStack(spacing: 20) {
+        ForEach(ProfileType.allCases) { profileType in
+          ProfileLinkView(type: profileType)
+        }
+      }
+      
+      Spacer()
     }
-  }
-}
-
-struct SettingView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingView(store: Store(
-      initialState: SettingState(),
-      reducer: settingReducer,
-      environment: SettingEnvironment()
-    ))
+    .padding(.horizontal, 20)
   }
 }

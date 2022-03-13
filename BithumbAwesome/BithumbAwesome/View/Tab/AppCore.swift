@@ -10,7 +10,6 @@ import ComposableArchitecture
 struct AppState: Equatable {
   var homeState: HomeState = .init(tickerData: [], socketState: SocketState())
   var assetState: AssetState = .init(assetData: [])
-  var settingState: SettingState = .init()
 }
 
 enum AppAction {
@@ -18,7 +17,6 @@ enum AppAction {
   
   case homeAction(HomeAction)
   case assetAction(AssetAction)
-  case settingAction(SettingAction)
 }
 
 struct AppEnvironment {
@@ -43,13 +41,6 @@ let appReducer = Reducer.combine([
       AssetEnvironment(assetClient: AssetService.asset, mainQueue: .main)
     }
   ) as Reducer<AppState, AppAction, AppEnvironment>,
-  settingReducer.pullback(
-    state: \.settingState,
-    action: /AppAction.settingAction,
-    environment: { _ in
-      SettingEnvironment()
-    }
-  ) as Reducer<AppState, AppAction, AppEnvironment>,
   Reducer<AppState, AppAction, AppEnvironment> { state, action, environment in
     switch action {
     case .onAppear:
@@ -60,8 +51,6 @@ let appReducer = Reducer.combine([
     case .homeAction:
       return .none
     case .assetAction:
-      return .none
-    case .settingAction:
       return .none
     }
   }

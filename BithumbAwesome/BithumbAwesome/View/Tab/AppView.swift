@@ -42,12 +42,7 @@ struct AppView: View {
           )
             .tabItem(for: AwesomeTabType.asset)
           
-          SettingView(
-            store: store.scope(
-              state: \.settingState,
-              action: AppAction.settingAction
-            )
-          )
+          SettingView()
             .tabItem(for: AwesomeTabType.setting)
         }
         .tabBar(style: AwesomeTabBarStyle())
